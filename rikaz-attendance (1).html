@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Rikaz — بصمة الحضور</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Tahoma,Arial,sans-serif}
+:root{--gold:#D4AF37;--gold2:#C9960C;--b900:#0A0F2E;--b800:#12235C;--g900:#1A6B3A;--r900:#B71C1C;--border:#E2E8F0;--muted:#6B7C93}
+body{background:#F0F2FA;min-height:100vh;color:#0A0F2E}
+
+/* شاشة الدخول */
+#login-screen{position:fixed;inset:0;background:linear-gradient(135deg,#0A0F2E,#12235C,#1A1A2E);display:flex;align-items:center;justify-content:center;z-index:999;flex-direction:column}
+.login-box{background:rgba(255,255,255,0.06);border:1px solid rgba(212,175,55,0.2);border-radius:20px;padding:32px 24px;width:min(380px,92vw)}
+.login-logo{text-align:center;margin-bottom:28px}
+.login-logo span{color:#D4AF37;font-size:26px;font-weight:800;letter-spacing:2px}
+.login-logo p{color:#9BBFE4;font-size:12px;margin-top:4px}
+.inp{width:100%;padding:12px 14px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:10px;color:#fff;font-size:14px;margin-bottom:12px;font-family:inherit;outline:none}
+.inp:focus{border-color:rgba(212,175,55,0.6)}
+.btn-gold{width:100%;padding:14px;background:linear-gradient(135deg,#C9960C,#D4AF37);color:#0A0F2E;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit}
+#login-err{color:#FF8A80;font-size:12px;text-align:center;margin-bottom:8px;display:none}
+
+/* الشاشة الرئيسية */
+#app{display:none}
+.topbar{background:linear-gradient(135deg,#0A0F2E,#12235C);padding:14px 18px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10}
+.topbar-logo{color:#D4AF37;font-size:17px;font-weight:800}
+.topbar-user{color:#9BBFE4;font-size:11px;text-align:left}
+.topbar-out{background:none;border:1px solid rgba(255,255,255,0.2);color:#9BBFE4;padding:5px 10px;border-radius:6px;font-size:11px;cursor:pointer;font-family:inherit}
+
+.main{padding:16px;max-width:500px;margin:0 auto}
+
+/* بطاقة الموظف */
+.emp-card{background:#fff;border-radius:14px;padding:16px;margin-bottom:14px;border:1px solid var(--border);display:flex;align-items:center;gap:12px}
+.emp-avatar{width:48px;height:48px;border-radius:50%;background:#E6EBF7;color:#1A3A8F;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;flex-shrink:0}
+.emp-name{font-size:15px;font-weight:700;color:#0A0F2E}
+.emp-title{font-size:12px;color:var(--muted)}
+.emp-type-badge{font-size:10px;padding:2px 8px;border-radius:10px;display:inline-block;margin-top:3px}
+.type-office{background:#E6EBF7;color:#1A3A8F}
+.type-field{background:#FDF6DC;color:#A07808}
+.type-exempt{background:#F5F5F5;color:#616161}
+
+/* أزرار البصمة */
+.checkin-btn{width:100%;padding:18px;background:linear-gradient(135deg,#1A6B3A,#2E8B4A);color:#fff;border:none;border-radius:14px;font-size:17px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:10px;transition:opacity .2s}
+.checkout-btn{width:100%;padding:18px;background:linear-gradient(135deg,#B71C1C,#C62828);color:#fff;border:none;border-radius:14px;font-size:17px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:10px;transition:opacity .2s}
+.checkin-btn:disabled,.checkout-btn:disabled{opacity:.5;cursor:default}
+
+/* الوقت الحالي */
+.time-card{background:linear-gradient(135deg,#0A0F2E,#12235C);border-radius:14px;padding:20px;text-align:center;margin-bottom:14px;color:#fff}
+.time-now{font-size:36px;font-weight:700;color:#D4AF37;letter-spacing:2px}
+.date-now{font-size:13px;color:#9BBFE4;margin-top:4px}
+
+/* الموقع */
+.location-card{background:#fff;border-radius:14px;padding:14px;margin-bottom:14px;border:1px solid var(--border)}
+.loc-title{font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:600}
+.loc-val{font-size:13px;color:#0A0F2E;display:flex;align-items:center;gap:6px}
+.loc-link{font-size:11px;color:#C9960C;text-decoration:none;display:inline-flex;align-items:center;gap:3px;margin-top:4px}
+
+/* سجل اليوم */
+.today-card{background:#fff;border-radius:14px;padding:14px;margin-bottom:14px;border:1px solid var(--border)}
+.today-title{font-size:13px;font-weight:700;color:#0A0F2E;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.record-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
+.record-row:last-child{border-bottom:none}
+.rec-type{display:flex;align-items:center;gap:6px}
+.rec-in{color:#1A6B3A;font-weight:600}
+.rec-out{color:#B71C1C;font-weight:600}
+.rec-time{color:var(--muted);font-size:12px}
+.rec-loc{font-size:11px;color:#C9960C;text-decoration:none}
+
+/* ملاحظة الميداني */
+.notes-area{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;font-size:13px;resize:none;font-family:inherit;margin-bottom:10px;outline:none}
+.notes-area:focus{border-color:#D4AF37}
+
+/* إشعارات */
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#0A0F2E;color:#fff;padding:12px 20px;border-radius:10px;font-size:13px;z-index:999;white-space:nowrap;opacity:0;transition:opacity .3s;border-right:4px solid #D4AF37}
+.toast.show{opacity:1}
+
+/* تحميل */
+.spinner{display:inline-block;width:18px;height:18px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+
+<!-- شاشة الدخول -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">
+      <span>Rikaz</span>
+      <p>بصمة الحضور والانصراف</p>
+    </div>
+    <div id="login-err"></div>
+    <input class="inp" id="l-email" type="email" placeholder="البريد الإلكتروني" dir="ltr" onkeydown="if(event.key==='Enter')document.getElementById('l-pass').focus()">
+    <input class="inp" id="l-pass" type="password" placeholder="كلمة المرور" dir="ltr" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="btn-gold" onclick="doLogin()" id="l-btn">دخول</button>
+  </div>
+</div>
+
+<!-- التطبيق الرئيسي -->
+<div id="app">
+  <div class="topbar">
+    <div class="topbar-logo">Rikaz 🪪</div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <div class="topbar-user" id="topbar-user"></div>
+      <button class="topbar-out" onclick="doLogout()">خروج</button>
+    </div>
+  </div>
+
+  <div class="main">
+    <!-- الوقت -->
+    <div class="time-card">
+      <div class="time-now" id="clock">--:--:--</div>
+      <div class="date-now" id="dateline"></div>
+    </div>
+
+    <!-- بطاقة الموظف -->
+    <div class="emp-card" id="emp-card" style="display:none">
+      <div class="emp-avatar" id="emp-avatar">—</div>
+      <div>
+        <div class="emp-name" id="emp-name">—</div>
+        <div class="emp-title" id="emp-title">—</div>
+        <span class="emp-type-badge" id="emp-type-badge">—</span>
+      </div>
+    </div>
+
+    <!-- اختيار الموقع -->
+    <div id="location-select-card" style="display:none;background:#fff;border-radius:14px;padding:14px;margin-bottom:14px;border:1px solid var(--border)">
+      <div style="font-size:12px;color:var(--muted);margin-bottom:8px;font-weight:600">📍 اختر موقع العمل</div>
+      <select id="work-location-select" onchange="onLocationSelect()" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit;background:#fff">
+        <option value="">-- اختر الموقع --</option>
+        <option value="field">🚗 ميداني (أي موقع)</option>
+      </select>
+      <div id="shift-info" style="font-size:12px;color:#1A3A8F;margin-top:8px;display:none;background:var(--b50,#F2F4FB);padding:8px 10px;border-radius:6px"></div>
+    </div>
+
+    <!-- الموقع -->
+    <div class="location-card" id="loc-card">
+      <div class="loc-title">📍 موقعك الحالي</div>
+      <div class="loc-val" id="loc-val">جاري تحديد الموقع...</div>
+      <a id="loc-link" href="#" target="_blank" class="loc-link" style="display:none">🗺️ افتح في خرائط Google</a>
+    </div>
+
+    <!-- ملاحظة للميداني -->
+    <div id="notes-section" style="display:none">
+      <textarea class="notes-area" id="att-notes" placeholder="ملاحظات (اختياري) — أين أنت؟ ماذا تفعل؟" rows="2"></textarea>
+    </div>
+
+    <!-- أزرار البصمة -->
+    <button class="checkin-btn" id="checkin-btn" onclick="recordAttendance('checkin')">
+      ✅ تسجيل حضور
+    </button>
+    <button class="checkout-btn" id="checkout-btn" onclick="recordAttendance('checkout')" style="display:none">
+      🚪 تسجيل انصراف
+    </button>
+
+    <!-- سجل اليوم -->
+    <div class="today-card">
+      <div class="today-title">📋 سجل اليوم</div>
+      <div id="today-records"><div style="color:var(--muted);font-size:13px;text-align:center;padding:10px">لا يوجد تسجيل اليوم</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const RIKAZ_URL = 'https://dkbpajjnadlycnpoivim.supabase.co';
+const RIKAZ_KEY = 'sb_publishable_b3dw5D-des45_hhx1RB8eA_N6bbLU3A';
+const db = supabase.createClient(RIKAZ_URL, RIKAZ_KEY);
+
+let currentUser = null;
+let currentEmp  = null;
+let currentLat  = null;
+let currentLng  = null;
+let currentLocName = 'موقع غير معروف';
+
+// ══ الساعة ══
+function updateClock() {
+  const now = new Date();
+  document.getElementById('clock').textContent = now.toLocaleTimeString('ar-SA', {hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  document.getElementById('dateline').textContent = now.toLocaleDateString('ar-SA', {weekday:'long',year:'numeric',month:'long',day:'numeric'});
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// ══ تسجيل الدخول ══
+async function doLogin() {
+  const email = document.getElementById('l-email').value.trim();
+  const pass  = document.getElementById('l-pass').value;
+  const btn   = document.getElementById('l-btn');
+  const err   = document.getElementById('login-err');
+
+  if(!email || !pass) { showErr('أدخل البريد وكلمة المرور'); return; }
+
+  btn.innerHTML = '<span class="spinner"></span>';
+  btn.disabled = true;
+  err.style.display = 'none';
+
+  const { data, error } = await db.auth.signInWithPassword({ email, password: pass });
+
+  if(error) {
+    btn.textContent = 'دخول';
+    btn.disabled = false;
+    showErr('البريد أو كلمة المرور غير صحيحة');
+    return;
+  }
+
+  currentUser = data.user;
+  showApp();
+}
+
+function showErr(msg) {
+  const err = document.getElementById('login-err');
+  err.textContent = msg;
+  err.style.display = 'block';
+}
+
+async function doLogout() {
+  await db.auth.signOut();
+  location.reload();
+}
+
+// ══ إظهار التطبيق ══
+async function showApp() {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  document.getElementById('topbar-user').textContent = currentUser.email;
+
+  // حدد الموقع
+  getLocation();
+
+  // جلب بيانات الموظف
+  await loadEmployee();
+
+  // سجل اليوم
+  await loadTodayRecords();
+}
+
+// ══ جلب بيانات الموظف ══
+async function loadEmployee() {
+  const { data } = await db.from('employees').select('data').eq('user_id', currentUser.id).single();
+  if(!data?.data?.length) return;
+
+  // ابحث عن الموظف بالإيميل
+  const emps = data.data;
+  const emp = emps.find(e => e.email?.toLowerCase() === currentUser.email.toLowerCase())
+           || emps[0]; // أول موظف كـ fallback
+
+  if(!emp) return;
+  currentEmp = emp;
+
+  const card = document.getElementById('emp-card');
+  card.style.display = 'flex';
+  document.getElementById('emp-avatar').textContent = (emp.name||'').split(' ').map(w=>w[0]).slice(0,2).join('');
+  document.getElementById('emp-name').textContent = emp.name || '—';
+  document.getElementById('emp-title').textContent = emp.title || emp.job || '—';
+
+  const empType = emp.attendanceType || 'office';
+  const badge = document.getElementById('emp-type-badge');
+
+  // تحقق من الإجازة
+  const today = new Date().toISOString().split('T')[0];
+  const onLeave = await checkOnLeave(emp.empId || emp.name, today);
+
+  if(onLeave) {
+    badge.textContent = '🌴 إجازة';
+    badge.className = 'emp-type-badge type-exempt';
+    document.getElementById('checkin-btn').disabled = true;
+    document.getElementById('checkin-btn').textContent = '🌴 أنت في إجازة اليوم';
+    document.getElementById('checkin-btn').style.background = '#FDF6DC';
+    document.getElementById('checkin-btn').style.color = '#A07808';
+    return;
+  }
+
+  if(empType === 'field') {
+    badge.textContent = '🚗 ميداني';
+    badge.className = 'emp-type-badge type-field';
+    document.getElementById('notes-section').style.display = 'block';
+    document.getElementById('checkin-btn').textContent = '✅ تسجيل حضور (ميداني)';
+  } else if(empType === 'exempt') {
+    badge.textContent = '✅ معفى';
+    badge.className = 'emp-type-badge type-exempt';
+    document.getElementById('checkin-btn').disabled = true;
+    document.getElementById('checkin-btn').textContent = '✅ معفى من البصمة';
+  } else {
+    badge.textContent = '🏢 مكتبي';
+    badge.className = 'emp-type-badge type-office';
+  }
+
+  // حمّل مواقع العمل
+  await loadWorkLocationsForEmp();
+}
+
+async function checkOnLeave(empId, date) {
+  try {
+    const { data } = await db.from('leaves').select('data').eq('user_id', currentUser.id).single();
+    if(!data?.data) return false;
+    return data.data.some(l =>
+      (l.empId === empId || l.emp?.includes(empId)) &&
+      l.status === 'موافق' &&
+      l.from <= date && l.to >= date
+    );
+  } catch(_) { return false; }
+}
+
+async function loadWorkLocationsForEmp() {
+  try {
+    const { data } = await db.from('work_locations').select('*').eq('user_id', currentUser.id);
+    if(!data?.length) return;
+
+    const sel = document.getElementById('work-location-select');
+    data.forEach(loc => {
+      const opt = document.createElement('option');
+      opt.value = loc.id;
+      let sp = {};
+      try { sp = JSON.parse(loc.shift_policy||'{}'); } catch(_){}
+      const shiftLabel = sp.type==='flexible' ? `مرن ${sp.hours||8}س` :
+                         sp.type==='field'    ? 'ميداني' :
+                         `ثابت ${sp.checkin||'08:00'}-${sp.checkout||'17:00'}`;
+      opt.text = `${loc.name} (${shiftLabel})`;
+      opt.dataset.policy = loc.shift_policy || '{}';
+      opt.dataset.lat = loc.lat;
+      opt.dataset.lng = loc.lng;
+      opt.dataset.radius = loc.radius;
+      sel.appendChild(opt);
+    });
+
+    document.getElementById('location-select-card').style.display = 'block';
+  } catch(_) {}
+}
+
+function onLocationSelect() {
+  const sel = document.getElementById('work-location-select');
+  const opt = sel.options[sel.selectedIndex];
+  const info = document.getElementById('shift-info');
+
+  if(!opt.value) { info.style.display='none'; return; }
+  if(opt.value === 'field') { info.style.display='none'; return; }
+
+  let sp = {};
+  try { sp = JSON.parse(opt.dataset.policy||'{}'); } catch(_){}
+
+  let msg = '';
+  if(sp.type === 'fixed') {
+    msg = `⏰ دوام ثابت: ${sp.checkin||'08:00'} — ${sp.checkout||'17:00'} | تسامح ${sp.grace||15} دقيقة`;
+  } else if(sp.type === 'flexible') {
+    msg = `🔄 دوام مرن: ${sp.hours||8} ساعات يومياً`;
+  } else if(sp.type === 'field') {
+    msg = '🚗 ميداني — بدون قيود وقت';
+  }
+
+  if(msg) { info.textContent = msg; info.style.display='block'; }
+}
+
+// ══ تحديد الموقع ══
+function getLocation() {
+  if(!navigator.geolocation) {
+    document.getElementById('loc-val').textContent = 'الجهاز لا يدعم GPS';
+    return;
+  }
+  navigator.geolocation.getCurrentPosition(
+    pos => {
+      currentLat = pos.coords.latitude;
+      currentLng = pos.coords.longitude;
+      const acc = Math.round(pos.coords.accuracy);
+      document.getElementById('loc-val').innerHTML = `
+        <span>📍 ${currentLat.toFixed(5)}, ${currentLng.toFixed(5)}</span>
+        <span style="font-size:10px;color:var(--muted)">± ${acc}م</span>`;
+      const link = document.getElementById('loc-link');
+      link.href = `https://www.google.com/maps?q=${currentLat},${currentLng}`;
+      link.style.display = 'inline-flex';
+      currentLocName = `${currentLat.toFixed(5)}, ${currentLng.toFixed(5)}`;
+    },
+    err => {
+      document.getElementById('loc-val').textContent = 'تعذّر تحديد الموقع — تأكد من تفعيل GPS';
+    },
+    { enableHighAccuracy: true, timeout: 10000 }
+  );
+}
+
+// ══ تسجيل الحضور/الانصراف ══
+async function recordAttendance(type) {
+  if(!currentUser) return;
+
+  const btn = type === 'checkin' ? document.getElementById('checkin-btn') : document.getElementById('checkout-btn');
+  const origText = btn.innerHTML;
+  btn.innerHTML = '<span class="spinner"></span> جاري التسجيل...';
+  btn.disabled = true;
+
+  const notes = document.getElementById('att-notes')?.value || '';
+
+  const record = {
+    user_id:       currentUser.id,
+    emp_id:        currentEmp?.empId || currentUser.email,
+    emp_name:      currentEmp?.name  || currentUser.email,
+    type,
+    lat:           currentLat,
+    lng:           currentLng,
+    location_name: currentLocName,
+    notes,
+    emp_type:      currentEmp?.attendanceType || 'office',
+    timestamp:     new Date().toISOString()
+  };
+
+  const { error } = await db.from('attendance').insert(record);
+
+  if(error) {
+    showToast('❌ فشل التسجيل — حاول مجدداً');
+    btn.innerHTML = origText;
+    btn.disabled = false;
+    return;
+  }
+
+  showToast(type === 'checkin' ? '✅ تم تسجيل الحضور' : '✅ تم تسجيل الانصراف');
+  document.getElementById('att-notes').value = '';
+
+  // تحديث الأزرار
+  if(type === 'checkin') {
+    document.getElementById('checkin-btn').style.display = 'none';
+    document.getElementById('checkout-btn').style.display = 'flex';
+  } else {
+    document.getElementById('checkout-btn').style.display = 'none';
+    document.getElementById('checkin-btn').style.display = 'flex';
+    document.getElementById('checkin-btn').disabled = false;
+    document.getElementById('checkin-btn').innerHTML = '✅ تسجيل حضور (مرة أخرى)';
+  }
+
+  await loadTodayRecords();
+}
+
+// ══ سجل اليوم ══
+async function loadTodayRecords() {
+  if(!currentUser) return;
+
+  const today = new Date().toISOString().split('T')[0];
+  const { data } = await db.from('attendance')
+    .select('*')
+    .eq('user_id', currentUser.id)
+    .gte('timestamp', today + 'T00:00:00')
+    .lte('timestamp', today + 'T23:59:59')
+    .order('timestamp', { ascending: true });
+
+  const container = document.getElementById('today-records');
+  if(!data?.length) {
+    container.innerHTML = '<div style="color:var(--muted);font-size:13px;text-align:center;padding:10px">لا يوجد تسجيل اليوم</div>';
+    return;
+  }
+
+  // أظهر زر الانصراف لو آخر تسجيل كان حضور
+  const last = data[data.length - 1];
+  if(last.type === 'checkin') {
+    document.getElementById('checkin-btn').style.display = 'none';
+    document.getElementById('checkout-btn').style.display = 'flex';
+  }
+
+  container.innerHTML = data.map(r => {
+    const t = new Date(r.timestamp);
+    const timeStr = t.toLocaleTimeString('ar-SA', {hour:'2-digit',minute:'2-digit'});
+    const mapsUrl = r.lat ? `https://www.google.com/maps?q=${r.lat},${r.lng}` : '#';
+    return `
+      <div class="record-row">
+        <div class="rec-type">
+          <span class="${r.type==='checkin'?'rec-in':'rec-out'}">${r.type==='checkin'?'✅ حضور':'🚪 انصراف'}</span>
+        </div>
+        <div style="text-align:left">
+          <div class="rec-time">${timeStr}</div>
+          ${r.lat ? `<a href="${mapsUrl}" target="_blank" class="rec-loc">📍 الموقع</a>` : ''}
+        </div>
+      </div>`;
+  }).join('');
+}
+
+// ══ Toast ══
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ══ تحقق من جلسة موجودة ══
+async function init() {
+  const { data: { session } } = await db.auth.getSession();
+  if(session) {
+    currentUser = session.user;
+    showApp();
+  }
+}
+init();
+</script>
+</body>
+</html>
