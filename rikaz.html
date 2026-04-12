@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rikaz — منصة الموارد البشرية</title>
-<style>*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Tahoma,Arial,sans-serif}:root{--b900:#0A0F2E;--b800:#12235C;--b700:#1A3A8F;--b600:#2D5DB5;--b400:#7BA3D4;--b200:#B8CDED;--b100:#E6EBF7;--b50:#F2F4FB;--gold:#D4AF37;--gold2:#C9960C;--gold3:#A07808;--gold-light:#FDF6DC;--g900:#1A6B3A;--g700:#2E8B4A;--g100:#EAF3DE;--r900:#B71C1C;--r100:#FFEBEE;--o900:#E65100;--o100:#FFF3E0;--y50:#FFFDE7;--white:#FFFFFF;--gray:#F8F9FA;--text:#0A0F2E;--muted:#6B7C93;--border:#E2E8F0;}body{background:#F0F2FA;color:var(--text);min-height:100vh}.topbar{background:linear-gradient(135deg,#0A0F2E 0%,#12235C 60%,#1A1A2E 100%);border-bottom:2px solid #D4AF37;height:70px;overflow:hidden;display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.3)}.logo{color:#D4AF37;font-size:19px;font-weight:800;letter-spacing:1px;display:flex;align-items:center;gap:10px;text-shadow:0 0 20px rgba(212,175,55,.3)}.logo-dot{width:6px;height:24px;background:linear-gradient(180deg,#D4AF37,#A07808);border-radius:3px;display:inline-block}.topbar-center{display:flex;gap:4px}.nav-btn{background:transparent;border:none;color:#9BBFE4;font-size:13px;padding:8px 16px;cursor:pointer;border-radius:6px;transition:all .2s;white-space:nowrap}.nav-btn:hover{background:rgba(212,175,55,.1);color:#D4AF37}.nav-btn.active{background:rgba(212,175,55,.15);color:#D4AF37;font-weight:600}.nav-badge{background:#C9960C;color:#0A0F2E;font-size:10px;padding:1px 6px;border-radius:10px;margin-right:4px;font-weight:700}.topbar-right{display:flex;align-items:center;gap:12px}.ai-btn{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#0A0F2E;border:none;padding:8px 16px;border-radius:8px;font-size:13px;cursor:pointer;font-weight:600}.ai-btn:hover{background:#B8960B}.user-info{color:#9BBFE4;font-size:12px;text-align:center}.main{padding:24px;max-width:1400px;margin:0 auto}.page{display:none}.page.active{display:block}.card{background:#fff;border-radius:12px;border:1px solid var(--border);padding:20px;margin-bottom:16px}.card-title{font-size:15px;font-weight:700;color:var(--b900);margin-bottom:16px;display:flex;align-items:center;gap:8px}.card-title::before{content:'';width:4px;height:18px;background:#D4AF37;border-radius:2px;display:inline-block}.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:20px}.kpi{background:#fff;border-radius:12px;padding:16px;border:1px solid var(--border);text-align:center;box-shadow:0 4px 20px rgba(10,15,46,.15);transition:transform .2s,box-shadow .2s}.kpi:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(10,15,46,.22)}.kpi-val{font-size:30px;font-weight:700;color:var(--b900)}.kpi-lbl{font-size:12px;color:var(--muted);margin-top:4px}.kpi.green .kpi-val{color:#C9960C}.kpi.red .kpi-val{color:var(--r900)}.kpi.blue .kpi-val{color:var(--gold2)}.tbl-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:13px}th{text-align:right;padding:10px 12px;background:var(--b50);color:var(--b800);font-weight:600;border-bottom:2px solid var(--b200);white-space:nowrap}td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:middle}tr:hover td{background:var(--b50)}tr:last-child td{border-bottom:none}.sal-tbl-wrap{overflow-x:auto;overflow-y:auto;max-height:80vh;position:relative;scrollbar-width:thin;scrollbar-color:#D4AF37 #1A1A2E}.sal-tbl-wrap::-webkit-scrollbar{height:10px;width:8px}.sal-tbl-wrap::-webkit-scrollbar-track{background:var(--b100);border-radius:4px}.sal-tbl-wrap::-webkit-scrollbar-thumb{background:#D4AF37;border-radius:4px}.sal-tbl-wrap::-webkit-scrollbar-thumb:hover{background:#C9960C}#sal-table{border-collapse:collapse;font-size:12px;width:max-content;min-width:100%}#sal-table thead th{position:sticky;top:0;z-index:10;background:var(--b900);color:#fff;padding:8px 10px;white-space:nowrap;border-bottom:2px solid var(--b700);font-size:11px;text-align:right}#sal-table thead th.col-net{background:#1A6B3A !important}#sal-table thead th.col-cost{background:var(--b800) !important}#sal-table td.col-sticky,#sal-table th.col-sticky{position:sticky;right:0;z-index:8;background:#fff;border-left:2px solid var(--b200);min-width:140px;max-width:170px}#sal-table thead th.col-sticky{background:var(--b900);z-index:12;border-left:2px solid var(--b700)}#sal-table tr:hover td.col-sticky{background:var(--b50)}#sal-table td{padding:6px 8px;border-bottom:1px solid var(--border);vertical-align:middle;white-space:nowrap}#sal-table tfoot td{position:sticky;bottom:0;z-index:9;background:var(--b900);color:#fff;font-weight:700;padding:7px 9px;white-space:nowrap}#sal-table tfoot td.col-sticky{background:var(--b900);z-index:13;border-left:2px solid var(--b700)}.sal-input{width:72px;border:1px solid var(--border);border-radius:5px;padding:3px 5px;font-size:12px;text-align:center;background:var(--y50);font-family:inherit;color:var(--text);display:block}.sal-input:focus{outline:none;border-color:var(--b600);box-shadow:0 0 0 2px rgba(74,122,181,.15)}.sal-input.abs{background:var(--r100);border-color:var(--r900)}.sal-input.late{background:var(--r100);border-color:var(--r900)}.sal-input.other{background:var(--o100);border-color:var(--o900)}.import-menu-item{display:block;width:100%;background:none;border:none;text-align:right;padding:9px 16px;font-size:13px;cursor:pointer;color:var(--text);font-family:inherit;transition:background .15s;line-height:1.4}.import-menu-item:hover{background:var(--b50)}.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}.b-green{background:#FDF6DC;color:#A07808}.b-blue{background:#E3F2FD;color:#1565C0}.b-amber{background:#FFF8E1;color:#E65100}.b-red{background:#FFEBEE;color:#C62828}.b-gray{background:#F5F5F5;color:#616161}.b-purple{background:var(--b50);color:var(--b700)}.btn{padding:8px 18px;border-radius:8px;font-size:13px;cursor:pointer;border:none;font-weight:600;transition:all .2s}.btn-primary{background:linear-gradient(135deg,#C9960C,#D4AF37);color:#0A0F2E;font-weight:700}.btn-primary:hover{background:linear-gradient(135deg,#A07808,#C9960C);color:#0A0F2E}.btn-green{background:#1A6B3A;color:#fff}.btn-green:hover{background:#2E8B4A}.btn-red{background:var(--r900);color:#fff}.btn-red:hover{opacity:.9}.btn-outline{background:#fff;color:var(--b800);border:1px solid var(--b400)}.btn-outline:hover{background:var(--b50)}.btn-sm{padding:5px 12px;font-size:12px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.form-group{display:flex;flex-direction:column;gap:5px}.form-group label{font-size:12px;font-weight:600;color:var(--muted)}.form-group input,.form-group select,.form-group textarea{padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;color:var(--text);background:#fff;font-family:inherit}.form-group input:focus,.form-group select:focus{outline:none;border-color:var(--b600);box-shadow:0 0 0 3px rgba(74,122,181,.15)}.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;align-items:center;justify-content:center}.modal-bg.open{display:flex}.modal{background:#fff;border-radius:16px;padding:28px;width:min(560px,95vw);max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.2)}.modal-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}.modal-title{font-size:17px;font-weight:700;color:var(--b900)}.modal-close{background:none;border:none;font-size:22px;cursor:pointer;color:var(--muted);line-height:1}.modal-footer{margin-top:20px;display:flex;gap:10px;justify-content:flex-end}.search-row{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap}.search-input{flex:1;min-width:200px;padding:9px 14px;border:1px solid var(--border);border-radius:8px;font-size:13px}.filter-select{padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;background:#fff}.avatar{width:36px;height:36px;border-radius:50%;background:var(--b100);color:var(--b800);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}.eos-result{background:linear-gradient(135deg,var(--b900),var(--b700));color:#fff;border-radius:16px;padding:24px;margin-top:16px}.eos-total{font-size:40px;font-weight:700;margin:8px 0}.eos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:16px}.eos-item{background:rgba(255,255,255,.12);border-radius:10px;padding:12px}.eos-item-lbl{font-size:11px;opacity:.75}.eos-item-val{font-size:18px;font-weight:700;margin-top:4px}.ai-panel{position:fixed;left:0;top:70px;width:380px;height:calc(100vh - 56px);background:#fff;border-right:1px solid var(--border);display:flex;flex-direction:column;transform:translateX(-100%);transition:transform .3s;z-index:99;box-shadow:4px 0 20px rgba(0,0,0,.1)}.ai-panel.open{transform:translateX(0)}.ai-header{background:var(--b900);padding:16px;color:#fff}.ai-header h3{font-size:15px;font-weight:700;margin-bottom:4px}.ai-header p{font-size:12px;opacity:.7}.ai-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px}.ai-msg{max-width:85%;padding:10px 14px;border-radius:12px;font-size:13px;line-height:1.5}.ai-msg.user{align-self:flex-start;background:var(--b100);color:var(--b900);border-radius:12px 12px 3px 12px}.ai-msg.bot{align-self:flex-end;background:var(--b900);color:#fff;border-radius:12px 12px 12px 3px}.ai-msg.bot.loading{opacity:.7}.ai-input-row{padding:16px;border-top:1px solid var(--border);display:flex;gap:8px}.ai-input{flex:1;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:13px;resize:none}.ai-send{background:var(--b900);color:#fff;border:none;padding:10px 16px;border-radius:8px;cursor:pointer;font-size:13px}.ai-suggestions{padding:0 16px 12px;display:flex;flex-direction:column;gap:6px}.ai-sug{background:var(--b50);border:1px solid var(--b200);border-radius:8px;padding:8px 12px;font-size:12px;cursor:pointer;text-align:right;color:var(--b800)}.ai-sug:hover{background:var(--b100)}.leave-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:8px;margin-bottom:16px}.leave-type{background:var(--b50);border:1px solid var(--b200);border-radius:8px;padding:10px;text-align:center}.leave-type.active{background:var(--b100);border-color:var(--b600)}.lt-num{font-size:22px;font-weight:700;color:var(--b900)}.lt-name{font-size:10px;color:var(--muted);margin-top:2px}.sal-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;margin-bottom:20px;background:var(--border);border-radius:14px;overflow:hidden;border:1px solid var(--border);box-shadow:0 2px 16px rgba(10,15,46,.08)}.sal-card{background:#fff;padding:18px 20px;border-right:none;border-radius:0;position:relative;transition:background .15s}.sal-card:hover{background:var(--b50)}.sal-card::after{content:'';position:absolute;right:0;top:20%;bottom:20%;width:1px;background:var(--border)}.sal-card:last-child::after{display:none}.sal-card.green{background:#fff}.sal-card.red{background:#fff}.sal-lbl{font-size:11px;color:var(--muted);margin-bottom:6px;letter-spacing:.3px;text-transform:uppercase;font-weight:600}.sal-val{font-size:22px;font-weight:800;color:var(--b900);letter-spacing:-.5px}.sal-card.green .sal-val{color:#C9960C}.sal-card.red .sal-val{color:var(--r900)}.sal-accent{display:inline-block;width:6px;height:6px;border-radius:50%;margin-left:6px;vertical-align:middle;position:relative;top:-1px}.prog{height:6px;background:var(--b100);border-radius:3px;overflow:hidden}.prog-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--b700),var(--gold2));transition:width .5s}.tabs{display:flex;gap:4px;border-bottom:2px solid var(--b100);margin-bottom:16px}.tab{background:none;border:none;padding:10px 18px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px}.tab.active{color:var(--gold2);border-bottom-color:var(--gold)}.alert{padding:12px 16px;border-radius:8px;font-size:13px;margin-bottom:10px;display:flex;align-items:center;gap:10px}.alert-info{background:var(--b50);border:1px solid var(--b200);color:var(--b800)}.alert-warn{background:var(--o100);border:1px solid #FFCC80;color:var(--o900)}.alert-success{background:#FDF6DC;border:1px solid #E8C96A;color:#C9960C}.page-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px;padding-top:8px}.page-hdr h2{font-size:20px;font-weight:700;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.4)}.notif{position:fixed;top:70px;left:24px;z-index:300;display:flex;flex-direction:column;gap:8px}.notif-item{background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:13px;box-shadow:0 4px 12px rgba(0,0,0,.1);border-right:4px solid var(--gold);min-width:280px;animation:slideIn .3s ease}@keyframes slideIn{from{transform:translateX(-100%);opacity:0}to{transform:translateX(0);opacity:1}}@media(max-width:768px){.topbar-center{display:none}.form-grid{grid-template-columns:1fr}.sal-summary{grid-template-columns:1fr}.kpi-grid{grid-template-columns:1fr 1fr}}</style>
+<style>*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Tahoma,Arial,sans-serif}:root{--b900:#0A0F2E;--b800:#12235C;--b700:#1A3A8F;--b600:#2D5DB5;--b400:#7BA3D4;--b200:#B8CDED;--b100:#E6EBF7;--b50:#F2F4FB;--gold:#D4AF37;--gold2:#C9960C;--gold3:#A07808;--gold-light:#FDF6DC;--g900:#1A6B3A;--g700:#2E8B4A;--g100:#EAF3DE;--r900:#B71C1C;--r100:#FFEBEE;--o900:#E65100;--o100:#FFF3E0;--y50:#FFFDE7;--white:#FFFFFF;--gray:#F8F9FA;--text:#0A0F2E;--muted:#6B7C93;--border:#E2E8F0;}body{background:#F0F2FA;color:var(--text);min-height:100vh}.topbar{background:linear-gradient(135deg,#0A0F2E 0%,#12235C 60%,#1A1A2E 100%);border-bottom:2px solid #D4AF37;height:70px;overflow:hidden;display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.3)}.logo{color:#D4AF37;font-size:19px;font-weight:800;letter-spacing:1px;display:flex;align-items:center;gap:10px;text-shadow:0 0 20px rgba(212,175,55,.3)}.logo-dot{width:6px;height:24px;background:linear-gradient(180deg,#D4AF37,#A07808);border-radius:3px;display:inline-block}.topbar-center{display:flex;gap:4px}.nav-btn{background:transparent;border:none;color:#9BBFE4;font-size:13px;padding:8px 16px;cursor:pointer;border-radius:6px;transition:all .2s;white-space:nowrap}.nav-btn:hover{background:rgba(212,175,55,.1);color:#D4AF37}.nav-btn.active{background:rgba(212,175,55,.15);color:#D4AF37;font-weight:600}.nav-badge{background:#C9960C;color:#0A0F2E;font-size:10px;padding:1px 6px;border-radius:10px;margin-right:4px;font-weight:700}.topbar-right{display:flex;align-items:center;gap:12px}.ai-btn{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#0A0F2E;border:none;padding:8px 16px;border-radius:8px;font-size:13px;cursor:pointer;font-weight:600}.ai-btn:hover{background:#B8960B}.user-info{color:#9BBFE4;font-size:12px;text-align:center}.main{padding:24px;max-width:1400px;margin:0 auto}.page{display:none}.page.active{display:block}.card{background:#fff;border-radius:12px;border:1px solid var(--border);padding:20px;margin-bottom:16px}.card-title{font-size:15px;font-weight:700;color:var(--b900);margin-bottom:16px;display:flex;align-items:center;gap:8px}.card-title::before{content:'';width:4px;height:18px;background:#D4AF37;border-radius:2px;display:inline-block}.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:20px}.kpi{background:#fff;border-radius:12px;padding:16px;border:1px solid var(--border);text-align:center;box-shadow:0 4px 20px rgba(10,15,46,.15);transition:transform .2s,box-shadow .2s}.kpi:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(10,15,46,.22)}.kpi-val{font-size:30px;font-weight:700;color:var(--b900)}.kpi-lbl{font-size:12px;color:var(--muted);margin-top:4px}.kpi.green .kpi-val{color:#C9960C}.kpi.red .kpi-val{color:var(--r900)}.kpi.blue .kpi-val{color:var(--gold2)}.tbl-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:13px}th{text-align:right;padding:10px 12px;background:var(--b50);color:var(--b800);font-weight:600;border-bottom:2px solid var(--b200);white-space:nowrap}td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:middle}tr:hover td{background:var(--b50)}tr:last-child td{border-bottom:none}.sal-tbl-wrap{overflow-x:auto;overflow-y:auto;max-height:80vh;position:relative;scrollbar-width:thin;scrollbar-color:#D4AF37 #1A1A2E}.sal-tbl-wrap::-webkit-scrollbar{height:10px;width:8px}.sal-tbl-wrap::-webkit-scrollbar-track{background:var(--b100);border-radius:4px}.sal-tbl-wrap::-webkit-scrollbar-thumb{background:#D4AF37;border-radius:4px}.sal-tbl-wrap::-webkit-scrollbar-thumb:hover{background:#C9960C}#sal-table{border-collapse:collapse;font-size:12px;width:max-content;min-width:100%}#sal-table thead th{position:sticky;top:0;z-index:10;background:var(--b900);color:#fff;padding:8px 10px;white-space:nowrap;border-bottom:2px solid var(--b700);font-size:11px;text-align:right}#sal-table thead th.col-net{background:#1A6B3A !important}#sal-table thead th.col-cost{background:var(--b800) !important}#sal-table td.col-sticky,#sal-table th.col-sticky{position:sticky;right:0;z-index:8;background:#fff;border-left:2px solid var(--b200);min-width:140px;max-width:170px}#sal-table thead th.col-sticky{background:var(--b900);z-index:12;border-left:2px solid var(--b700)}#sal-table tr:hover td.col-sticky{background:var(--b50)}#sal-table td{padding:6px 8px;border-bottom:1px solid var(--border);vertical-align:middle;white-space:nowrap}#sal-table tfoot td{position:sticky;bottom:0;z-index:9;background:var(--b900);color:#fff;font-weight:700;padding:7px 9px;white-space:nowrap}#sal-table tfoot td.col-sticky{background:var(--b900);z-index:13;border-left:2px solid var(--b700)}.sal-input{width:72px;border:1px solid var(--border);border-radius:5px;padding:3px 5px;font-size:12px;text-align:center;background:var(--y50);font-family:inherit;color:var(--text);display:block}.sal-input:focus{outline:none;border-color:var(--b600);box-shadow:0 0 0 2px rgba(74,122,181,.15)}.sal-input.abs{background:var(--r100);border-color:var(--r900)}.sal-input.late{background:var(--r100);border-color:var(--r900)}.sal-input.other{background:var(--o100);border-color:var(--o900)}.import-menu-item{display:block;width:100%;background:none;border:none;text-align:right;padding:9px 16px;font-size:13px;cursor:pointer;color:var(--text);font-family:inherit;transition:background .15s;line-height:1.4}.import-menu-item:hover{background:var(--b50)}.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}.b-green{background:#FDF6DC;color:#A07808}.b-blue{background:#E3F2FD;color:#1565C0}.b-amber{background:#FFF8E1;color:#E65100}.b-red{background:#FFEBEE;color:#C62828}.b-gray{background:#F5F5F5;color:#616161}.b-purple{background:var(--b50);color:var(--b700)}.btn{padding:8px 18px;border-radius:8px;font-size:13px;cursor:pointer;border:none;font-weight:600;transition:all .2s}.btn-primary{background:linear-gradient(135deg,#C9960C,#D4AF37);color:#0A0F2E;font-weight:700}.btn-primary:hover{background:linear-gradient(135deg,#A07808,#C9960C);color:#0A0F2E}.btn-green{background:#1A6B3A;color:#fff}.btn-green:hover{background:#2E8B4A}.btn-red{background:var(--r900);color:#fff}.btn-red:hover{opacity:.9}.btn-outline{background:#fff;color:var(--b800);border:1px solid var(--b400)}.btn-outline:hover{background:var(--b50)}.btn-sm{padding:5px 12px;font-size:12px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.form-group{display:flex;flex-direction:column;gap:5px}.form-group label{font-size:12px;font-weight:600;color:var(--muted)}.form-group input,.form-group select,.form-group textarea{padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;color:var(--text);background:#fff;font-family:inherit}.form-group input:focus,.form-group select:focus{outline:none;border-color:var(--b600);box-shadow:0 0 0 3px rgba(74,122,181,.15)}.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;align-items:center;justify-content:center}.modal-bg.open{display:flex}.modal{background:#fff;border-radius:16px;padding:28px;width:min(560px,95vw);max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.2)}.modal-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}.modal-title{font-size:17px;font-weight:700;color:var(--b900)}.modal-close{background:none;border:none;font-size:22px;cursor:pointer;color:var(--muted);line-height:1}.modal-footer{margin-top:20px;display:flex;gap:10px;justify-content:flex-end}.search-row{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap}.search-input{flex:1;min-width:200px;padding:9px 14px;border:1px solid var(--border);border-radius:8px;font-size:13px}.filter-select{padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;background:#fff}.avatar{width:36px;height:36px;border-radius:50%;background:var(--b100);color:var(--b800);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}.eos-result{background:linear-gradient(135deg,var(--b900),var(--b700));color:#fff;border-radius:16px;padding:24px;margin-top:16px}.eos-total{font-size:40px;font-weight:700;margin:8px 0}.eos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:16px}.eos-item{background:rgba(255,255,255,.12);border-radius:10px;padding:12px}.eos-item-lbl{font-size:11px;opacity:.75}.eos-item-val{font-size:18px;font-weight:700;margin-top:4px}.leave-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:8px;margin-bottom:16px}.leave-type{background:var(--b50);border:1px solid var(--b200);border-radius:8px;padding:10px;text-align:center}.leave-type.active{background:var(--b100);border-color:var(--b600)}.lt-num{font-size:22px;font-weight:700;color:var(--b900)}.lt-name{font-size:10px;color:var(--muted);margin-top:2px}.sal-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;margin-bottom:20px;background:var(--border);border-radius:14px;overflow:hidden;border:1px solid var(--border);box-shadow:0 2px 16px rgba(10,15,46,.08)}.sal-card{background:#fff;padding:18px 20px;border-right:none;border-radius:0;position:relative;transition:background .15s}.sal-card:hover{background:var(--b50)}.sal-card::after{content:'';position:absolute;right:0;top:20%;bottom:20%;width:1px;background:var(--border)}.sal-card:last-child::after{display:none}.sal-card.green{background:#fff}.sal-card.red{background:#fff}.sal-lbl{font-size:11px;color:var(--muted);margin-bottom:6px;letter-spacing:.3px;text-transform:uppercase;font-weight:600}.sal-val{font-size:22px;font-weight:800;color:var(--b900);letter-spacing:-.5px}.sal-card.green .sal-val{color:#C9960C}.sal-card.red .sal-val{color:var(--r900)}.sal-accent{display:inline-block;width:6px;height:6px;border-radius:50%;margin-left:6px;vertical-align:middle;position:relative;top:-1px}.prog{height:6px;background:var(--b100);border-radius:3px;overflow:hidden}.prog-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--b700),var(--gold2));transition:width .5s}.tabs{display:flex;gap:4px;border-bottom:2px solid var(--b100);margin-bottom:16px}.tab{background:none;border:none;padding:10px 18px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px}.tab.active{color:var(--gold2);border-bottom-color:var(--gold)}.alert{padding:12px 16px;border-radius:8px;font-size:13px;margin-bottom:10px;display:flex;align-items:center;gap:10px}.alert-info{background:var(--b50);border:1px solid var(--b200);color:var(--b800)}.alert-warn{background:var(--o100);border:1px solid #FFCC80;color:var(--o900)}.alert-success{background:#FDF6DC;border:1px solid #E8C96A;color:#C9960C}.page-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px;padding-top:8px}.page-hdr h2{font-size:20px;font-weight:700;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.4)}.notif{position:fixed;top:70px;left:24px;z-index:300;display:flex;flex-direction:column;gap:8px}.notif-item{background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:13px;box-shadow:0 4px 12px rgba(0,0,0,.1);border-right:4px solid var(--gold);min-width:280px;animation:slideIn .3s ease}@keyframes slideIn{from{transform:translateX(-100%);opacity:0}to{transform:translateX(0);opacity:1}}@media(max-width:768px){.topbar-center{display:none}.form-grid{grid-template-columns:1fr}.sal-summary{grid-template-columns:1fr}.kpi-grid{grid-template-columns:1fr 1fr}}</style>
 </head>
 <body>
 
@@ -24,19 +24,12 @@
   </div>
   <div class="topbar-right" style="position:relative;z-index:1">
     <div class="user-info" id="topbar-company-name">منصة الموارد البشرية<br>Rikaz v1.0</div>
-    <button class="ai-btn" onclick="toggleAI()">🤖 مساعد Rikaz</button>
+    
   </div>
 </div>
 
-<!-- AI PANEL -->
-<div class="ai-panel" id="ai-panel">
-  <div class="ai-header">
-    <h3>🤖 مساعد Rikaz الذكي</h3>
-    <p>مدعوم بـ Claude AI — اسأليني أي شيء عن موظفيك</p>
-  </div>
   <div class="ai-messages" id="ai-messages">
-    <div class="ai-msg bot">مرحباً! أنا مساعد Rikaz الذكي. كيف أقدر أساعدك اليوم؟ يمكنني تحليل بيانات الموظفين، حساب الرواتب، مراجعة طلبات الإجازات، وأكثر.</div>
-  </div>
+    </div>
   <div class="ai-suggestions" id="ai-sugs">
     <button class="ai-sug" onclick="askAI('من الموظفون اللي رصيد إجازاتهم أقل من 10 أيام؟')">من الموظفون ذوو الرصيد المنخفض؟</button>
     <button class="ai-sug" onclick="askAI('احسب إجمالي الرواتب والتأمينات لهذا الشهر')">احسب إجمالي الرواتب</button>
@@ -119,8 +112,11 @@
         <option value="">جميع الأقسام</option>
         <option>مبيعات</option><option>تقنية</option><option>إدارة</option><option>عمليات</option><option>موارد بشرية</option>
       </select>
-      <select class="filter-select" id="emp-nat-filter" onchange="filterByNat(this.value)">
+      <select class="filter-select" id="emp-nat-filter" onchange="applyEmpFilters()">
         <option value="">الجنسية</option><option>سعودي</option><option>أجنبي</option>
+      </select>
+      <select class="filter-select" id="emp-gender-filter" onchange="applyEmpFilters()">
+        <option value="">الجنس</option><option>ذكر</option><option>انثى</option>
       </select>
       <select class="filter-select" onchange="filterByContractAlert(this.value)" title="تصفية حسب حالة العقد">
         <option value="">جميع العقود</option>
@@ -1751,14 +1747,7 @@ function filterEmps(q) {
   clearTimeout(_empSearchDebounce);
   _empSearchDebounce = setTimeout(() => _doFilterEmps(q), 120);
 }
-function _doFilterEmps(q) {
-  const tab = getCurrentTab();
-  renderEmps(employees.filter(e => {
-    if(tab === 'active'   && e.status === 'منتهي الخدمة') return false;
-    if(tab === 'archived' && e.status !== 'منتهي الخدمة') return false;
-    return e.name.includes(q) || (e.empId||'').includes(q) || (e.dept||'').includes(q);
-  }));
-}
+function _doFilterEmps(q) { applyEmpFilters(); }
 function filterByDept(d) {
   const tab = getCurrentTab();
   renderEmps(employees.filter(e => {
@@ -1810,16 +1799,29 @@ function filterByContractAlert(val) {
   }));
 }
 
-function filterByNat(n) {
-  const tab = getCurrentTab();
+function filterByNat(n) { applyEmpFilters(); }
+
+function applyEmpFilters() {
+  const tab    = getCurrentTab();
+  const q      = (document.getElementById('emp-search')?.value || '').trim();
+  const nat    = document.getElementById('emp-nat-filter')?.value || '';
+  const gender = document.getElementById('emp-gender-filter')?.value || '';
+  const dept   = document.querySelector('.filter-select[onchange*="filterByDept"]')?.value || '';
+
   renderEmps(employees.filter(e => {
     if(tab === 'active'   && e.status === 'منتهي الخدمة') return false;
     if(tab === 'archived' && e.status !== 'منتهي الخدمة') return false;
-    if(!n) return true;
-    // مطابقة تامة للجنسية أو مجموعة سعودي/أجنبي
-    if(n === 'سعودي') return isSaudi(e.nat);
-    if(n === 'أجنبي') return !isSaudi(e.nat);
-    return e.nat === n;
+    if(q && !e.name.includes(q) && !(e.empId||'').includes(q) && !(e.dept||'').includes(q)) return false;
+    if(nat) {
+      if(nat === 'سعودي' && !isSaudi(e.nat)) return false;
+      if(nat === 'أجنبي' && isSaudi(e.nat)) return false;
+    }
+    if(gender) {
+      const eg = (e.gender||'ذكر').replace(/[أإآ]/g,'ا').trim();
+      if(gender === 'انثى' && eg !== 'انثى') return false;
+      if(gender === 'ذكر'  && eg === 'انثى') return false;
+    }
+    return true;
   }));
 }
 
@@ -3982,7 +3984,15 @@ function openEditEmp(empId) {
   document.getElementById('edit-emp-id').value = empId;
   document.getElementById('edit-n-name').value = e.name || '';
   document.getElementById('edit-n-id').value = e.empId || '';
-  document.getElementById('edit-n-nat').value = e.nat || 'سعودي';
+  // الجنسية — أضف الخيار ديناميكياً لو مو موجود في القائمة
+  const natSelect = document.getElementById('edit-n-nat');
+  const natVal = e.nat || 'سعودي';
+  if(![...natSelect.options].some(o => o.value === natVal || o.text === natVal)) {
+    const opt = document.createElement('option');
+    opt.value = natVal; opt.text = natVal;
+    natSelect.appendChild(opt);
+  }
+  natSelect.value = natVal;
   document.getElementById('edit-n-ins').value = e.ins || 'نظام قديم';
   document.getElementById('edit-n-dept').value = e.dept || '';
   document.getElementById('edit-n-title').value = e.title || e.job || '';
@@ -3995,7 +4005,7 @@ function openEditEmp(empId) {
   document.getElementById('edit-n-birth').value = e.birthDate || '';
   const genderEl = document.getElementById('edit-n-gender');
   if(genderEl) {
-    const gNorm = (e.gender||'ذكر').replace(/[أإآ]/g,'ا').replace(/\s/g,'').toLowerCase();
+    const gNorm = (e.gender||'').replace(/[أإآ]/g,'ا').replace(/\s/g,'').toLowerCase();
     genderEl.value = (gNorm==='انثى'||gNorm==='انثي') ? 'انثى' : 'ذكر';
   }
   const contractTypeEl = document.getElementById('edit-n-contract-type');
@@ -4039,7 +4049,9 @@ function saveEditEmp() {
 
   e.name       = document.getElementById('edit-n-name').value.trim();
   e.empId      = document.getElementById('edit-n-id').value.trim();
-  e.nat        = document.getElementById('edit-n-nat').value;
+  const newNat = document.getElementById('edit-n-nat').value;
+  // حافظ على الجنسية الكاملة — لا تستبدل "السعودية" بـ "سعودي"
+  e.nat = newNat || e.nat || 'سعودي';
   e.ins        = document.getElementById('edit-n-ins').value;
   e.dept       = document.getElementById('edit-n-dept').value;
   e.title      = document.getElementById('edit-n-title').value;
@@ -4114,6 +4126,51 @@ function sendEmailTo(email, name, empId, title) {
   const body    = encodeURIComponent('السلام عليكم ' + name + ',\nرقم الهوية: ' + empId + '\n\nمرفق ' + title + '.\n\n' + companySettings.name);
   window.open('mailto:' + email + '?subject=' + subject + '&body=' + body);
   showNotif('تم فتح الإيميل لـ ' + name + ' (' + email + ')');
+}
+
+function exportLeaveExcel() {
+  const headers = [
+    'م','اسم الموظف','رقم الهوية','نوع الإجازة',
+    'من','إلى','الأيام','الحالة','ملاحظة HR','تاريخ الطلب'
+  ];
+
+  const rows = leaves.map((l, i) => [
+    i+1,
+    l.emp || '',
+    l.empId || '',
+    l.type || '',
+    l.from || '',
+    l.to || '',
+    l.days || 0,
+    l.status || '',
+    l.note || '',
+    l.submit || ''
+  ]);
+
+  // أرصدة الموظفين
+  const balHeaders = ['م','اسم الموظف','رقم الهوية','الرصيد المتاح (أيام)','المستخدم','المرحّل'];
+  const balRows = employees
+    .filter(e => e.status !== 'منتهي الخدمة')
+    .map((e, i) => {
+      const ent = getEmpLeaveEntitlement(e);
+      return [i+1, e.name, e.empId||'', ent.balance, e.leaveUsed||0, e.carriedOverBalance||0];
+    });
+
+  const wb = XLSX.utils.book_new();
+
+  // ورقة الطلبات
+  const ws1 = XLSX.utils.aoa_to_sheet([headers, ...rows]);
+  ws1['!cols'] = [20,25,15,15,12,12,8,10,20,12].map(w=>({wch:w}));
+  XLSX.utils.book_append_sheet(wb, ws1, 'طلبات الإجازات');
+
+  // ورقة الأرصدة
+  const ws2 = XLSX.utils.aoa_to_sheet([balHeaders, ...balRows]);
+  ws2['!cols'] = [8,25,15,18,12,12].map(w=>({wch:w}));
+  XLSX.utils.book_append_sheet(wb, ws2, 'أرصدة الإجازات');
+
+  const today = new Date().toISOString().split('T')[0];
+  XLSX.writeFile(wb, `إجازات_${companySettings.name||'rikaz'}_${today}.xlsx`);
+  showNotif('✅ تم تصدير بيانات الإجازات');
 }
 
 function exportSalaryExcel() {
@@ -6499,6 +6556,15 @@ function renderMuqeem() {
   const filter = document.getElementById('muqeem-filter')?.value||'';
   const nat    = document.getElementById('muqeem-nat')?.value||'';
 
+  // ── تعبئة فلتر الجنسيات دائماً ──
+  const natSel = document.getElementById('muqeem-nat');
+  if(natSel && muqeemData.length) {
+    const nats = [...new Set(muqeemData.map(d=>d.nat).filter(Boolean))].sort();
+    const currentVal = natSel.value;
+    natSel.innerHTML = '<option value="">جميع الجنسيات</option>' +
+      nats.map(n=>`<option${n===currentVal?' selected':''}>${n}</option>`).join('');
+  }
+
   let list = muqeemData.filter(d => {
     if(q && !d.name.includes(q) && !d.iqamaNo.includes(q)) return false;
     if(nat && d.nat !== nat) return false;
@@ -7054,7 +7120,9 @@ autoExpireContracts(); // تحويل من تجاوز تاريخ نهاية عق�
 employees.forEach(e => {
   if(!e.gender) { e.gender = 'ذكر'; return; }
   const g = e.gender.replace(/[أإآ]/g,'ا').replace(/\s/g,'').toLowerCase();
-  e.gender = (g==='انثى'||g==='انثي'||g==='f'||g==='female') ? 'انثى' : e.gender;
+  if(g==='انثى'||g==='انثي'||g==='f'||g==='female') { e.gender = 'انثى'; }
+  else if(g==='ذكر'||g==='m'||g==='male') { e.gender = 'ذكر'; }
+  // otherwise keep as-is
 });
 renderPolicyBar();
 renderEmps(employees.filter(e=>e.status!=='منتهي الخدمة'));
@@ -7304,6 +7372,14 @@ function addInsFiles(fileList) {
         const natCol     = col(['الجنسية','جنسية','جنسية المشترك','Nationality']);
         const insCol     = col(['الأهلية','أهلية','الاهلية','اهلية','أهليه','اهليه','نظام التأمين','نوع النظام','Eligibility','نظام المشترك','1445','أهلية 1445']);
         const genderCol  = col(['الجنس','جنس المشترك','النوع','نوع المشترك','النوع الاجتماعي','Gender','ذكر انثى']);
+        console.log('📋 Headers:', hdr);
+        console.log('🔍 genderCol index:', genderCol, '| value at col:', genderCol>=0 ? rows[dataStartRow]?.[genderCol] : 'N/A');
+        // عرض أول 3 صفوف بيانات لتشخيص الجنس
+        if(genderCol >= 0) {
+          rows.slice(dataStartRow, dataStartRow+3).forEach((r,i) =>
+            console.log(`Row ${i}: gender raw =`, JSON.stringify(r[genderCol]))
+          );
+        }
         const basicCol   = col(['الراتب الأساسي','الأجر الأساسي','أجر أساسي','الأجر','راتب أساسي','Basic Salary','الراتب']);
         const housingCol = col(['بدل السكن','بدل الإسكان','إسكان','سكن','Housing']);
         const hireCol    = col(['تاريخ الاشتراك','تاريخ المباشرة','تاريخ الالتحاق','تاريخ الإلتحاق','تاريخ التسجيل','تاريخ اصدار الاقامة','تاريخ إصدار الإقامة','مباشرة','Hire Date','Join Date','تاريخ بداية الاشتراك']);
@@ -7386,20 +7462,25 @@ function addInsFiles(fileList) {
           const job   = jobCol   >= 0 && r[jobCol]   ? String(r[jobCol]).trim()   : '';
           const birth = birthCol >= 0 && r[birthCol] ? parseInsDate(r[birthCol])  : '';
 
-          // ── الجنس — يُحدَّد فقط إذا كانت أنثى صراحةً ──
-          let gender = '';  // فارغ = ذكر افتراضياً، لا يُطبَّق إلا إذا وُجد في الملف
-          if(genderCol >= 0 && r[genderCol]) {
-            const gv = String(r[genderCol]).trim()
-              .replace(/[أإآ]/g,'ا')
-              .replace(/\s/g,'')
-              .toLowerCase();
-            if(gv==='انثى'||gv==='انثي'||gv==='f'||gv==='female'||gv==='2') {
-              gender = 'انثى';
-            } else if(gv==='ذكر'||gv==='m'||gv==='male'||gv==='1') {
-              gender = 'ذكر';
+          // ── الجنس — من الملف مباشرة بمعالجة شاملة ──
+          let gender = '';
+          if(genderCol >= 0) {
+            const rawGenderVal = r[genderCol];
+            console.log('🔍 gender raw:', JSON.stringify(rawGenderVal), 'col:', genderCol);
+            if(rawGenderVal !== null && rawGenderVal !== undefined) {
+              const gv = String(rawGenderVal)
+                .replace(/[\u200f\u200e\u00a0\u0020]/g,'')
+                .replace(/[أإآ]/g,'ا')
+                .toLowerCase();
+              console.log('🔍 gender normalized:', JSON.stringify(gv));
+              if(gv.includes('انث')||gv==='f'||gv==='female'||gv==='2') {
+                gender = 'انثى';
+              } else if(gv.includes('ذكر')||gv.includes('ذك')||gv==='m'||gv==='male'||gv==='1') {
+                gender = 'ذكر';
+              }
             }
-            // إذا لم يُعرف → يبقى '' ولا يُعدّل على الموجود
           }
+          console.log('✅ gender result:', gender);
 
           // ── بيانات الإقامة (من ملف مقيم) ──
           const iqamaExp = iqamaExpCol >= 0 && r[iqamaExpCol] ? String(r[iqamaExpCol]).trim() : '';
@@ -7822,7 +7903,7 @@ function importFromIns() {
         carriedOverBalance: 0, leaveUsed: 0,
         contractAnnualDays: 0, manualLeaveOverride: false,
         loans: 0, status: 'نشط', iban: '',
-        gender: d.gender || 'ذكر',  // فارغ من الملف = ذكر افتراضي
+        gender: d.gender || '',  // فارغ = غير محدد، لا نفرض ذكر
         contractType: 'open', contractEnd: '',
         iqamaExp: d.iqamaExp || '', passport: d.passport || '',
         passExp: d.passExp || '', outside: d.outside || ''
