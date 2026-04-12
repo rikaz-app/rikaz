@@ -9483,7 +9483,7 @@ function rikazShowApp() {
   if (rikazCurrentUser) {
     const nameEl = document.getElementById('topbar-company-name');
     if (nameEl) {
-      nameEl.innerHTML = `منصة الموارد البشرية<br><span style="color:#D4AF37;font-size:11px">${rikazCurrentUser.email}</span>`;
+      nameEl.innerHTML = `منصة الموارد البشرية<br><span style="color:#D4AF37;font-size:11px">Rikaz v1.0</span>`;
     }
     // إضافة زر تسجيل الخروج
     const topbarRight = document.querySelector('.topbar-right');
@@ -9495,6 +9495,15 @@ function rikazShowApp() {
       logoutBtn.textContent = '🚪 خروج';
       logoutBtn.onclick = rikazLogout;
       topbarRight.appendChild(logoutBtn);
+
+      // زر تغيير كلمة المرور
+      const pwBtn = document.createElement('button');
+      pwBtn.id = 'change-pw-btn';
+      pwBtn.className = 'btn btn-outline btn-sm';
+      pwBtn.style.cssText = 'color:#9BBFE4;border-color:rgba(255,255,255,0.2);font-size:11px';
+      pwBtn.textContent = '🔑 كلمة المرور';
+      pwBtn.onclick = showChangePwModal;
+      topbarRight.insertBefore(pwBtn, logoutBtn);
     }
   }
 }
@@ -9528,6 +9537,71 @@ function rikazStars() {
 }
 
 // ══ تشغيل النظام عند تحميل الصفحة ══
+// ══ نافذة تغيير كلمة المرور ══
+function showChangePwModal() {
+  const existing = document.getElementById('change-pw-modal');
+  if (existing) { existing.style.display = 'flex'; return; }
+
+  const modal = document.createElement('div');
+  modal.id = 'change-pw-modal';
+  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9000;display:flex;align-items:center;justify-content:center;font-family:inherit';
+  modal.innerHTML = `
+    <div style="background:#fff;border-radius:16px;padding:28px;width:min(400px,92vw);box-shadow:0 20px 60px rgba(0,0,0,0.3)">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+        <h3 style="font-size:16px;font-weight:700;color:#0A0F2E;margin:0">🔑 تغيير كلمة المرور</h3>
+        <button onclick="document.getElementById('change-pw-modal').style.display='none'" style="background:none;border:none;font-size:20px;cursor:pointer;color:#6B7C93">×</button>
+      </div>
+      <div id="pw-msg" style="display:none;padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:14px"></div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div>
+          <label style="font-size:12px;font-weight:600;color:#6B7C93;display:block;margin-bottom:4px">كلمة المرور الجديدة</label>
+          <input id="pw-new" type="password" placeholder="••••••••" dir="ltr"
+            style="width:100%;padding:10px 12px;border:1px solid #E2E8F0;border-radius:8px;font-size:13px;font-family:inherit">
+        </div>
+        <div>
+          <label style="font-size:12px;font-weight:600;color:#6B7C93;display:block;margin-bottom:4px">تأكيد كلمة المرور</label>
+          <input id="pw-confirm" type="password" placeholder="••••••••" dir="ltr"
+            style="width:100%;padding:10px 12px;border:1px solid #E2E8F0;border-radius:8px;font-size:13px;font-family:inherit">
+        </div>
+        <button onclick="doChangePw()" style="width:100%;padding:12px;background:linear-gradient(135deg,#C9960C,#D4AF37);color:#0A0F2E;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:4px">
+          حفظ كلمة المرور الجديدة
+        </button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+}
+
+async function doChangePw() {
+  const newPw = document.getElementById('pw-new').value;
+  const confirm = document.getElementById('pw-confirm').value;
+  const msg = document.getElementById('pw-msg');
+
+  if (!newPw || newPw.length < 6) {
+    msg.style.cssText = 'display:block;background:#FFEBEE;color:#C62828;padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:14px';
+    msg.textContent = 'كلمة المرور يجب أن تكون 6 أحرف على الأقل';
+    return;
+  }
+  if (newPw !== confirm) {
+    msg.style.cssText = 'display:block;background:#FFEBEE;color:#C62828;padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:14px';
+    msg.textContent = 'كلمة المرور وتأكيدها غير متطابقين';
+    return;
+  }
+
+  const { error } = await rikazDB.auth.updateUser({ password: newPw });
+
+  if (error) {
+    msg.style.cssText = 'display:block;background:#FFEBEE;color:#C62828;padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:14px';
+    msg.textContent = 'حدث خطأ — حاول مجدداً';
+  } else {
+    msg.style.cssText = 'display:block;background:#FDF6DC;color:#A07808;padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:14px';
+    msg.textContent = '✅ تم تغيير كلمة المرور بنجاح';
+    document.getElementById('pw-new').value = '';
+    document.getElementById('pw-confirm').value = '';
+    setTimeout(() => { document.getElementById('change-pw-modal').style.display = 'none'; }, 1500);
+  }
+}
+
 window.addEventListener('load', rikazInit);
 
 // أظهر بانر الديمو لو كان في وضع تجريبي
@@ -9538,3 +9612,4 @@ if(localStorage.getItem('rikaz_is_demo')==='1') {
 
 </body>
 </html>
+
