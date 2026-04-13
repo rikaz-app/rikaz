@@ -2,105 +2,97 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rikaz — بوابة المدير</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Rikaz</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Tahoma,Arial,sans-serif}
-:root{--gold:#D4AF37;--gold2:#C9960C;--b900:#0A0F2E;--b800:#12235C;--b700:#1A3A8F;--g900:#1A6B3A;--r900:#B71C1C;--o900:#E65100;--border:#E2E8F0;--muted:#6B7C93;--bg:#F0F2FA}
-body{background:var(--bg);min-height:100vh;color:#0A0F2E}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{--gold:#D4AF37;--gold2:#C9960C;--b900:#0A0F2E;--b800:#12235C;--g900:#1A6B3A;--r900:#B71C1C;--border:#E2E8F0;--muted:#6B7C93;--bg:#F0F2FA}
+body{background:var(--bg);min-height:100vh;font-family:'Segoe UI',Tahoma,Arial,sans-serif;color:#0A0F2E;max-width:480px;margin:0 auto}
  
 /* Login */
-#login-screen{position:fixed;inset:0;background:linear-gradient(160deg,#0A0F2E,#12235C);display:flex;align-items:center;justify-content:center;z-index:999}
-.login-box{background:rgba(255,255,255,.07);border:1px solid rgba(212,175,55,.25);border-radius:20px;padding:32px 24px;width:min(380px,90vw)}
+#login-screen{position:fixed;inset:0;background:linear-gradient(160deg,#0A0F2E,#12235C,#0A0F2E);display:flex;align-items:center;justify-content:center;z-index:999}
+.login-box{background:rgba(255,255,255,.07);border:1px solid rgba(212,175,55,.25);border-radius:22px;padding:32px 24px;width:min(360px,90vw)}
 .login-logo{text-align:center;margin-bottom:24px}
-.login-logo .title{color:#D4AF37;font-size:24px;font-weight:800}
-.login-logo .sub{color:#9BBFE4;font-size:12px;margin-top:4px}
-.inp{width:100%;padding:12px 14px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-radius:10px;color:#fff;font-size:14px;margin-bottom:10px;font-family:inherit;outline:none}
+.login-logo span{color:#D4AF37;font-size:28px;font-weight:800;letter-spacing:2px}
+.login-logo p{color:#9BBFE4;font-size:12px;margin-top:4px}
+.inp{width:100%;padding:13px 14px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-radius:12px;color:#fff;font-size:14px;margin-bottom:12px;font-family:inherit;outline:none;transition:border .2s}
+.inp:focus{border-color:rgba(212,175,55,.7)}
 .inp::placeholder{color:rgba(255,255,255,.4)}
-.btn-gold{width:100%;padding:13px;background:linear-gradient(135deg,#C9960C,#D4AF37);color:#0A0F2E;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit}
-.login-err{color:#FF8A80;font-size:12px;text-align:center;margin:6px 0;display:none}
+.btn-gold{width:100%;padding:14px;background:linear-gradient(135deg,#C9960C,#D4AF37);color:#0A0F2E;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;transition:opacity .2s}
+.btn-gold:active{opacity:.85}
+.login-err{color:#FF8A80;font-size:12px;text-align:center;margin-bottom:8px;display:none;padding:6px;background:rgba(183,28,28,.2);border-radius:8px}
  
 /* App */
-#app{display:none}
-.topbar{background:linear-gradient(135deg,#0A0F2E,#12235C);padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10;box-shadow:0 2px 8px rgba(0,0,0,.3)}
-.topbar-left{display:flex;align-items:center;gap:16px}
-.logo{color:#D4AF37;font-size:16px;font-weight:800}
-.role-badge{background:rgba(212,175,55,.2);color:#D4AF37;border:1px solid rgba(212,175,55,.3);padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
-.nav-tabs{display:flex;gap:4px}
-.nav-tab{background:none;border:none;color:#9BBFE4;font-size:13px;padding:6px 14px;cursor:pointer;border-radius:6px;font-family:inherit}
-.nav-tab.active{background:rgba(212,175,55,.15);color:#D4AF37;font-weight:600}
-.topbar-right{display:flex;align-items:center;gap:8px}
-.mgr-name{color:#9BBFE4;font-size:12px}
-.logout-btn{background:none;border:1px solid rgba(255,255,255,.2);color:#9BBFE4;padding:5px 12px;border-radius:8px;font-size:12px;cursor:pointer;font-family:inherit}
+#app{display:none;padding-bottom:80px}
+.topbar{background:linear-gradient(135deg,#0A0F2E,#12235C);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.topbar-logo{color:#D4AF37;font-size:16px;font-weight:800}
+.lang-sel{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;padding:4px 8px;border-radius:8px;font-size:12px;cursor:pointer;font-family:inherit}
+.topbar-out{background:none;border:1px solid rgba(255,255,255,.2);color:#9BBFE4;padding:5px 10px;border-radius:8px;font-size:11px;cursor:pointer;font-family:inherit}
  
-.main{padding:20px;max-width:1200px;margin:0 auto}
-.page{display:none}.page.active{display:block}
+.main{padding:14px}
  
-/* Cards */
-.card{background:#fff;border-radius:12px;border:1px solid var(--border);padding:18px;margin-bottom:14px}
-.card-title{font-size:14px;font-weight:700;color:var(--b900);margin-bottom:14px;display:flex;align-items:center;gap:8px}
-.card-title::before{content:'';width:4px;height:16px;background:#D4AF37;border-radius:2px;display:inline-block}
+/* بطاقة الموظف */
+.emp-card{background:#fff;border-radius:16px;padding:16px;margin-bottom:12px;border:1px solid var(--border);display:flex;align-items:center;gap:12px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.emp-av{width:50px;height:50px;border-radius:50%;background:#E6EBF7;color:#1A3A8F;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700;flex-shrink:0}
+.emp-info .name{font-size:15px;font-weight:700}
+.emp-info .title{font-size:12px;color:var(--muted);margin-top:2px}
+.emp-badge{font-size:10px;padding:2px 8px;border-radius:10px;display:inline-block;margin-top:4px}
+.badge-office{background:#E6EBF7;color:#1A3A8F}
+.badge-field{background:#FDF6DC;color:#A07808}
+.badge-exempt{background:#F5F5F5;color:#616161}
+.badge-leave{background:#FDF6DC;color:#A07808}
  
-/* KPIs */
-.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:16px}
-.kpi{background:#fff;border-radius:10px;padding:14px;border:1px solid var(--border);text-align:center}
-.kpi-val{font-size:26px;font-weight:700;color:var(--b900)}
-.kpi-lbl{font-size:11px;color:var(--muted);margin-top:4px}
-.kpi.green .kpi-val{color:#C9960C}
-.kpi.red .kpi-val{color:var(--r900)}
+/* الوقت */
+.time-card{background:linear-gradient(135deg,#0A0F2E,#12235C);border-radius:16px;padding:18px;text-align:center;margin-bottom:12px}
+.time-now{font-size:38px;font-weight:700;color:#D4AF37;letter-spacing:3px;font-variant-numeric:tabular-nums}
+.date-now{font-size:13px;color:#9BBFE4;margin-top:4px}
  
-/* Table */
-.tbl-wrap{overflow-x:auto}
-table{width:100%;border-collapse:collapse;font-size:13px}
-th{text-align:right;padding:10px 12px;background:var(--bg);color:var(--b800);font-weight:600;border-bottom:2px solid var(--border);white-space:nowrap}
-td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:middle}
-tr:hover td{background:var(--bg)}
+/* بطاقة الموقع */
+.loc-card{background:#fff;border-radius:14px;padding:12px 14px;margin-bottom:12px;border:1px solid var(--border)}
+.loc-title{font-size:11px;color:var(--muted);font-weight:600;margin-bottom:6px;text-transform:uppercase}
+.loc-val{font-size:13px;color:#0A0F2E}
+.loc-link{font-size:11px;color:#C9960C;text-decoration:none;display:inline-block;margin-top:3px}
  
-/* Badges */
-.badge{display:inline-block;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:600}
-.b-green{background:#FDF6DC;color:#A07808}
-.b-red{background:#FFEBEE;color:#C62828}
-.b-blue{background:#E3F2FD;color:#1565C0}
-.b-gray{background:#F5F5F5;color:#616161}
-.b-amber{background:#FFF8E1;color:#E65100}
-.b-pending{background:#FFF3E0;color:#E65100}
+/* أزرار الحضور */
+.checkin-btn{width:100%;padding:17px;background:linear-gradient(135deg,#1A6B3A,#2E8B4A);color:#fff;border:none;border-radius:14px;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:8px;transition:opacity .2s}
+.checkout-btn{width:100%;padding:17px;background:linear-gradient(135deg,#B71C1C,#C62828);color:#fff;border:none;border-radius:14px;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:8px}
+.checkin-btn:disabled,.checkout-btn:disabled{opacity:.5}
  
-/* Buttons */
-.btn{padding:7px 16px;border-radius:8px;font-size:13px;cursor:pointer;border:none;font-weight:600;font-family:inherit}
-.btn-approve{background:#1A6B3A;color:#fff}
-.btn-reject{background:var(--r900);color:#fff}
-.btn-sm{padding:5px 12px;font-size:12px}
+/* الطلبات */
+.requests-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.req-btn{background:#fff;border:1px solid var(--border);border-radius:14px;padding:16px 12px;text-align:center;cursor:pointer;transition:all .15s;display:flex;flex-direction:column;align-items:center;gap:6px}
+.req-btn:active{transform:scale(.97);background:var(--bg)}
+.req-icon{font-size:24px}
+.req-label{font-size:12px;font-weight:600;color:#0A0F2E}
  
-/* Request cards */
-.req-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:10px}
-.req-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
-.req-emp{font-weight:700;font-size:14px}
-.req-type{font-size:12px;color:var(--muted)}
-.req-detail{font-size:13px;color:var(--b800);margin-bottom:10px;background:var(--bg);padding:8px 10px;border-radius:6px}
-.req-actions{display:flex;gap:8px}
-.req-actions .btn{flex:1}
+/* سجل اليوم */
+.today-card{background:#fff;border-radius:14px;padding:14px;border:1px solid var(--border)}
+.section-title{font-size:13px;font-weight:700;color:#0A0F2E;margin-bottom:10px}
+.record-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
+.record-row:last-child{border:none}
+.rec-in{color:#1A6B3A;font-weight:600}
+.rec-out{color:#B71C1C;font-weight:600}
  
-/* تسلسل الموافقة */
-.approval-chain{display:flex;align-items:center;gap:6px;font-size:11px;margin-top:6px}
-.chain-step{padding:2px 8px;border-radius:4px;font-weight:600}
-.chain-done{background:#EAF3DE;color:#1A6B3A}
-.chain-current{background:#FDF6DC;color:#A07808;border:1px solid #E8C96A}
-.chain-pending{background:#F5F5F5;color:#9E9E9E}
-.chain-arrow{color:var(--muted)}
+/* Modal */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:200;display:none;align-items:flex-end;justify-content:center}
+.modal-bg.open{display:flex}
+.modal{background:#fff;border-radius:20px 20px 0 0;padding:24px 20px;width:100%;max-width:480px;max-height:85vh;overflow-y:auto}
+.modal-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.modal-title{font-size:16px;font-weight:700}
+.modal-close{background:none;border:none;font-size:22px;cursor:pointer;color:var(--muted)}
+.form-group{margin-bottom:14px}
+.form-group label{font-size:12px;font-weight:600;color:var(--muted);display:block;margin-bottom:5px}
+.form-inp{width:100%;padding:11px 12px;border:1px solid var(--border);border-radius:10px;font-size:13px;font-family:inherit;outline:none}
+.form-inp:focus{border-color:#D4AF37}
+.submit-btn{width:100%;padding:14px;background:linear-gradient(135deg,#C9960C,#D4AF37);color:#0A0F2E;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit}
  
-/* Attendance */
-.att-status-present{color:#1A6B3A;font-weight:600}
-.att-status-absent{color:var(--r900);font-weight:600}
-.att-status-leave{color:#A07808;font-weight:600}
-.att-status-late{color:var(--o900);font-weight:600}
+/* Toast */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0A0F2E;color:#fff;padding:12px 20px;border-radius:12px;font-size:13px;z-index:999;white-space:nowrap;opacity:0;transition:opacity .3s;border-right:4px solid #D4AF37;pointer-events:none}
+.toast.show{opacity:1}
  
 /* Spinner */
 .spin{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:sp .7s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
- 
-/* Toast */
-.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#0A0F2E;color:#fff;padding:10px 18px;border-radius:10px;font-size:13px;z-index:999;opacity:0;transition:opacity .3s;border-right:3px solid #D4AF37;pointer-events:none}
-.toast.show{opacity:1}
 </style>
 </head>
 <body>
@@ -109,103 +101,90 @@ tr:hover td{background:var(--bg)}
 <div id="login-screen">
   <div class="login-box">
     <div class="login-logo">
-      <div class="title">Rikaz</div>
-      <div class="sub">بوابة المدير</div>
+      <span>Rikaz</span>
+      <p id="login-sub">بوابة الموظف</p>
     </div>
     <div class="login-err" id="login-err"></div>
-    <input class="inp" id="l-email" type="email" placeholder="البريد الإلكتروني" dir="ltr" onkeydown="if(event.key==='Enter')document.getElementById('l-pass').focus()">
-    <input class="inp" id="l-pass" type="password" placeholder="كلمة المرور" dir="ltr" onkeydown="if(event.key==='Enter')doLogin()">
-    <button class="btn-gold" onclick="doLogin()" id="l-btn">دخول</button>
+    <input class="inp" id="l-id" type="number" placeholder="رقم الهوية / Iqama Number" dir="ltr"
+      onkeydown="if(event.key==='Enter')document.getElementById('l-pin').focus()">
+    <input class="inp" id="l-pin" type="password" inputmode="numeric" maxlength="6"
+      placeholder="PIN (4-6 أرقام)" dir="ltr"
+      onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="btn-gold" onclick="doLogin()" id="l-btn">دخول / Login</button>
+    <div style="text-align:center;margin-top:12px;font-size:11px;color:rgba(255,255,255,0.4)">
+      احصل على PIN من مسؤول HR
+    </div>
   </div>
 </div>
  
 <!-- App -->
 <div id="app">
   <div class="topbar">
-    <div class="topbar-left">
-      <div class="logo">Rikaz</div>
-      <div class="role-badge" id="role-badge">مدير</div>
-      <div class="nav-tabs">
-        <button class="nav-tab active" onclick="showPage('requests')" id="tab-requests">📋 الطلبات</button>
-        <button class="nav-tab" onclick="showPage('attendance')" id="tab-attendance">⏱️ الحضور</button>
-        <button class="nav-tab" onclick="showPage('team')" id="tab-team">👥 الفريق</button>
-        <button class="nav-tab" id="tab-reports" onclick="showPage('reports')" style="display:none">📊 التقارير</button>
-      </div>
-    </div>
-    <div class="topbar-right">
-      <div class="mgr-name" id="mgr-name-lbl"></div>
-      <button class="logout-btn" onclick="doLogout()">خروج</button>
+    <div class="topbar-logo">Rikaz</div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <select class="lang-sel" id="lang-sel" onchange="setLang(this.value)">
+        <option value="ar">🇸🇦 العربية</option>
+        <option value="en">🇬🇧 English</option>
+        <option value="bn">🇧🇩 বাংলা</option>
+        <option value="hi">🇮🇳 हिंदी</option>
+        <option value="ur">🇵🇰 اردو</option>
+        <option value="tl">🇵🇭 Filipino</option>
+      </select>
+      <button class="topbar-out" onclick="doLogout()" id="logout-btn">خروج</button>
     </div>
   </div>
  
   <div class="main">
- 
-    <!-- ══ الطلبات ══ -->
-    <div class="page active" id="page-requests">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px">
-        <h2 style="font-size:18px;font-weight:700;color:var(--b900)">📋 الطلبات المعلقة</h2>
-        <div style="display:flex;gap:8px">
-          <select id="req-type-filter" onchange="renderRequests()" style="padding:7px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;background:#fff">
-            <option value="">جميع الطلبات</option>
-            <option value="سنوية">إجازة سنوية</option>
-            <option value="استئذان">استئذان</option>
-            <option value="غياب">تبليغ غياب</option>
-            <option value="تأخر">تأخر</option>
-          </select>
-        </div>
-      </div>
-      <div class="kpi-grid" id="req-kpis"></div>
-      <div id="requests-list"><div style="text-align:center;padding:40px;color:var(--muted)">جاري التحميل...</div></div>
+    <div class="time-card">
+      <div class="time-now" id="clock">--:--</div>
+      <div class="date-now" id="dateline"></div>
     </div>
  
-    <!-- ══ الحضور ══ -->
-    <div class="page" id="page-attendance">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px">
-        <h2 style="font-size:18px;font-weight:700;color:var(--b900)">⏱️ تقرير الحضور</h2>
-        <input type="date" id="att-date" onchange="renderAttendance()" style="padding:7px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px">
-      </div>
-      <div class="kpi-grid" id="att-kpis"></div>
-      <div class="card">
-        <div class="card-title">سجل الحضور اليومي</div>
-        <div class="tbl-wrap">
-          <table>
-            <thead><tr>
-              <th>#</th><th>الموظف</th><th>الحالة</th>
-              <th>وقت الحضور</th><th>وقت الانصراف</th><th>الموقع</th>
-            </tr></thead>
-            <tbody id="att-tbody"></tbody>
-          </table>
-        </div>
+    <div class="emp-card" id="emp-card" style="display:none">
+      <div class="emp-av" id="emp-av">—</div>
+      <div class="emp-info">
+        <div class="name" id="emp-name">—</div>
+        <div class="title" id="emp-title">—</div>
+        <span class="emp-badge" id="emp-badge">—</span>
       </div>
     </div>
  
-    <!-- ══ الفريق ══ -->
-    <div class="page" id="page-team">
-      <h2 style="font-size:18px;font-weight:700;color:var(--b900);margin-bottom:16px">👥 فريقي</h2>
-      <div class="kpi-grid" id="team-kpis"></div>
-      <div class="card">
-        <div class="tbl-wrap">
-          <table>
-            <thead><tr>
-              <th>#</th><th>الموظف</th><th>رقم الهوية</th>
-              <th>القسم</th><th>المسمى</th><th>نوع الدوام</th><th>الحالة</th>
-            </tr></thead>
-            <tbody id="team-tbody"></tbody>
-          </table>
-        </div>
-      </div>
+    <div class="loc-card" id="loc-card" style="display:none">
+      <div class="loc-title" id="loc-label">📍 موقعك الحالي</div>
+      <div class="loc-val" id="loc-val">...</div>
+      <a class="loc-link" id="loc-link" href="#" target="_blank" style="display:none" id="loc-map-a">🗺️ خرائط Google</a>
     </div>
  
-    <!-- ══ التقارير (مدير عام) ══ -->
-    <div class="page" id="page-reports">
-      <h2 style="font-size:18px;font-weight:700;color:var(--b900);margin-bottom:16px">📊 التقارير التنفيذية</h2>
-      <div class="kpi-grid" id="reports-kpis"></div>
-      <div class="card">
-        <div class="card-title">ملخص الشهر الحالي</div>
-        <div id="reports-body" style="color:var(--muted);font-size:13px">جاري التحميل...</div>
-      </div>
-    </div>
+    <textarea class="form-inp" id="att-notes" placeholder="ملاحظات (اختياري)" rows="2" style="margin-bottom:10px;display:none"></textarea>
  
+    <button class="checkin-btn" id="checkin-btn" onclick="recordAtt('checkin')">
+      ✅ <span id="lbl-checkin">تسجيل حضور</span>
+    </button>
+    <button class="checkout-btn" id="checkout-btn" onclick="recordAtt('checkout')" style="display:none">
+      🚪 <span id="lbl-checkout">تسجيل انصراف</span>
+    </button>
+ 
+    <!-- الطلبات — تُعبأ ديناميكياً -->
+    <div class="requests-grid" id="requests-grid"></div>
+ 
+    <!-- إشعارات المخالفات -->
+    <div id="violation-notices" style="display:none;margin-bottom:12px"></div>
+ 
+    <div class="today-card">
+      <div class="section-title" id="lbl-today">📋 سجل اليوم</div>
+      <div id="today-records"><div style="color:var(--muted);font-size:13px;text-align:center;padding:10px" id="no-records-msg">لا يوجد تسجيل</div></div>
+    </div>
+  </div>
+</div>
+ 
+<!-- Modal الطلبات -->
+<div class="modal-bg" id="req-modal">
+  <div class="modal">
+    <div class="modal-hdr">
+      <div class="modal-title" id="req-modal-title">طلب</div>
+      <button class="modal-close" onclick="closeReqModal()">×</button>
+    </div>
+    <div id="req-modal-body"></div>
   </div>
 </div>
  
@@ -218,367 +197,733 @@ const RIKAZ_KEY = 'sb_publishable_b3dw5D-des45_hhx1RB8eA_N6bbLU3A';
 const db = supabase.createClient(RIKAZ_URL, RIKAZ_KEY);
  
 let currentUser = null;
-let managerProfile = null; // بيانات المدير من إعدادات HR
-let myTeam = []; // موظفو الفريق
-let allLeaves = [];
-let allEmployees = [];
-let allAttendance = [];
-let ownerUserId = null; // user_id لـ HR المالك
+let currentEmp  = null;
+let currentLat  = null;
+let currentLng  = null;
+let currentLang = 'ar';
+ 
+// ══ ترجمات ══
+const T = {
+  ar: {
+    checkin:'تسجيل حضور', checkout:'تسجيل انصراف', leave:'طلب إجازة',
+    permission:'استئذان', loan:'طلب سلفة', absence:'تبليغ غياب',
+    today:'📋 سجل اليوم', norecord:'لا يوجد تسجيل اليوم',
+    office:'🏢 مكتبي', field:'🚗 ميداني', exempt:'✅ معفى', onleave:'🌴 في إجازة',
+    locating:'جاري تحديد الموقع...', locfail:'تعذّر تحديد الموقع',
+    logout:'خروج', location:'📍 موقعك الحالي', notes:'ملاحظات (اختياري)',
+    from:'من', to:'إلى', reason:'السبب', amount:'المبلغ (ريال)',
+    submit:'إرسال الطلب', success:'✅ تم الإرسال', checkinDone:'✅ تم تسجيل الحضور',
+    checkoutDone:'✅ تم تسجيل الانصراف', onleaveMsg:'أنت في إجازة اليوم',
+    exemptMsg:'معفى من البصمة',
+    lateTitle:'⚠️ تأخرت عن الدوام',
+    lateMsg:'وقت الدوام كان {time} — لم تسجل حضورك بعد. أرسل سبب التأخير.',
+    lateReason:'سبب التأخير', sendExcuse:'إرسال العذر', excuseSent:'✅ تم إرسال العذر',
+    fieldLocation:'موقع البصمة الميدانية',
+  },
+  en: {
+    checkin:'Check In', checkout:'Check Out', leave:'Leave Request',
+    permission:'Permission', loan:'Loan Request', absence:'Report Absence',
+    today:'📋 Today\'s Log', norecord:'No records today',
+    office:'🏢 Office', field:'🚗 Field', exempt:'✅ Exempt', onleave:'🌴 On Leave',
+    locating:'Getting location...', locfail:'Could not get location',
+    logout:'Logout', location:'📍 Your Location', notes:'Notes (optional)',
+    from:'From', to:'To', reason:'Reason', amount:'Amount (SAR)',
+    submit:'Submit Request', success:'✅ Request sent', checkinDone:'✅ Checked in',
+    checkoutDone:'✅ Checked out', onleaveMsg:'You are on leave today',
+    exemptMsg:'Exempt from attendance',
+    lateTitle:'⚠️ You are late',
+    lateMsg:'Shift started at {time} — you haven\'t checked in yet. Please send a reason.',
+    lateReason:'Reason for being late', sendExcuse:'Send Excuse', excuseSent:'✅ Excuse sent',
+    fieldLocation:'Field Check-in Location',
+  },
+  bn: {
+    checkin:'উপস্থিতি নথিভুক্ত', checkout:'প্রস্থান নথিভুক্ত', leave:'ছুটির আবেদন',
+    permission:'অনুমতি', loan:'ঋণের আবেদন', absence:'অনুপস্থিতি জানান',
+    today:'📋 আজকের রেকর্ড', norecord:'আজ কোন রেকর্ড নেই',
+    office:'🏢 অফিস', field:'🚗 মাঠ', exempt:'✅ ছাড়', onleave:'🌴 ছুটিতে',
+    locating:'অবস্থান নির্ধারণ হচ্ছে...', locfail:'অবস্থান পাওয়া যায়নি',
+    logout:'লগআউট', location:'📍 আপনার অবস্থান', notes:'মন্তব্য (ঐচ্ছিক)',
+    from:'থেকে', to:'পর্যন্ত', reason:'কারণ', amount:'পরিমাণ (SAR)',
+    submit:'আবেদন পাঠান', success:'✅ পাঠানো হয়েছে', checkinDone:'✅ উপস্থিতি নথিভুক্ত',
+    checkoutDone:'✅ প্রস্থান নথিভুক্ত', onleaveMsg:'আপনি আজ ছুটিতে আছেন',
+    exemptMsg:'উপস্থিতি থেকে মুক্ত',
+    lateTitle:'⚠️ আপনি দেরি করেছেন',
+    lateMsg:'ডিউটি শুরু হয়েছিল {time} — এখনও উপস্থিতি নথিভুক্ত করেননি।',
+    lateReason:'দেরির কারণ', sendExcuse:'কারণ পাঠান', excuseSent:'✅ পাঠানো হয়েছে',
+    fieldLocation:'মাঠ উপস্থিতির অবস্থান',
+  },
+  hi: {
+    checkin:'उपस्थिति दर्ज करें', checkout:'प्रस्थान दर्ज करें', leave:'छुट्टी का अनुरोध',
+    permission:'अनुमति', loan:'अग्रिम अनुरोध', absence:'अनुपस्थिति सूचित करें',
+    today:'📋 आज का रिकॉर्ड', norecord:'आज कोई रिकॉर्ड नहीं',
+    office:'🏢 कार्यालय', field:'🚗 क्षेत्र', exempt:'✅ छूट', onleave:'🌴 छुट्टी पर',
+    locating:'स्थान ढूंढ रहे हैं...', locfail:'स्थान नहीं मिला',
+    logout:'लॉगआउट', location:'📍 आपका स्थान', notes:'टिप्पणी (वैकल्पिक)',
+    from:'से', to:'तक', reason:'कारण', amount:'राशि (SAR)',
+    submit:'अनुरोध भेजें', success:'✅ भेज दिया गया', checkinDone:'✅ उपस्थिति दर्ज',
+    checkoutDone:'✅ प्रस्थान दर्ज', onleaveMsg:'आप आज छुट्टी पर हैं',
+    exemptMsg:'उपस्थिति से छूट',
+    lateTitle:'⚠️ आप देर से आए हैं',
+    lateMsg:'ड्यूटी {time} पर शुरू हुई — अभी तक उपस्थिति दर्ज नहीं की।',
+    lateReason:'देर का कारण', sendExcuse:'कारण भेजें', excuseSent:'✅ भेज दिया गया',
+    fieldLocation:'फील्ड चेक-इन स्थान',
+  },
+  ur: {
+    checkin:'حاضری درج کریں', checkout:'روانگی درج کریں', leave:'چھٹی کی درخواست',
+    permission:'اجازت', loan:'قرض کی درخواست', absence:'غیر حاضری اطلاع',
+    today:'📋 آج کا ریکارڈ', norecord:'آج کوئی ریکارڈ نہیں',
+    office:'🏢 دفتری', field:'🚗 میدانی', exempt:'✅ مستثنیٰ', onleave:'🌴 چھٹی پر',
+    locating:'مقام تلاش ہو رہا ہے...', locfail:'مقام نہیں ملا',
+    logout:'لاگ آؤٹ', location:'📍 آپ کا مقام', notes:'نوٹ (اختیاری)',
+    from:'سے', to:'تک', reason:'وجہ', amount:'رقم (SAR)',
+    submit:'درخواست بھیجیں', success:'✅ بھیج دیا گیا', checkinDone:'✅ حاضری درج',
+    checkoutDone:'✅ روانگی درج', onleaveMsg:'آپ آج چھٹی پر ہیں',
+    exemptMsg:'حاضری سے مستثنیٰ',
+    lateTitle:'⚠️ آپ دیر سے آئے ہیں',
+    lateMsg:'ڈیوٹی {time} پر شروع ہوئی — ابھی تک حاضری درج نہیں کی۔',
+    lateReason:'تاخیر کی وجہ', sendExcuse:'وجہ بھیجیں', excuseSent:'✅ بھیج دی گئی',
+    fieldLocation:'میدانی حاضری کا مقام',
+  },
+  tl: {
+    checkin:'I-record ang Pasok', checkout:'I-record ang Labas', leave:'Kahilingan ng Leave',
+    permission:'Pahintulot', loan:'Kahilingan ng Advance', absence:'Iulat ang Kawalan',
+    today:'📋 Rekord Ngayon', norecord:'Walang rekord ngayon',
+    office:'🏢 Opisina', field:'🚗 Larangan', exempt:'✅ Exempt', onleave:'🌴 Sa Leave',
+    locating:'Hinahanap ang lokasyon...', locfail:'Hindi mahanap ang lokasyon',
+    logout:'Mag-logout', location:'📍 Iyong Lokasyon', notes:'Mga tala (opsyonal)',
+    from:'Mula', to:'Hanggang', reason:'Dahilan', amount:'Halaga (SAR)',
+    submit:'Isumite ang Kahilingan', success:'✅ Naipadala', checkinDone:'✅ Naka-check in',
+    checkoutDone:'✅ Naka-check out', onleaveMsg:'Ikaw ay nasa leave ngayon',
+    exemptMsg:'Exempt sa attendance',
+    lateTitle:'⚠️ Huli ka na',
+    lateMsg:'Nagsimula ang duty sa {time} — Hindi ka pa nag-check in.',
+    lateReason:'Dahilan ng pagiging huli', sendExcuse:'Ipadala ang Dahilan', excuseSent:'✅ Naipadala',
+    fieldLocation:'Lokasyon ng Field Check-in',
+  }
+};
+ 
+function t(key) { return (T[currentLang]||T.ar)[key] || T.ar[key] || key; }
+ 
+function setLang(lang) {
+  currentLang = lang;
+  const isRtl = ['ar','ur'].includes(lang);
+  document.documentElement.dir = isRtl ? 'rtl' : 'ltr';
+  document.documentElement.lang = lang;
+  updateLabels();
+  localStorage.setItem('rikaz_lang', lang);
+}
+ 
+function updateLabels() {
+  const ids = {
+    'lbl-checkin':'checkin','lbl-checkout':'checkout',
+    'lbl-leave':'leave','lbl-permission':'permission',
+    'lbl-loan':'loan','lbl-absence':'absence',
+    'lbl-today':'today','no-records-msg':'norecord',
+    'logout-btn':'logout','loc-label':'location',
+  };
+  Object.entries(ids).forEach(([id,key]) => {
+    const el = document.getElementById(id);
+    if(el) el.textContent = t(key);
+  });
+  // الزر الحالي
+  const ci = document.getElementById('checkin-btn');
+  const co = document.getElementById('checkout-btn');
+  if(ci) ci.querySelector('span').textContent = t('checkin');
+  if(co) co.querySelector('span').textContent = t('checkout');
+  // notes
+  const notes = document.getElementById('att-notes');
+  if(notes) notes.placeholder = t('notes');
+  // emp badge
+  updateEmpBadge();
+}
+ 
+function updateEmpBadge() {
+  if(!currentEmp) return;
+  const badge = document.getElementById('emp-badge');
+  if(!badge) return;
+  const type = currentEmp.attendanceType || 'office';
+  badge.textContent = t(type);
+  badge.className = 'emp-badge ' + (type==='field'?'badge-field':type==='exempt'?'badge-exempt':'badge-office');
+}
+ 
+// ══ ساعة ══
+function tick() {
+  const now = new Date();
+  const h = now.getHours().toString().padStart(2,'0');
+  const m = now.getMinutes().toString().padStart(2,'0');
+  document.getElementById('clock').textContent = `${h}:${m}`;
+  const days = ['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
+  const months = ['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+  if(['ar','ur'].includes(currentLang)) {
+    document.getElementById('dateline').textContent = `${days[now.getDay()]} ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
+  } else {
+    document.getElementById('dateline').textContent = now.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+  }
+}
+setInterval(tick,1000); tick();
  
 // ══ تسجيل الدخول ══
 async function doLogin() {
-  const email = document.getElementById('l-email').value.trim();
-  const pass  = document.getElementById('l-pass').value;
+  const empId = document.getElementById('l-id').value.trim();
+  const pin   = document.getElementById('l-pin').value.trim();
   const btn   = document.getElementById('l-btn');
-  const err   = document.getElementById('login-err');
-  if(!email||!pass){showErr('أدخل البريد وكلمة المرور');return;}
-  btn.innerHTML='<span class="spin"></span>';btn.disabled=true;err.style.display='none';
-  const {data,error} = await db.auth.signInWithPassword({email,password:pass});
-  if(error){btn.textContent='دخول';btn.disabled=false;showErr('بيانات غير صحيحة');return;}
-  currentUser = data.user;
-  await loadManagerProfile();
+  if(!empId||!pin){showErr('أدخل رقم الهوية والـ PIN / Enter ID and PIN');return;}
+  btn.innerHTML='<span class="spin"></span>';
+  btn.disabled=true;
+ 
+  // جلب بيانات الشركة للتحقق من الهوية والـ PIN
+  // نستخدم Supabase للبحث في جدول employees بكل المستخدمين
+  // الـ PIN محفوظ في بيانات الموظف
+  try {
+    const {data, error} = await db.from('employee_pins')
+      .select('*')
+      .eq('emp_id', empId)
+      .eq('pin', pin)
+      .single();
+ 
+    if(error || !data) {
+      showErr('رقم الهوية أو PIN غير صحيح');
+      btn.innerHTML='دخول / Login';
+      btn.disabled=false;
+      return;
+    }
+ 
+    // حفظ بيانات الجلسة محلياً
+    currentUser = { id: data.user_id, empId: data.emp_id };
+    localStorage.setItem('rikaz_att_session', JSON.stringify({
+      userId: data.user_id,
+      empId: data.emp_id,
+      loginTime: Date.now()
+    }));
+ 
+    showApp();
+  } catch(e) {
+    showErr('خطأ في الاتصال — حاول مجدداً');
+    btn.innerHTML='دخول / Login';
+    btn.disabled=false;
+  }
 }
  
 function showErr(msg){const e=document.getElementById('login-err');e.textContent=msg;e.style.display='block';}
-async function doLogout(){await db.auth.signOut();location.reload();}
  
-// ══ تحميل بيانات المدير ══
-async function loadManagerProfile() {
-  // البحث عن المدير في جدول managers لكل المستخدمين
-  const {data, error} = await db.from('managers')
-    .select('*')
-    .eq('manager_email', currentUser.email)
-    .single();
- 
-  if(error || !data) {
-    showErr('لا يوجد صلاحيات مدير لهذا الحساب — تواصل مع HR');
-    document.getElementById('l-btn').textContent='دخول';
-    document.getElementById('l-btn').disabled=false;
-    return;
-  }
- 
-  managerProfile = data;
-  ownerUserId = data.owner_user_id;
-  await loadAllData();
-  showApp();
-}
- 
-// ══ تحميل جميع البيانات ══
-async function loadAllData() {
-  const [empsRes, leavesRes, attRes] = await Promise.all([
-    db.from('employees').select('data').eq('user_id', ownerUserId).single(),
-    db.from('leaves').select('data').eq('user_id', ownerUserId).single(),
-    db.from('attendance').select('*').eq('user_id', ownerUserId).order('timestamp', {ascending:false}).limit(500),
-  ]);
- 
-  allEmployees = empsRes.data?.data || [];
-  allLeaves    = leavesRes.data?.data || [];
-  allAttendance = attRes.data || [];
- 
-  // فلتر فريق هذا المدير
-  myTeam = filterMyTeam(allEmployees);
-}
- 
-function filterMyTeam(emps) {
-  const p = managerProfile;
-  if(!p) return [];
-  const active = emps.filter(e => e.status !== 'منتهي الخدمة');
- 
-  // الجميع للمدير العام وHR
-  if(p.role === 'gm' || p.role === 'hr') return active;
- 
-  let team = [];
- 
-  // حسب القسم
-  if(p.dept_filter?.length) {
-    p.dept_filter.forEach(dept => {
-      team.push(...active.filter(e => e.dept === dept));
-    });
-  }
- 
-  // حسب الموقع
-  if(p.location_filter?.length) {
-    p.location_filter.forEach(loc => {
-      active.filter(e => e.workLocation === loc || e.attendanceType === loc)
-        .forEach(e => { if(!team.find(t=>t.empId===e.empId)) team.push(e); });
-    });
-  }
- 
-  // يدوي
-  if(p.manual_emp_ids?.length) {
-    p.manual_emp_ids.forEach(id => {
-      const e = active.find(e => e.empId === id);
-      if(e && !team.find(t=>t.empId===e.empId)) team.push(e);
-    });
-  }
- 
-  return team;
+async function doLogout(){
+  localStorage.removeItem('rikaz_att_session');
+  location.reload();
 }
  
 // ══ إظهار التطبيق ══
-function showApp() {
+async function showApp() {
   document.getElementById('login-screen').style.display='none';
   document.getElementById('app').style.display='block';
+  const savedLang = localStorage.getItem('rikaz_lang') || 'ar';
+  document.getElementById('lang-sel').value = savedLang;
+  setLang(savedLang);
+  getLocation();
+  await loadEmp();
+  await loadCompanyReqs();
+  await loadToday();
+  checkLateWarning();
+  checkViolationNotices();
+}
  
-  const roleLabels = {manager:'مدير', hr:'HR', gm:'مدير عام'};
-  document.getElementById('role-badge').textContent = roleLabels[managerProfile.role] || 'مدير';
-  document.getElementById('mgr-name-lbl').textContent = managerProfile.manager_name || currentUser.email;
+// ══ الموظف ══
+async function loadEmp() {
+  const {data} = await db.from('employees').select('data').eq('user_id',currentUser.id).single();
+  if(!data?.data?.length) return;
+  const emps = data.data;
+  // البحث بـ empId أولاً
+  const emp = emps.find(e => e.empId === currentUser.empId)
+           || emps.find(e => e.email?.toLowerCase() === currentUser.email?.toLowerCase())
+           || emps[0];
+  if(!emp) return;
+  currentEmp = emp;
  
-  // المدير العام يشوف التقارير
-  if(managerProfile.role === 'gm') {
-    document.getElementById('tab-reports').style.display='inline-block';
+  // تحديد اللغة بالجنسية
+  const natLangMap = {
+    'بنغلاديش':'bn','بنجلاديش':'bn','bangladesh':'bn',
+    'الهند':'hi','india':'hi','هند':'hi',
+    'باكستان':'ur','pakistan':'ur',
+    'الفلبين':'tl','philippines':'tl','فلبين':'tl',
+  };
+  const nat = (emp.nat||'').toLowerCase();
+  for(const [key,lang] of Object.entries(natLangMap)) {
+    if(nat.includes(key.toLowerCase())) {
+      if(!localStorage.getItem('rikaz_lang')) {
+        document.getElementById('lang-sel').value = lang;
+        setLang(lang);
+      }
+      break;
+    }
   }
  
-  document.getElementById('att-date').value = new Date().toISOString().split('T')[0];
-  renderRequests();
-  renderTeam();
-}
+  const card = document.getElementById('emp-card');
+  card.style.display='flex';
+  document.getElementById('emp-av').textContent=(emp.name||'').split(' ').map(w=>w[0]).slice(0,2).join('');
+  document.getElementById('emp-name').textContent=emp.name||'—';
+  document.getElementById('emp-title').textContent=emp.title||emp.job||'—';
+  updateEmpBadge();
  
-function showPage(page) {
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById('page-'+page)?.classList.add('active');
-  document.getElementById('tab-'+page)?.classList.add('active');
-  if(page==='attendance') renderAttendance();
-  if(page==='reports') renderReports();
-}
- 
-// ══ الطلبات ══
-function renderRequests() {
-  const typeFilter = document.getElementById('req-type-filter')?.value || '';
-  const teamIds = new Set(myTeam.map(e=>e.empId));
-  const teamNames = new Set(myTeam.map(e=>e.name));
- 
-  // طلبات الفريق فقط
-  let reqs = allLeaves.filter(l => {
-    const inTeam = teamIds.has(l.empId) || teamNames.has(l.emp);
-    if(!inTeam) return false;
-    if(typeFilter && l.type !== typeFilter) return false;
- 
-    // ما يُظهر للمدير إلا المعلقة عند مستواه
-    if(managerProfile.role === 'manager') return l.status === 'معلق';
-    if(managerProfile.role === 'hr') return l.status === 'موافق مدير' || l.status === 'معلق';
-    if(managerProfile.role === 'gm') return l.status === 'موافق HR' || l.status === 'موافق';
-    return false;
-  });
- 
-  // KPIs
-  document.getElementById('req-kpis').innerHTML = `
-    <div class="kpi"><div class="kpi-val">${reqs.length}</div><div class="kpi-lbl">طلبات معلقة</div></div>
-    <div class="kpi green"><div class="kpi-val">${allLeaves.filter(l=>(teamIds.has(l.empId)||teamNames.has(l.emp))&&l.status==='موافق').length}</div><div class="kpi-lbl">معتمدة</div></div>
-    <div class="kpi red"><div class="kpi-val">${allLeaves.filter(l=>(teamIds.has(l.empId)||teamNames.has(l.emp))&&l.status==='مرفوض').length}</div><div class="kpi-lbl">مرفوضة</div></div>
-    <div class="kpi"><div class="kpi-val">${myTeam.length}</div><div class="kpi-lbl">حجم الفريق</div></div>
-  `;
- 
-  const container = document.getElementById('requests-list');
-  if(!reqs.length) {
-    container.innerHTML = `<div style="text-align:center;padding:40px;color:var(--muted)">
-      <div style="font-size:40px;margin-bottom:12px">✅</div>
-      <div style="font-size:16px;font-weight:600">لا يوجد طلبات معلقة</div>
-    </div>`;
+  // تحقق إجازة
+  const today=new Date().toISOString().split('T')[0];
+  const onLeave=await checkLeave(emp,today);
+  if(onLeave) {
+    document.getElementById('emp-badge').textContent=t('onleave');
+    document.getElementById('emp-badge').className='emp-badge badge-leave';
+    const btn=document.getElementById('checkin-btn');
+    btn.disabled=true;
+    btn.querySelector('span').textContent=t('onleaveMsg');
+    btn.style.background='#FDF6DC';btn.style.color='#A07808';
     return;
   }
  
-  container.innerHTML = reqs.map(req => {
-    const typeLabel = {سنوية:'🌴 إجازة سنوية', استئذان:'⏰ استئذان', غياب:'📋 تبليغ غياب', تأخر:'⚠️ تأخر'}[req.type] || req.type;
+  // معفى
+  if((emp.attendanceType||'office')==='exempt') {
+    const btn=document.getElementById('checkin-btn');
+    btn.disabled=true;
+    btn.querySelector('span').textContent=t('exemptMsg');
+    return;
+  }
  
-    // تسلسل الموافقة
-    const chain = getApprovalChain(req);
- 
-    return `<div class="req-card">
-      <div class="req-header">
-        <div>
-          <div class="req-emp">${req.emp || req.empId}</div>
-          <div class="req-type">${typeLabel} • ${req.from||''} ${req.to&&req.to!==req.from?'← '+req.to:''} ${req.days?'('+req.days+' يوم)':''}</div>
-        </div>
-        <span class="badge b-pending">${req.status}</span>
-      </div>
-      ${req.note?`<div class="req-detail">💬 ${req.note}</div>`:''}
-      <div class="approval-chain">${chain}</div>
-      <div class="req-actions" style="margin-top:10px">
-        <button class="btn btn-approve btn-sm" onclick="approveRequest(${req.id})">✅ موافقة</button>
-        <button class="btn btn-reject btn-sm" onclick="rejectRequest(${req.id})">❌ رفض</button>
-      </div>
-    </div>`;
-  }).join('');
+  // ميداني = يظهر ملاحظات
+  if((emp.attendanceType||'office')==='field') {
+    document.getElementById('att-notes').style.display='block';
+  }
 }
  
-function getApprovalChain(req) {
-  const steps = [
-    {label:'المدير', done: req.status!=='معلق', current: req.status==='معلق'},
-    {label:'HR', done: req.status==='موافق HR'||req.status==='موافق', current: req.status==='موافق مدير'},
-    {label:'مدير عام', done: req.status==='موافق', current: req.status==='موافق HR'},
-  ];
-  return steps.map((s,i) => `
-    <span class="chain-step ${s.done?'chain-done':s.current?'chain-current':'chain-pending'}">${s.label}</span>
-    ${i<steps.length-1?'<span class="chain-arrow">←</span>':''}
-  `).join('');
+async function checkLeave(emp,date) {
+  try {
+    const {data}=await db.from('leaves').select('data').eq('user_id',currentUser.id).single();
+    if(!data?.data) return false;
+    return data.data.some(l=>(l.empId===emp.empId||l.emp?.includes(emp.name))&&l.status==='موافق'&&l.from<=date&&l.to>=date);
+  } catch(_){return false;}
 }
  
-async function approveRequest(reqId) {
-  const nextStatus = {
-    manager: 'موافق مدير',
-    hr: 'موافق HR',
-    gm: 'موافق',
-  }[managerProfile.role] || 'موافق';
- 
-  await updateLeaveStatus(reqId, nextStatus);
-  showToast('✅ تمت الموافقة');
-  await loadAllData();
-  renderRequests();
+// ══ الموقع ══
+function getLocation() {
+  document.getElementById('loc-card').style.display='block';
+  document.getElementById('loc-val').textContent=t('locating');
+  if(!navigator.geolocation){document.getElementById('loc-val').textContent=t('locfail');return;}
+  navigator.geolocation.getCurrentPosition(pos=>{
+    currentLat=pos.coords.latitude;
+    currentLng=pos.coords.longitude;
+    const acc=Math.round(pos.coords.accuracy);
+    document.getElementById('loc-val').textContent=`${currentLat.toFixed(5)}, ${currentLng.toFixed(5)} (±${acc}m)`;
+    const a=document.getElementById('loc-link');
+    a.href=`https://www.google.com/maps?q=${currentLat},${currentLng}`;
+    a.style.display='inline';
+  },()=>{document.getElementById('loc-val').textContent=t('locfail');},{enableHighAccuracy:true,timeout:10000});
 }
  
-async function rejectRequest(reqId) {
-  const reason = prompt('سبب الرفض (اختياري):') || '';
-  await updateLeaveStatus(reqId, 'مرفوض', reason);
-  showToast('تم الرفض');
-  await loadAllData();
-  renderRequests();
-}
- 
-async function updateLeaveStatus(reqId, status, note='') {
-  const updated = allLeaves.map(l => {
-    if(l.id === reqId) {
-      return {...l, status, ...(note?{rejectNote:note}:{}),
-        [`${managerProfile.role}ApprovedBy`]: managerProfile.manager_name,
-        [`${managerProfile.role}ApprovedDate`]: new Date().toISOString().split('T')[0]
-      };
-    }
-    return l;
+// ══ تسجيل الحضور ══
+async function recordAtt(type) {
+  const btn=document.getElementById(type==='checkin'?'checkin-btn':'checkout-btn');
+  const orig=btn.innerHTML;
+  btn.innerHTML=`<span class="spin"></span>`;btn.disabled=true;
+  const {error}=await db.from('attendance').insert({
+    user_id:currentUser.id,
+    emp_id:currentEmp?.empId||currentUser.email,
+    emp_name:currentEmp?.name||currentUser.email,
+    type, lat:currentLat, lng:currentLng,
+    location_name:`${currentLat||0},${currentLng||0}`,
+    notes:document.getElementById('att-notes')?.value||'',
+    emp_type:currentEmp?.attendanceType||'office',
+    timestamp:new Date().toISOString()
   });
-  await db.from('leaves').upsert({user_id: ownerUserId, data: updated, updated_at: new Date().toISOString()});
+  if(error){showToast('❌ Error');btn.innerHTML=orig;btn.disabled=false;return;}
+  showToast(t(type==='checkin'?'checkinDone':'checkoutDone'));
+  if(type==='checkin'){
+    document.getElementById('checkin-btn').style.display='none';
+    document.getElementById('checkout-btn').style.display='flex';
+  } else {
+    document.getElementById('checkout-btn').style.display='none';
+    document.getElementById('checkin-btn').style.display='flex';
+    document.getElementById('checkin-btn').disabled=false;
+  }
+  document.getElementById('att-notes').value='';
+  await loadToday();
 }
  
-// ══ الحضور ══
-async function renderAttendance() {
-  const date = document.getElementById('att-date')?.value || new Date().toISOString().split('T')[0];
-  const teamIds = new Set(myTeam.map(e=>e.empId));
-  const teamNames = new Set(myTeam.map(e=>e.name));
+// ══ سجل اليوم ══
+async function loadToday() {
+  if(!currentUser) return;
+  const today=new Date().toISOString().split('T')[0];
+  const {data}=await db.from('attendance').select('*').eq('user_id',currentUser.id)
+    .gte('timestamp',today+'T00:00:00').lte('timestamp',today+'T23:59:59')
+    .order('timestamp',{ascending:true});
+  const c=document.getElementById('today-records');
+  if(!data?.length){c.innerHTML=`<div style="color:var(--muted);font-size:13px;text-align:center;padding:10px">${t('norecord')}</div>`;return;}
+  const last=data[data.length-1];
+  if(last.type==='checkin'){document.getElementById('checkin-btn').style.display='none';document.getElementById('checkout-btn').style.display='flex';}
+  c.innerHTML=data.map(r=>{
+    const tm=new Date(r.timestamp).toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'});
+    const mapsUrl=r.lat?`https://www.google.com/maps?q=${r.lat},${r.lng}`:'';
+    return `<div class="record-row">
+      <span class="${r.type==='checkin'?'rec-in':'rec-out'}">${t(r.type)}</span>
+      <div style="text-align:left">
+        <div style="font-size:12px;color:var(--muted)">${tm}</div>
+        ${mapsUrl?`<a href="${mapsUrl}" target="_blank" class="loc-link">📍</a>`:''}
+      </div>
+    </div>`;}).join('');
+}
  
-  const todayAtt = allAttendance.filter(a =>
-    a.timestamp?.startsWith(date) &&
-    (teamIds.has(a.emp_id) || teamNames.has(a.emp_name))
-  );
+// ══ بناء قائمة الطلبات ══
+let companyReqs = null;
  
-  const checkins  = todayAtt.filter(a=>a.type==='checkin');
-  const checkouts = todayAtt.filter(a=>a.type==='checkout');
-  const presentIds = new Set(checkins.map(a=>a.emp_id||a.emp_name));
- 
-  // طلبات إجازة معتمدة اليوم
-  const onLeaveToday = allLeaves.filter(l =>
-    (l.status==='موافق'||l.status==='موافق HR') &&
-    l.from<=date && l.to>=date &&
-    (teamIds.has(l.empId)||teamNames.has(l.emp))
-  );
-  const onLeaveNames = new Set([...onLeaveToday.map(l=>l.empId),...onLeaveToday.map(l=>l.emp)]);
- 
-  const absent = myTeam.filter(e => !presentIds.has(e.empId) && !onLeaveNames.has(e.empId) && !onLeaveNames.has(e.name));
- 
-  document.getElementById('att-kpis').innerHTML = `
-    <div class="kpi green"><div class="kpi-val">${presentIds.size}</div><div class="kpi-lbl">حاضر ✅</div></div>
-    <div class="kpi red"><div class="kpi-val">${absent.length}</div><div class="kpi-lbl">غائب 🔴</div></div>
-    <div class="kpi"><div class="kpi-val">${onLeaveToday.length}</div><div class="kpi-lbl">إجازة 🌴</div></div>
-    <div class="kpi"><div class="kpi-val">${myTeam.length}</div><div class="kpi-lbl">إجمالي الفريق</div></div>
-  `;
- 
-  const tbody = document.getElementById('att-tbody');
-  if(!myTeam.length){tbody.innerHTML='<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:20px">لا يوجد فريق</td></tr>';return;}
- 
-  tbody.innerHTML = myTeam.map((emp,i) => {
-    const cin  = checkins.find(a=>a.emp_id===emp.empId||a.emp_name===emp.name);
-    const cout = checkouts.find(a=>a.emp_id===emp.empId||a.emp_name===emp.name);
-    const isLeave = onLeaveNames.has(emp.empId)||onLeaveNames.has(emp.name);
- 
-    let statusHtml, cinTime='—', coutTime='—', locHtml='—';
-    if(isLeave){
-      statusHtml = '<span class="att-status-leave">🌴 إجازة</span>';
-    } else if(cin) {
-      cinTime = new Date(cin.timestamp).toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'});
-      statusHtml = '<span class="att-status-present">✅ حاضر</span>';
-      if(cout) coutTime = new Date(cout.timestamp).toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'});
-      if(cin.lat) locHtml = `<a href="https://www.google.com/maps?q=${cin.lat},${cin.lng}" target="_blank" style="color:#C9960C;font-size:12px">📍 خريطة</a>`;
-    } else {
-      statusHtml = '<span class="att-status-absent">🔴 غائب</span>';
+async function loadCompanyReqs() {
+  try {
+    const {data} = await db.from('company_settings').select('data').eq('user_id', currentUser.id).single();
+    if(data?.data) {
+      companyReqs = data.data;
     }
- 
-    return `<tr>
-      <td style="color:var(--muted);font-size:11px">${i+1}</td>
-      <td style="font-weight:600">${emp.name}</td>
-      <td>${statusHtml}</td>
-      <td>${cinTime}</td>
-      <td>${coutTime}</td>
-      <td>${locHtml}</td>
-    </tr>`;
-  }).join('');
+  } catch(_) {}
+  renderReqsGrid();
 }
  
-// ══ الفريق ══
-function renderTeam() {
-  document.getElementById('team-kpis').innerHTML = `
-    <div class="kpi"><div class="kpi-val">${myTeam.length}</div><div class="kpi-lbl">إجمالي الفريق</div></div>
-    <div class="kpi"><div class="kpi-val">${myTeam.filter(e=>e.attendanceType==='field').length}</div><div class="kpi-lbl">ميداني</div></div>
-    <div class="kpi"><div class="kpi-val">${myTeam.filter(e=>e.attendanceType!=='field'&&e.attendanceType!=='exempt').length}</div><div class="kpi-lbl">مكتبي</div></div>
-  `;
+function renderReqsGrid() {
+  const grid = document.getElementById('requests-grid');
+  if(!grid) return;
  
-  const tbody = document.getElementById('team-tbody');
-  tbody.innerHTML = myTeam.map((emp,i) => `
-    <tr>
-      <td style="color:var(--muted);font-size:11px">${i+1}</td>
-      <td style="font-weight:600">${emp.name}</td>
-      <td style="font-family:monospace;font-size:12px">${emp.empId||'—'}</td>
-      <td>${emp.dept||'—'}</td>
-      <td style="font-size:12px;color:var(--muted)">${emp.title||emp.job||'—'}</td>
-      <td><span class="badge ${emp.attendanceType==='field'?'b-amber':emp.attendanceType==='exempt'?'b-gray':'b-blue'}">${emp.attendanceType==='field'?'ميداني':emp.attendanceType==='exempt'?'معفى':'مكتبي'}</span></td>
-      <td><span class="badge ${emp.status==='نشط'?'b-green':'b-gray'}">${emp.status||'نشط'}</span></td>
-    </tr>`).join('');
+  const empType = currentEmp?.attendanceType || 'office';
+  const typeKey = empType === 'field' ? 'field' : 'office';
+ 
+  const allReqs = companyReqs?.empReqs || {};
+  const typeReqs = allReqs[typeKey] || allReqs || {};
+  const custom = companyReqs?.[typeKey==='field'?'customReqsField':'customReqsOffice'] || [];
+ 
+  const defaultReqs = [
+    { id:'leave',      emoji:'🌴', labelKey:'leave' },
+    { id:'permission', emoji:'⏰', labelKey:'permission' },
+    { id:'loan',       emoji:'💰', labelKey:'loan' },
+    { id:'absence',    emoji:'📋', labelKey:'absence' },
+  ].filter(r => typeReqs[r.id] !== false);
+ 
+  const customBtns = custom.map(r => `
+    <div class="req-btn" onclick="openCustomReq('${r.id}','${r.emoji}','${r.name}')">
+      <div class="req-icon">${r.emoji}</div>
+      <div class="req-label">${r.name}</div>
+    </div>`).join('');
+ 
+  grid.innerHTML = defaultReqs.map(r => `
+    <div class="req-btn" onclick="openReq('${r.id}')">
+      <div class="req-icon">${r.emoji}</div>
+      <div class="req-label">${t(r.labelKey)}</div>
+    </div>`).join('') + customBtns;
 }
  
-// ══ التقارير (مدير عام) ══
-async function renderReports() {
-  if(managerProfile.role !== 'gm') return;
-  const active = allEmployees.filter(e=>e.status!=='منتهي الخدمة');
-  const thisMonth = new Date().toISOString().slice(0,7);
-  const monthLeaves = allLeaves.filter(l=>l.submit?.startsWith(thisMonth));
-  const approved = monthLeaves.filter(l=>l.status==='موافق').length;
-  const pending  = allLeaves.filter(l=>l.status==='معلق'||l.status==='موافق مدير'||l.status==='موافق HR').length;
+// ══ الطلبات ══
+const reqForms = {
+  leave: (lang) => `
+    <div class="form-group"><label>${t('from')}</label><input class="form-inp" id="req-from" type="date"></div>
+    <div class="form-group"><label>${t('to')}</label><input class="form-inp" id="req-to" type="date"></div>
+    <div class="form-group"><label>${t('reason')}</label><textarea class="form-inp" id="req-reason" rows="3"></textarea></div>`,
+  permission: (lang) => `
+    <div class="form-group"><label>${t('from')}</label><input class="form-inp" id="req-from" type="time"></div>
+    <div class="form-group"><label>${t('to')}</label><input class="form-inp" id="req-to" type="time"></div>
+    <div class="form-group"><label>${t('reason')}</label><textarea class="form-inp" id="req-reason" rows="2"></textarea></div>`,
+  loan: (lang) => `
+    <div class="form-group"><label>${t('amount')}</label><input class="form-inp" id="req-amount" type="number" placeholder="0" dir="ltr"></div>
+    <div class="form-group"><label>${t('reason')}</label><textarea class="form-inp" id="req-reason" rows="3"></textarea></div>`,
+  absence: (lang) => `
+    <div class="form-group"><label>${t('from')}</label><input class="form-inp" id="req-from" type="date"></div>
+    <div class="form-group"><label>${t('reason')}</label><textarea class="form-inp" id="req-reason" rows="3"></textarea></div>`,
+};
  
-  document.getElementById('reports-kpis').innerHTML = `
-    <div class="kpi"><div class="kpi-val">${active.length}</div><div class="kpi-lbl">إجمالي الموظفين</div></div>
-    <div class="kpi green"><div class="kpi-val">${approved}</div><div class="kpi-lbl">إجازات معتمدة هذا الشهر</div></div>
-    <div class="kpi red"><div class="kpi-val">${pending}</div><div class="kpi-lbl">طلبات معلقة</div></div>
-    <div class="kpi"><div class="kpi-val">${active.filter(e=>e.attendanceType==='field').length}</div><div class="kpi-lbl">موظفون ميدانيون</div></div>
-  `;
+let currentReqType = '';
+function openReq(type) {
+  currentReqType=type;
+  document.getElementById('req-modal-title').textContent=t(type);
+  document.getElementById('req-modal-body').innerHTML=`
+    ${reqForms[type]()}
+    <button class="submit-btn" onclick="submitReq()">${t('submit')}</button>`;
+  document.getElementById('req-modal').classList.add('open');
+}
+function closeReqModal(){document.getElementById('req-modal').classList.remove('open');}
  
-  document.getElementById('reports-body').innerHTML = `
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-      <div style="background:var(--bg);border-radius:8px;padding:12px">
-        <div style="font-weight:600;margin-bottom:8px">توزيع الأقسام</div>
-        ${[...new Set(active.map(e=>e.dept).filter(Boolean))].map(dept =>
-          `<div style="display:flex;justify-content:space-between;padding:4px 0;font-size:13px;border-bottom:1px solid var(--border)">
-            <span>${dept}</span>
-            <span style="font-weight:600">${active.filter(e=>e.dept===dept).length}</span>
-          </div>`
-        ).join('')}
-      </div>
-      <div style="background:var(--bg);border-radius:8px;padding:12px">
-        <div style="font-weight:600;margin-bottom:8px">حالة الطلبات هذا الشهر</div>
-        ${['معلق','موافق مدير','موافق HR','موافق','مرفوض'].map(status => {
-          const count = monthLeaves.filter(l=>l.status===status).length;
-          return count ? `<div style="display:flex;justify-content:space-between;padding:4px 0;font-size:13px;border-bottom:1px solid var(--border)">
-            <span>${status}</span><span style="font-weight:600">${count}</span>
-          </div>` : '';
-        }).join('')}
-      </div>
-    </div>`;
+function openCustomReq(id, emoji, name) {
+  currentReqType = 'custom_' + id;
+  document.getElementById('req-modal-title').textContent = emoji + ' ' + name;
+  document.getElementById('req-modal-body').innerHTML = `
+    <div class="form-group">
+      <label>${t('reason')}</label>
+      <textarea class="form-inp" id="req-reason" rows="4" placeholder="..."></textarea>
+    </div>
+    <button class="submit-btn" onclick="submitReq()">${t('submit')}</button>`;
+  document.getElementById('req-modal').classList.add('open');
 }
  
+async function submitReq() {
+  const reason=document.getElementById('req-reason')?.value||'';
+  const from=document.getElementById('req-from')?.value||'';
+  const to=document.getElementById('req-to')?.value||from;
+  const amount=document.getElementById('req-amount')?.value||'';
+ 
+  // احفظ الطلب كإجازة أو سلفة في Supabase
+  const today=new Date().toISOString().split('T')[0];
+  let saved=false;
+ 
+  if(currentReqType.startsWith('custom_')) {
+    // طلب مخصص — يُحفظ كإجازة من نوع مخصص
+    const leavesRes=await db.from('leaves').select('data').eq('user_id',currentUser.id).single();
+    const leaves=leavesRes.data?.data||[];
+    const reqName = companyReqs?.customReqs?.find(r=>String(r.id)===currentReqType.replace('custom_',''))?.name || 'طلب مخصص';
+    leaves.push({
+      id:Date.now(), emp:currentEmp?.name||'', empId:currentEmp?.empId||'',
+      type:reqName, from:today, to:today, days:0,
+      status:'معلق', check:'—', overlap:'—', note:reason, submit:today
+    });
+    const {error}=await db.from('leaves').upsert({user_id:currentUser.id,data:leaves,updated_at:new Date().toISOString()});
+    closeReqModal();
+    showToast(!error?t('success'):'❌ Error');
+    return;
+  }
+ 
+  if(currentReqType==='leave'||currentReqType==='absence') {
+    const leavesRes=await db.from('leaves').select('data').eq('user_id',currentUser.id).single();
+    const leaves=leavesRes.data?.data||[];
+    const newLeave={
+      id:Date.now(), emp:currentEmp?.name||'', empId:currentEmp?.empId||'',
+      type:currentReqType==='leave'?'سنوية':'غياب', from, to,
+      days:from&&to?Math.max(1,Math.ceil((new Date(to)-new Date(from))/86400000)+1):1,
+      status:'معلق', check:'—', overlap:'—', note:reason, submit:today
+    };
+    leaves.push(newLeave);
+    const {error}=await db.from('leaves').upsert({user_id:currentUser.id,data:leaves,updated_at:new Date().toISOString()});
+    saved=!error;
+  } else if(currentReqType==='loan') {
+    const loansRes=await db.from('loans').select('data').eq('user_id',currentUser.id).single();
+    const loans=loansRes.data?.data||[];
+    loans.push({
+      id:Date.now(), empId:currentEmp?.empId||'', empName:currentEmp?.name||'',
+      amount:parseFloat(amount)||0, date:today, months:0, monthly:0, paid:0,
+      status:'معلق', notes:reason
+    });
+    const {error}=await db.from('loans').upsert({user_id:currentUser.id,data:loans,updated_at:new Date().toISOString()});
+    saved=!error;
+  } else {
+    // استئذان — نحفظه كإجازة قصيرة
+    const leavesRes=await db.from('leaves').select('data').eq('user_id',currentUser.id).single();
+    const leaves=leavesRes.data?.data||[];
+    leaves.push({
+      id:Date.now(), emp:currentEmp?.name||'', empId:currentEmp?.empId||'',
+      type:'استئذان', from:today, to:today, days:0.5,
+      status:'معلق', check:'—', overlap:'—', note:`${from||''} - ${to||''} | ${reason}`, submit:today
+    });
+    const {error}=await db.from('leaves').upsert({user_id:currentUser.id,data:leaves,updated_at:new Date().toISOString()});
+    saved=!error;
+  }
+ 
+  closeReqModal();
+  showToast(saved?t('success'):'❌ Error');
+}
+ 
+// ══ Toast ══
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
  
+// ══ إشعارات المخالفات ══
+async function checkViolationNotices() {
+  if(!currentEmp || !currentUser) return;
+ 
+  try {
+    // جلب بيانات الشركة للحصول على لائحة الخصومات
+    const {data: cs} = await db.from('company_settings').select('data').eq('user_id', currentUser.id).single();
+    const violations = cs?.data?.violations || [];
+    if(!violations.length) return;
+ 
+    // جلب مخالفات الموظف
+    const {data: empsData} = await db.from('employees').select('data').eq('user_id', currentUser.id).single();
+    const emps = empsData?.data || [];
+    const emp = emps.find(e => e.empId === currentEmp.empId || e.name === currentEmp.name);
+    if(!emp?.violations?.length) return;
+ 
+    // إيجاد المخالفات المعلقة (لم يُرسل عذرها)
+    const pending = emp.violations.filter(v => v.status === 'pending' && v.notified && !v.excuseSent);
+    if(!pending.length) return;
+ 
+    const container = document.getElementById('violation-notices');
+    if(!container) return;
+    container.style.display = 'block';
+ 
+    container.innerHTML = pending.map(v => {
+      const vioLabel = {absence:'غياب بدون عذر', late:'تأخر', absence_excuse:'غياب بعذر مرفوض'}[v.type] || v.type;
+      const penLabel = v.rule ? ({
+        warning_verbal:'إنذار شفهي', warning_written:'إنذار كتابي',
+        deduct:'خصم من الراتب', deduct_warning:'خصم + إنذار'
+      }[v.rule.penalty] || '') : '';
+ 
+      return `<div style="background:#FFF3E0;border:1px solid #FFCC80;border-radius:14px;padding:14px;margin-bottom:8px">
+        <div style="font-weight:700;font-size:14px;color:#E65100;margin-bottom:6px">⚠️ إشعار مخالفة</div>
+        <div style="font-size:13px;color:#5D4037;margin-bottom:4px">📅 ${v.date} — ${vioLabel}</div>
+        ${penLabel?`<div style="font-size:12px;color:#B71C1C;margin-bottom:10px">العقوبة: ${penLabel}</div>`:''}
+        <div style="font-size:12px;color:#5D4037;margin-bottom:8px">يمكنك إرسال عذر لمراجعة العقوبة</div>
+        <textarea id="excuse-${v.id}" rows="2"
+          style="width:100%;padding:9px 12px;border:1px solid #FFCC80;border-radius:8px;font-size:13px;font-family:inherit;margin-bottom:8px;outline:none"
+          placeholder="اكتب عذرك هنا..."></textarea>
+        <button onclick="sendViolationExcuse('${v.id}')"
+          style="width:100%;padding:11px;background:linear-gradient(135deg,#E65100,#F57C00);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit">
+          📨 إرسال العذر
+        </button>
+      </div>`;
+    }).join('');
+  } catch(_) {}
+}
+ 
+async function sendViolationExcuse(vioId) {
+  const excuse = document.getElementById(`excuse-${vioId}`)?.value?.trim();
+  if(!excuse) { showToast('اكتب العذر أولاً'); return; }
+ 
+  try {
+    const {data: empsData} = await db.from('employees').select('data').eq('user_id', currentUser.id).single();
+    const emps = empsData?.data || [];
+    const emp = emps.find(e => e.empId === currentEmp.empId || e.name === currentEmp.name);
+    if(!emp) return;
+ 
+    const vio = emp.violations?.find(v => String(v.id) === String(vioId));
+    if(!vio) return;
+ 
+    vio.excuseSent = true;
+    vio.excuse = excuse;
+    vio.excuseDate = new Date().toISOString().split('T')[0];
+    vio.status = 'excuse_pending';
+ 
+    await db.from('employees').upsert({user_id: currentUser.id, data: emps, updated_at: new Date().toISOString()});
+    showToast('✅ تم إرسال العذر — بانتظار موافقة HR');
+    await checkViolationNotices();
+  } catch(_) { showToast('❌ خطأ في الإرسال'); }
+}
+ 
+// ══ تنبيه التأخير ══
+async function checkLateWarning() {
+  if(!currentEmp) return;
+  const empType = currentEmp.attendanceType || 'office';
+  // الميداني والمعفى لا تنبيه
+  if(empType === 'exempt') return;
+ 
+  // تحقق هل بصم اليوم مسبقاً
+  const today = new Date().toISOString().split('T')[0];
+  const {data} = await db.from('attendance')
+    .select('id').eq('user_id', currentUser.id)
+    .eq('type','checkin')
+    .gte('timestamp', today + 'T00:00:00')
+    .limit(1);
+  if(data?.length) return; // بصم بالفعل
+ 
+  // جلب سياسة الدوام من مواقع العمل
+  const {data: locs} = await db.from('work_locations')
+    .select('shift_policy').eq('user_id', currentUser.id);
+ 
+  let checkinTime = null;
+  let grace = 15;
+ 
+  if(locs?.length) {
+    for(const loc of locs) {
+      try {
+        const sp = JSON.parse(loc.shift_policy || '{}');
+        // ثابت أو ميداني — كلاهما يدعم التنبيه
+        if((sp.type === 'fixed' || sp.type === 'field') && sp.checkin) {
+          // تحقق إن التنبيه مفعّل لهذا الموقع
+          if(sp.lateNotify === false) continue;
+          checkinTime = sp.checkin;
+          grace = sp.lateGrace || sp.grace || 15;
+          break;
+        }
+      } catch(_) {}
+    }
+  }
+ 
+  if(!checkinTime) return; // لا يوجد دوام ثابت
+ 
+  // تحقق من الوقت الحالي
+  const now = new Date();
+  const [sh, sm] = checkinTime.split(':').map(Number);
+  const shiftStart = new Date();
+  shiftStart.setHours(sh, sm + grace, 0, 0);
+ 
+  if(now < shiftStart) return; // لم يحن وقت التنبيه بعد
+ 
+  // أظهر نافذة التأخير
+  showLateWarning(checkinTime);
+}
+ 
+function showLateWarning(checkinTime) {
+  // لا تعرض مرتين
+  if(document.getElementById('late-modal')) return;
+ 
+  const msg = t('lateMsg').replace('{time}', checkinTime);
+ 
+  const modal = document.createElement('div');
+  modal.id = 'late-modal';
+  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:999;display:flex;align-items:flex-end;justify-content:center';
+  modal.innerHTML = `
+    <div style="background:#fff;border-radius:20px 20px 0 0;padding:24px 20px;width:100%;max-width:480px">
+      <div style="font-size:18px;font-weight:700;color:#B71C1C;margin-bottom:10px">${t('lateTitle')}</div>
+      <div style="font-size:13px;color:#6B7C93;margin-bottom:16px;line-height:1.6">${msg}</div>
+      <div style="margin-bottom:12px">
+        <label style="font-size:12px;font-weight:600;color:#6B7C93;display:block;margin-bottom:6px">${t('lateReason')}</label>
+        <textarea id="late-reason" rows="3"
+          style="width:100%;padding:11px 12px;border:1px solid #E2E8F0;border-radius:10px;font-size:13px;font-family:inherit;outline:none;resize:none"
+          placeholder="..."></textarea>
+      </div>
+      <div style="display:flex;gap:10px">
+        <button onclick="submitLateExcuse()"
+          style="flex:1;padding:13px;background:linear-gradient(135deg,#C9960C,#D4AF37);color:#0A0F2E;border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit">
+          ${t('sendExcuse')}
+        </button>
+        <button onclick="document.getElementById('late-modal').remove()"
+          style="padding:13px 16px;background:#F5F5F5;border:none;border-radius:12px;font-size:13px;cursor:pointer;font-family:inherit;color:#6B7C93">
+          ✕
+        </button>
+      </div>
+    </div>`;
+  document.body.appendChild(modal);
+}
+ 
+async function submitLateExcuse() {
+  const reason = document.getElementById('late-reason')?.value?.trim();
+  if(!reason) return;
+ 
+  const today = new Date().toISOString().split('T')[0];
+  // احفظ العذر كطلب غياب معلق
+  const leavesRes = await db.from('leaves').select('data').eq('user_id', currentUser.id).single();
+  const leaves = leavesRes.data?.data || [];
+  leaves.push({
+    id: Date.now(),
+    emp: currentEmp?.name || '',
+    empId: currentEmp?.empId || '',
+    type: 'تأخر',
+    from: today, to: today, days: 0,
+    status: 'معلق', check: '—', overlap: '—',
+    note: `عذر تأخير: ${reason}`,
+    submit: today
+  });
+  await db.from('leaves').upsert({
+    user_id: currentUser.id,
+    data: leaves,
+    updated_at: new Date().toISOString()
+  });
+ 
+  document.getElementById('late-modal')?.remove();
+  showToast(t('excuseSent'));
+}
+ 
+// ══ Init ══
 async function init(){
-  const {data:{session}}=await db.auth.getSession();
-  if(session){currentUser=session.user;await loadManagerProfile();}
+  // تحقق من جلسة محفوظة
+  const saved = localStorage.getItem('rikaz_att_session');
+  if(saved) {
+    try {
+      const sess = JSON.parse(saved);
+      // الجلسة تنتهي بعد 24 ساعة
+      if(Date.now() - sess.loginTime < 24*60*60*1000) {
+        currentUser = { id: sess.userId, empId: sess.empId };
+        showApp();
+        return;
+      }
+    } catch(_) {}
+    localStorage.removeItem('rikaz_att_session');
+  }
 }
 init();
 </script>
 </body>
 </html>
+ 
