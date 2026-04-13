@@ -697,7 +697,8 @@ function renderEmpPage() {
   </td><td style="display:flex;gap:4px;flex-wrap:wrap">
   ${e.status==='منتهي الخدمة'
     ? `<button class="btn btn-sm" style="background:#EAF3DE;color:#1A6B3A;border:1px solid #2E8B4A" onclick="restoreEmployee('${e.empId||''}')">↩️ استرجاع</button>`
-    : `<button class="btn btn-outline btn-sm" onclick="openEditEmp(${e.id})">تعديل</button>`
+    : `<button class="btn btn-outline btn-sm" onclick="openEditEmp(${e.id})">تعديل</button>
+       <button class="btn btn-sm" style="background:var(--r100);color:var(--r900);border:1px solid var(--r900)" onclick="quickTerminate(${e.id})">❌ إنهاء</button>`
   }
   <button class="btn btn-outline btn-sm" style="color:var(--b700)"
   title="أرشيف الموظف"
@@ -1833,6 +1834,11 @@ function downloadEOSWord(empId, dateVal, netFinal, grat, leaveVal, salRem, extra
   showNotif('✅ تم تحميل مخالصة ' + emp.name);
 }
 
+function finalizeEOS(empId, dateVal, netFinal, reasonVal, grat, leaveVal, salRem, extra, noticeVal, totalDeduct) {
+  // زر "حفظ وأرشفة الموظف" في حاسبة نهاية الخدمة
+  archiveEmployee(empId, dateVal, netFinal, reasonVal, grat);
+}
+
 function archiveEmployee(empId, lastDate, netFinal, reasonVal, gratForArchive) {
   const emp = employees.find(e => e.id === empId);
   if(!emp) return;
@@ -1909,6 +1915,64 @@ function renderEOSHistory() {
   document.getElementById('eos-history').innerHTML = eosHistory.length ?
   eosHistory.map((h,i) => `<tr><td class="txt-muted-11">${i+1}</td><td style="font-weight:600">${h.emp}</td><td style="font-size:12px">${h.reason}</td><td>${h.date}</td><td>${h.years}</td><td style="color:var(--b800);font-weight:600">${h.grat}</td><td style="font-weight:700;color:#C9960C">${h.net}</td><td><button onclick="restoreEmployee('${h.empId||''}')" style="background:none;border:1px solid #1A6B3A;border-radius:6px;padding:3px 10px;font-size:11px;color:#1A6B3A;cursor:pointer">↩️ استرجاع</button></td></tr>`).join('') :
   '<tr><td colspan="7" style="text-align:center;color:var(--muted);padding:20px">لا توجد سجلات بعد — ستظهر هنا بعد أرشفة الموظفين</td></tr>';
+}
+
+function quickTerminate(empId) {
+  const emp = employees.find(e => e.id == empId);
+  if(!emp) return;
+
+  // Modal سريع لاختيار سبب الإنهاء
+  const reasons = [
+    {v:'resign', l:'استقالة'},
+    {v:'emp_terminate', l:'إنهاء من صاحب العمل'},
+    {v:'contract_end', l:'نهاية عقد محدد المدة'},
+    {v:'mutual', l:'إنهاء بالتراضي'},
+    {v:'contract_end_auto', l:'انتهاء عقد تلقائي'},
+    {v:'retire', l:'إحالة للتقاعد'},
+    {v:'arbitrary', l:'فصل تعسفي'},
+    {v:'zero', l:'مخالفة جسيمة'},
+  ];
+
+  const opts = reasons.map(r => `<option value="${r.v}">${r.l}</option>`).join('');
+  const modal = document.createElement('div');
+  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;display:flex;align-items:center;justify-content:center';
+  modal.innerHTML = `
+    <div style="background:#fff;border-radius:16px;padding:24px;width:min(420px,90vw)">
+      <div style="font-weight:700;font-size:16px;margin-bottom:16px;color:var(--b900)">❌ إنهاء خدمة — ${emp.name}</div>
+      <div style="margin-bottom:12px">
+        <label style="font-size:12px;font-weight:600;color:var(--muted);display:block;margin-bottom:4px">سبب الإنهاء</label>
+        <select id="qt-reason" style="width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit">${opts}</select>
+      </div>
+      <div style="margin-bottom:16px">
+        <label style="font-size:12px;font-weight:600;color:var(--muted);display:block;margin-bottom:4px">تاريخ آخر يوم عمل</label>
+        <input id="qt-date" type="date" value="${new Date().toISOString().split('T')[0]}" style="width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px">
+      </div>
+      <div style="display:flex;gap:8px">
+        <button onclick="this.closest('div[style*=fixed]').remove()" style="flex:1;padding:10px;background:#fff;border:1px solid var(--border);border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit">إلغاء</button>
+        <button onclick="confirmQuickTerminate(${empId},document.getElementById('qt-reason').value,document.getElementById('qt-date').value,this.closest('div[style*=fixed]'))"
+          style="flex:1;padding:10px;background:var(--r900);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">❌ تأكيد الإنهاء</button>
+      </div>
+    </div>`;
+  document.body.appendChild(modal);
+}
+
+function confirmQuickTerminate(empId, reasonVal, lastDate, modal) {
+  const emp = employees.find(e => e.id == empId);
+  if(!emp) return;
+  const reasonNames = {
+    resign:'استقالة', emp_terminate:'إنهاء من صاحب العمل',
+    contract_end:'نهاية عقد', mutual:'إنهاء بالتراضي',
+    contract_end_auto:'انتهاء عقد تلقائي', retire:'إحالة للتقاعد',
+    arbitrary:'فصل تعسفي', zero:'مخالفة جسيمة'
+  };
+  emp.status    = 'منتهي الخدمة';
+  emp.lastDate  = lastDate;
+  emp.endReason = reasonNames[reasonVal] || reasonVal;
+  modal.remove();
+  autoSave();
+  renderEmpsRespectTab();
+  updateEmpBadges();
+  showNotif(`✅ تم إنهاء خدمة ${emp.name} — ${emp.endReason}`);
 }
 
 function renewContract(empId) {
@@ -5868,8 +5932,10 @@ function addInsFiles(fileList) {
   return ['الجنس','جنس','نوع'].some(k => n === norm(k) || n.startsWith(norm(k)));
   });
   })();
-  const basicCol   = col(['الراتب الأساسي','الأجر الأساسي','أجر أساسي','الأجر','راتب أساسي','Basic Salary','الراتب']);
-  const housingCol = col(['بدل السكن','بدل الإسكان','إسكان','سكن','Housing']);
+  const basicCol      = col(['الراتب الأساسي','الأجر الأساسي','أجر أساسي','الأجر','راتب أساسي','Basic Salary','الراتب']);
+  const housingCol    = col(['بدل السكن','بدل الإسكان','إسكان','سكن','Housing']);
+  const commissionCol = col(['العمولات','عمولة','عمولات','Commission']);
+  const otherCol      = col(['البدلات الأخرى','بدلات اخرى','بدلات أخرى','بدلات','Other Allowances','بدل آخر']);
   const hireCol    = col(['تاريخ الاشتراك','تاريخ المباشرة','تاريخ الالتحاق','تاريخ الإلتحاق','تاريخ التسجيل','تاريخ اصدار الاقامة','تاريخ إصدار الإقامة','مباشرة','Hire Date','Join Date','تاريخ بداية الاشتراك']);
   const jobCol     = col(['المهنة','مهنة المشترك','المسمى الوظيفي','المسمى','مهنة','Job','Occupation','الوظيفة']);
   const birthCol   = col(['تاريخ الميلاد','تاريخ الولادة','ميلاد','Birth Date','DOB']);
@@ -5974,7 +6040,9 @@ function addInsFiles(fileList) {
   if(passExp)  existing.passExp  = passExp;
   if(outside)  existing.outside  = outside;
   } else {
-  insLoadedData.push({id:rawId, name, nat, natFull, ins, basic, housing, hire, job, birthDate:birth, gender, dept, iqamaExp, passport, passExp, outside, src:f.name});
+  const commission = commissionCol>=0 ? parseFloat(String(r[commissionCol]||'0').replace(/,/g,''))||0 : 0;
+  const other      = otherCol>=0      ? parseFloat(String(r[otherCol]||'0').replace(/,/g,''))||0 : 0;
+  insLoadedData.push({id:rawId, name, nat, natFull, ins, basic, housing, commission, other, hire, job, birthDate:birth, gender, dept, iqamaExp, passport, passExp, outside, src:f.name});
   addedFromFile++;
   }
   });
@@ -6336,7 +6404,13 @@ function importFromIns() {
 
   insLoadedData.forEach(d => {
   const alreadyExists = employees.find(e => e.empId === d.id);
-  if(!alreadyExists) {
+  if(alreadyExists) {
+    if(d.commission > 0) alreadyExists.commission = d.commission;
+    if(d.other > 0) alreadyExists.other = d.other;
+    if(d.basic > 0) alreadyExists.basic = d.basic;
+    if(d.housing > 0) alreadyExists.housing = d.housing;
+    updated++;
+  } else if(!alreadyExists) {
   employees.push({
   id: Math.max(0, ...employees.map(e=>e.id)) + 1,
   name: d.name,
@@ -6348,7 +6422,9 @@ function importFromIns() {
   job: d.job || '',
   basic: d.basic || 0,
   housing: d.housing || 0,
-  commission: 0, transport: 0, other: 0,
+  commission: d.commission || 0,
+  transport: 0,
+  other: d.other || 0,
   hire: d.hire || '',
   birthDate: d.birthDate || '',
   email: '', phone: '',
@@ -6648,14 +6724,26 @@ function processAttendanceFile(file) {
   if(!dt || isNaN(dt.getTime())) return;
   if(!isWorkDay(dt)) return;
 
-  const rawIn = inC >= 0 ? row[inC] : null;
+  const rawIn  = inC  >= 0 ? row[inC]  : null;
+  const rawOut = outC >= 0 ? row[outC] : null;
   if(!rawIn || String(rawIn).trim() === '' || String(rawIn).trim() === 'null') {
   absenceDays++;
   } else {
   presentDays++;
   const inMins = parseTime(rawIn);
+  // تأخير الحضور
   if(inMins !== null && inMins > limitMins) {
-  latenessHours += (inMins - limitMins) / 60;
+    latenessHours += (inMins - limitMins) / 60;
+  }
+  // مغادرة مبكرة
+  if(rawOut && String(rawOut).trim() !== '') {
+    const outMins = parseTime(rawOut);
+    const checkoutLimit = companySettings.workEndTime
+      ? parseTimeStr(companySettings.workEndTime)
+      : (limitMins + 8*60); // افتراضي 8 ساعات
+    if(outMins !== null && outMins < checkoutLimit) {
+      latenessHours += (checkoutLimit - outMins) / 60;
+    }
   }
   }
   });
@@ -7798,3 +7886,8 @@ if(localStorage.getItem('rikaz_is_demo')==='1') {
 }
 </script></body>
 </html>
+
+
+
+
+
