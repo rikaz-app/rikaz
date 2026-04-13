@@ -30,7 +30,7 @@
             📱 استيراد جوال / إيميل / آيبان
           </button><div style="border-top:1px solid var(--border);margin:4px 0"></div><button class="import-menu-item" onclick="closeImportMenu();updateAllLeaveBalances()" style="color:#C9960C">
             🔄 تحديث أرصدة الإجازات
-          </button></div></div><button class="btn btn-outline" onclick="openModal('m-company-settings')" title="إعدادات الشركة">⚙️ إعدادات</button><button class="btn btn-outline" onclick="openBulkContractModal()" title="ضبط نوع العقد جماعي">📋 نوع العقد</button><button class="btn btn-outline" onclick="exportEmpsExcel()" style="color:#C9960C" title="تصدير بيانات الموظفين">📊 تصدير Excel</button><button class="btn btn-outline" onclick="showPinsModal()" style="color:#C9960C">🔑 PINs</button><button class="btn btn-primary" onclick="openModal('m-add-emp')">+ إضافة موظف</button></div></div><div class="kpi-grid" id="emp-kpis"></div><div id="contract-alerts-section"></div><div id="import-status"></div><div class="tabs" style="margin-bottom:0"><button class="tab active" id="tab-active" onclick="switchEmpTab('active',this)">
+          </button></div></div><button class="btn btn-outline" onclick="openModal('m-company-settings')" title="إعدادات الشركة">⚙️ إعدادات</button><button class="btn btn-outline" onclick="openBulkContractModal()" title="ضبط نوع العقد جماعي">📋 نوع العقد</button><button class="btn btn-outline" onclick="exportEmpsExcel()" style="color:#C9960C" title="تصدير بيانات الموظفين">📊 تصدير Excel</button><button class="btn btn-outline" onclick="restoreAllExpired()" style="color:#1A6B3A" title="استرجاع الموظفين المنقولين تلقائياً">↩️ استرجاع تلقائي</button><button class="btn btn-outline" onclick="showPinsModal()" style="color:#C9960C">🔑 PINs</button><button class="btn btn-primary" onclick="openModal('m-add-emp')">+ إضافة موظف</button></div></div><div class="kpi-grid" id="emp-kpis"></div><div id="contract-alerts-section"></div><div id="import-status"></div><div class="tabs" style="margin-bottom:0"><button class="tab active" id="tab-active" onclick="switchEmpTab('active',this)">
       الموظفون النشطون
       <span id="badge-active" style="background:var(--b700);color:#fff;font-size:11px;padding:2px 8px;border-radius:10px;margin-right:6px"></span></button><button class="tab" id="tab-archived" onclick="switchEmpTab('archived',this)">
       منتهية الخدمة
@@ -743,20 +743,38 @@ function renderEmpsRespectTab() {
   }
 }
 function autoExpireContracts() {
+  // تنبيه فقط — لا نقل تلقائي لمنتهية الخدمة
   const today = new Date(); today.setHours(0,0,0,0);
   let expiredCount = 0;
   employees.forEach(e => {
     if(e.status === 'منتهي الخدمة') return;
     if(e.contractType !== 'fixed' || !e.contractEnd) return;
     const endDate = new Date(e.contractEnd); endDate.setHours(0,0,0,0);
-    if(endDate < today) {
-      // تنبيه فقط — لا ننقل تلقائياً
-      expiredCount++;
+    if(endDate < today) expiredCount++;
+  });
+  if(expiredCount > 0)
+    showNotif(`⚠️ ${expiredCount} موظف انتهت عقودهم — راجع العقود وقرر التجديد أو الإنهاء`);
+}
+
+function restoreAllExpired() {
+  // استرجاع جميع من نُقلوا بسبب انتهاء العقد تلقائياً
+  let count = 0;
+  employees.forEach(e => {
+    if(e.status === 'منتهي الخدمة' && (e.endReason === 'انتهاء عقد' || e.endReason === 'انتهاء عقد محدد المدة')) {
+      e.status = 'نشط';
+      e.lastDate = null;
+      e.endReason = null;
+      count++;
     }
   });
-  if(expiredCount > 0) {
-    // تنبيه بدون نقل تلقائي
-    showNotif(`⚠️ ${expiredCount} موظف انتهت عقودهم — راجع التنبيهات وقرر التجديد أو الإنهاء`);
+  if(count > 0) {
+    autoSave();
+    rebuildEmpMap();
+    renderEmps(employees.filter(e=>e.status!=='منتهي الخدمة'));
+    updateEmpBadges();
+    showNotif(`✅ تم استرجاع ${count} موظف لقائمة النشطين`);
+  } else {
+    showNotif('لا يوجد موظفون منقولون تلقائياً للاسترجاع');
   }
 }
 
@@ -3439,6 +3457,100 @@ function exportPinsExcel() {
   showNotif('✅ تم تصدير PINs الموظفين');
 }
 
+// ══ الإدارات التنظيمية ══
+function addDivision() {
+  const name = document.getElementById('new-division-name')?.value.trim();
+  if(!name) { showNotif('أدخل اسم الإدارة', 'error'); return; }
+  if(!companySettings.divisions) companySettings.divisions = [];
+  if(companySettings.divisions.find(d => d.name === name)) {
+    showNotif('الإدارة موجودة مسبقاً', 'error'); return;
+  }
+  companySettings.divisions.push({ id: Date.now(), name, manager: '' });
+  document.getElementById('new-division-name').value = '';
+  renderDivisionsList();
+  updateDivisionSelects();
+}
+
+function deleteDivision(id) {
+  if(!companySettings.divisions) return;
+  const div = companySettings.divisions.find(d => d.id === id);
+  if(div && employees.filter(e => e.division === div.name).length > 0) {
+    if(!confirm(`فيه موظفون في إدارة "${div.name}" — هل تريدين الحذف؟`)) return;
+  }
+  companySettings.divisions = companySettings.divisions.filter(d => d.id !== id);
+  renderDivisionsList();
+  updateDivisionSelects();
+}
+
+function setDivisionManager(id, managerName) {
+  if(!companySettings.divisions) return;
+  const div = companySettings.divisions.find(d => d.id === id);
+  if(div) div.manager = managerName;
+}
+
+function renderDivisionsList() {
+  const list = document.getElementById('divisions-list');
+  if(!list) return;
+  const divs = companySettings.divisions || [];
+  if(!divs.length) {
+    list.innerHTML = '<div style="font-size:12px;color:var(--muted);margin-bottom:8px">لا يوجد إدارات — أضف إدارة أدناه</div>';
+    return;
+  }
+  list.innerHTML = divs.map(d => `
+    <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:#fff;border:1px solid var(--border);border-radius:8px;margin-bottom:6px">
+      <div style="flex:1">
+        <div style="font-weight:600;font-size:13px">🏢 ${d.name}</div>
+        <div style="display:flex;align-items:center;gap:6px;margin-top:4px">
+          <span style="font-size:11px;color:var(--muted)">المدير:</span>
+          <input value="${d.manager||''}" placeholder="اسم المدير المسؤول"
+            onchange="setDivisionManager(${d.id}, this.value)"
+            style="flex:1;padding:4px 8px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:inherit">
+        </div>
+        <div style="font-size:11px;color:var(--muted);margin-top:3px">
+          👥 ${employees.filter(e=>e.division===d.name).length} موظف
+        </div>
+      </div>
+      <button onclick="deleteDivision(${d.id})" style="background:none;border:none;color:var(--r900);cursor:pointer;font-size:18px">×</button>
+    </div>`).join('');
+}
+
+function updateDivisionSelects() {
+  // تحديث قائمة الإدارات في إضافة/تعديل الموظف
+  const divs = companySettings.divisions || [];
+  const opts = '<option value="">— اختر الإدارة —</option>' +
+    divs.map(d => `<option value="${d.name}">${d.name}</option>`).join('');
+
+  // تحويل حقل الإدارة من input إلى select إذا وجدت إدارات
+  ['n-division', 'edit-n-division'].forEach(id => {
+    const el = document.getElementById(id);
+    if(!el) return;
+    if(divs.length === 0) {
+      // input نصي عند عدم وجود إدارات
+      if(el.tagName === 'SELECT') {
+        const inp = document.createElement('input');
+        inp.id = id; inp.placeholder = 'الإدارة';
+        inp.style.cssText = el.style.cssText;
+        inp.className = el.className;
+        el.replaceWith(inp);
+      }
+    } else {
+      // select عند وجود إدارات
+      if(el.tagName === 'INPUT') {
+        const sel = document.createElement('select');
+        sel.id = id; sel.style.cssText = el.style.cssText;
+        sel.className = el.className;
+        sel.innerHTML = opts;
+        el.replaceWith(sel);
+      } else {
+        el.innerHTML = opts;
+      }
+    }
+  });
+
+  // تحديث فلتر الإدارات
+  populateDivisionFilter();
+}
+
 function updateAbsentModeUI() {
   const mode = document.querySelector('input[name="absent-mode"]:checked')?.value || 'official';
   const officialSettings = document.getElementById('official-mode-settings');
@@ -3633,6 +3745,7 @@ function saveCompanySettings() {
   updateTopbarCompany();
   renderPolicyBar();
   renderLeaves();
+  updateDivisionSelects();
   closeModal('m-company-settings');
   autoSave();
   showNotif('تم حفظ إعدادات الشركة ✅');
@@ -6768,7 +6881,9 @@ function debouncedRenderSalary() {
 </div><div class="modal-bg" id="m-company-settings"><div class="modal" style="max-width:480px"><div class="modal-hdr"><div class="modal-title">⚙️ إعدادات الشركة</div><button class="modal-close" onclick="closeModal('m-company-settings')">×</button></div><div class="form-grid"><div class="form-group" style="grid-column:span 2"><label>اسم الشركة</label><input id="cs-name" placeholder="أدخل اسم شركتك"></div><div class="form-group"><label>رقم السجل التجاري</label><input id="cs-cr" placeholder="1234567890"></div><div class="form-group"><label>المدينة</label><input id="cs-city" value="الرياض"></div><div class="form-group"><label>رقم الهاتف</label><input id="cs-phone" placeholder="0112345678"></div><div class="form-group"><label>البريد الإلكتروني</label><input id="cs-email" placeholder="hr@company.com"></div><div class="form-group" style="grid-column:span 2"><label>العنوان</label><input id="cs-address" placeholder="حي الريان، الرياض"></div></div><div style="margin-top:16px;padding:16px;background:var(--b50);border-radius:12px;border:1px solid var(--b200)"><div style="font-weight:700;font-size:13px;color:var(--b900);margin-bottom:4px">📅 سياسة الإجازات السنوية</div><div style="font-size:11px;color:var(--muted);margin-bottom:14px">اختر النظام المعمول به في شركتك — يؤثر على حساب الرصيد وتنبيهات نهاية السنة</div><div style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px"><label style="display:flex;align-items:flex-start;gap:10px;padding:12px;border-radius:8px;border:2px solid var(--b200);cursor:pointer;background:#fff" id="lp-card-accumulate"><input type="radio" name="cs-leave-policy" value="accumulate" id="lp-accumulate" onchange="onLeavePolicyChange()" style="margin-top:2px;flex-shrink:0"><div><div style="font-weight:700;font-size:13px;color:var(--b900)">🔄 تراكم كامل بلا حد <span style="font-size:10px;background:#FDF6DC;color:#C9960C;padding:2px 8px;border-radius:10px;font-weight:600">الافتراضي النظامي</span></div><div style="font-size:12px;color:var(--muted);margin-top:3px">الرصيد يتراكم طوال مدة الخدمة بدون سقوط — وفق المادة 109 نظام العمل السعودي</div><div style="font-size:11px;color:var(--b700);margin-top:4px">✔ الأضمن نظامياً &nbsp;|&nbsp; ✔ لا حاجة لتوثيق إضافي &nbsp;|&nbsp; ⚠ قد يتراكم رصيد كبير</div></div></label><label style="display:flex;align-items:flex-start;gap:10px;padding:12px;border-radius:8px;border:2px solid var(--b200);cursor:pointer;background:#fff" id="lp-card-carryover"><input type="radio" name="cs-leave-policy" value="carryover" id="lp-carryover" onchange="onLeavePolicyChange()" style="margin-top:2px;flex-shrink:0"><div style="flex:1"><div style="font-weight:700;font-size:13px;color:var(--b900)">📦 ترحيل بحد أقصى <span style="font-size:10px;background:var(--b100);color:var(--b800);padding:2px 8px;border-radius:10px;font-weight:600">سياسة داخلية</span></div><div style="font-size:12px;color:var(--muted);margin-top:3px">ما زاد عن الحد يُصرف نقداً أو يسقط — يجب توثيقه في العقد أو اللائحة الداخلية</div><div style="font-size:11px;color:var(--b700);margin-top:4px">✔ يحمي الشركة من تراكم الرصيد &nbsp;|&nbsp; ⚠ يستلزم توثيق موافقة الموظف</div><div id="cs-carryover-max-group" style="display:none;margin-top:10px;background:var(--b50);border-radius:8px;padding:10px;border:1px solid var(--b200)"><label style="font-size:12px;font-weight:600;color:var(--b900);display:block;margin-bottom:6px">الحد الأقصى للترحيل (أيام)</label><div style="display:flex;align-items:center;gap:10px"><input type="number" id="cs-carryover-max" min="1" max="365" value="30"
                   style="width:80px;padding:7px 10px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-weight:700;text-align:center"><div class="txt-muted-11">يوم — ما زاد عن هذا الرصيد يُفقد أو يُصرف نقداً بنهاية السنة</div></div></div></div></label><label style="display:flex;align-items:flex-start;gap:10px;padding:12px;border-radius:8px;border:2px solid var(--b200);cursor:pointer;background:#fff" id="lp-card-expire"><input type="radio" name="cs-leave-policy" value="expire" id="lp-expire" onchange="onLeavePolicyChange()" style="margin-top:2px;flex-shrink:0"><div><div style="font-weight:700;font-size:13px;color:var(--b900)">⏳ تسقط بنهاية السنة <span style="font-size:10px;background:var(--r100);color:var(--r900);padding:2px 8px;border-radius:10px;font-weight:600">سياسة صارمة</span></div><div style="font-size:12px;color:var(--muted);margin-top:3px">الرصيد غير المستخدم يسقط تلقائياً بنهاية السنة المحددة</div><div style="font-size:11px;color:var(--r900);margin-top:4px">⚠ يستلزم توثيقاً قانونياً &nbsp;|&nbsp; ⚠ لا يجوز إذا حُرم الموظف من الإجازة بسبب العمل</div><div id="cs-year-type-group" style="display:none;margin-top:10px;background:#FFF5F5;border-radius:8px;padding:10px;border:1px solid #FFCDD2"><label style="font-size:12px;font-weight:600;color:var(--r900);display:block;margin-bottom:8px">نهاية أي سنة؟</label><div style="display:flex;gap:16px"><label style="display:flex;align-items:center;gap:6px;font-size:12px;cursor:pointer"><input type="radio" name="cs-year-type" value="calendar" id="yt-calendar" checked> سنة ميلادية (31 ديسمبر)
                 </label><label style="display:flex;align-items:center;gap:6px;font-size:12px;cursor:pointer"><input type="radio" name="cs-year-type" value="hire" id="yt-hire"> سنة من تاريخ المباشرة
-                </label></div></div></div></label></div><div id="cs-legal-note" style="font-size:11px;padding:10px 12px;border-radius:8px;background:var(--y50);border:1px solid #FFF176;color:#5D4037;display:none"></div></div><!-- ══ طلبات بوابة الموظف ══ --><div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border)"><div style="font-weight:700;font-size:14px;margin-bottom:12px">📱 طلبات بوابة الموظف</div><div style="display:flex;gap:6px;margin-bottom:12px;border-bottom:2px solid var(--b100);padding-bottom:0"><button id="req-tab-office" onclick="switchReqTab('office')"
+                </label></div></div></div></label></div><div id="cs-legal-note" style="font-size:11px;padding:10px 12px;border-radius:8px;background:var(--y50);border:1px solid #FFF176;color:#5D4037;display:none"></div></div><!-- ══ الإدارات التنظيمية ══ --><div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border)"><div style="font-weight:700;font-size:14px;margin-bottom:4px">🏢 الإدارات التنظيمية</div><div style="font-size:12px;color:var(--muted);margin-bottom:12px">أضف إدارات الشركة — كل إدارة لها مدير مسؤول</div><div id="divisions-list" style="margin-bottom:10px"></div><div style="display:flex;gap:8px"><input id="new-division-name" placeholder="اسم الإدارة (مثل: إدارة العمليات)" style="flex:1;padding:8px 10px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit"><button onclick="addDivision()" style="padding:8px 14px;background:var(--b800);color:#fff;border:none;border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit;white-space:nowrap">+ إضافة</button></div></div>
+
+<!-- ══ طلبات بوابة الموظف ══ --><div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border)"><div style="font-weight:700;font-size:14px;margin-bottom:12px">📱 طلبات بوابة الموظف</div><div style="display:flex;gap:6px;margin-bottom:12px;border-bottom:2px solid var(--b100);padding-bottom:0"><button id="req-tab-office" onclick="switchReqTab('office')"
           style="padding:8px 16px;border:none;background:none;font-size:13px;font-weight:600;color:#C9960C;border-bottom:2px solid #C9960C;margin-bottom:-2px;cursor:pointer;font-family:inherit">
           🏢 مكتبي
         </button><button id="req-tab-field" onclick="switchReqTab('field')"
