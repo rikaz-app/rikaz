@@ -56,13 +56,23 @@
 </div><!-- ══ نهاية الخدمة ══ -->
 <div class="page" id="page-eos"><div class="page-hdr"><div><h2>حاسبة نهاية الخدمة</h2><div style="font-size:12px;color:var(--muted);margin-top:4px">⚖️ متوافق مع نظام العمل السعودي — المواد 75، 77، 80، 84، 85، 109</div></div><button class="btn btn-outline btn-sm" onclick="exportEOSTableExcel()" style="align-self:flex-start">📊 تصدير الجدول Excel</button></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:16px"><div class="card"><div class="card-title">بيانات الإنهاء</div><div style="display:flex;flex-direction:column;gap:12px"><div class="form-group" style="position:relative"><label>ابحثي باسم الموظف أو رقم الهوية / الإقامة</label><input id="eos-search" placeholder="اكتبي الاسم أو رقم الهوية..."
                  oninput="searchEOSEmp(this.value)" autocomplete="off"
-                 style="font-size:14px"><div id="eos-dropdown" style="display:none;position:absolute;z-index:50;background:#fff;border:1px solid var(--border);border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.12);max-height:220px;overflow-y:auto;width:100%;margin-top:2px"></div></div><input type="hidden" id="eos-emp"><div id="eos-emp-info" style="background:var(--b50);border-radius:8px;padding:12px;font-size:13px;display:none"></div><div class="form-group"><label>سبب إنهاء الخدمة</label><select id="eos-reason" onchange="updateEOS()"><option value="emp_terminate" selected>إنهاء من صاحب العمل (100% — المادة 84)</option><option value="resign">استقالة (تلقائي حسب السنوات)</option><option value="contract_end">نهاية عقد محدد المدة (100%)</option><option value="arbitrary">فصل تعسفي (100% + شهرين)</option><option value="death">وفاة أو عجز كلي (100%)</option><option value="marriage">زواج المرأة (100%)</option><option value="zero">فصل بسبب مخالفة جسيمة (0%)</option></select></div><div class="form-group"><label>تاريخ آخر يوم عمل</label><input type="date" id="eos-date" onchange="refreshEOSLeaveOnDateChange();updateEOS()"></div><div class="form-group"><label>رصيد الإجازات المتبقي (أيام)</label><input type="number" id="eos-leave" value="0" min="0" onchange="updateEOS()"><div id="eos-leave-hint" style="font-size:11px;color:#C9960C;margin-top:3px"></div></div><div class="form-group"><label>السلف المتبقية (ريال)</label><input type="number" id="eos-loans" value="0" min="0" onchange="updateEOS()"></div><div class="form-group"><label>خصومات أخرى (ريال)</label><input type="number" id="eos-deduct" value="0" min="0" onchange="updateEOS()"></div><div id="eos-notice-row" class="form-group" style="display:none"><label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" id="eos-notice-chk" onchange="updateEOS()" style="width:16px;height:16px;cursor:pointer"><span>لم يُمنح إشعار مسبق (م.75) — أضف بدل الإشعار</span></label><div style="font-size:11px;color:var(--muted);margin-top:3px;padding-right:24px">
+                 style="font-size:14px"><div id="eos-dropdown" style="display:none;position:absolute;z-index:50;background:#fff;border:1px solid var(--border);border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.12);max-height:220px;overflow-y:auto;width:100%;margin-top:2px"></div></div><input type="hidden" id="eos-emp"><div id="eos-emp-info" style="background:var(--b50);border-radius:8px;padding:12px;font-size:13px;display:none"></div><div class="form-group"><label>سبب إنهاء الخدمة</label><select id="eos-reason" onchange="updateEOS()"><option value="emp_terminate" selected>إنهاء من صاحب العمل (100% — المادة 84)</option><option value="resign">استقالة (تلقائي حسب السنوات)</option><option value="contract_end">نهاية عقد محدد المدة (100%)</option><option value="arbitrary">فصل تعسفي (100% + شهرين)</option><option value="death">وفاة أو عجز كلي (100%)</option><option value="marriage">زواج المرأة (100%)</option><option value="zero">فصل بسبب مخالفة جسيمة (0%)</option>
+<option value="mutual">إنهاء بالتراضي (100%)</option>
+<option value="contract_end_auto">انتهاء عقد محدد المدة تلقائياً (100%)</option>
+<option value="retire">إحالة للتقاعد (100%)</option>
+<option value="force_majeure">ظروف قهرية / إغلاق (100%)</option>
+</select></div><div class="form-group"><label>تاريخ آخر يوم عمل</label><input type="date" id="eos-date" onchange="refreshEOSLeaveOnDateChange();updateEOS()"></div><div class="form-group"><label>رصيد الإجازات المتبقي (أيام)</label><input type="number" id="eos-leave" value="0" min="0" onchange="updateEOS()"><div id="eos-leave-hint" style="font-size:11px;color:#C9960C;margin-top:3px"></div></div><div class="form-group"><label>السلف المتبقية (ريال)</label><input type="number" id="eos-loans" value="0" min="0" onchange="updateEOS()"></div><div class="form-group"><label>خصومات أخرى (ريال)</label><input type="number" id="eos-deduct" value="0" min="0" onchange="updateEOS()"></div><div id="eos-notice-row" class="form-group" style="display:none"><label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" id="eos-notice-chk" onchange="updateEOS()" style="width:16px;height:16px;cursor:pointer"><span>لم يُمنح إشعار مسبق (م.75) — أضف بدل الإشعار</span></label><div style="font-size:11px;color:var(--muted);margin-top:3px;padding-right:24px">
             أقل من 5 سنوات = شهر | 5 سنوات فأكثر = شهران
           </div></div><div id="eos-marriage-row" class="form-group" style="display:none"><label>تاريخ عقد الزواج <span style="color:var(--r900)">*</span></label><input type="date" id="eos-marriage-date" onchange="updateEOS()"
                  style="border-color:var(--o900)"><div style="font-size:11px;color:var(--o900);margin-top:3px">
             ⚠️ يجب أن تتقدم الموظفة خلال شهر من تاريخ العقد
           </div><div id="eos-marriage-warn" style="display:none;margin-top:6px;padding:8px 12px;background:var(--r100);border-radius:6px;font-size:12px;color:var(--r900);font-weight:600"></div></div></div><div id="eos-pct-label" style="margin-top:10px;padding:10px 14px;background:var(--b50);border-radius:8px;font-size:13px;color:var(--b800);border-right:3px solid var(--b600);display:none"></div></div><div><div id="eos-result-area"></div><div class="card" style="margin-top:16px;padding:0;overflow:hidden"><div style="display:flex;align-items:center;justify-content:space-between;padding:14px 20px;cursor:pointer;border-bottom:1px solid var(--border)"
-             onclick="toggleEosRef(this)"><div class="card-title" style="margin:0">مرجع أسباب الإنهاء — نظام العمل السعودي</div><button id="eos-ref-toggle" style="background:none;border:1px solid var(--border);border-radius:6px;padding:3px 10px;font-size:12px;color:var(--muted);cursor:pointer;flex-shrink:0">▼ عرض</button></div><div id="eos-ref-body" style="padding:0 20px 16px;display:none"><table style="margin-top:12px"><thead><tr><th>السبب والمادة القانونية</th><th>النسبة</th><th>ملاحظات</th></tr></thead><tbody><tr style="background:var(--b50)"><td colspan="3" style="font-weight:600;color:var(--b800);padding:8px">📋 استقالة — المادة 85 (تدريجية حسب المدة)</td></tr><tr><td style="padding-right:16px">أقل من سنة كاملة</td><td><span class="badge b-red">0%</span></td><td class="txt-muted-11">لا استحقاق قبل سنة</td></tr><tr><td style="padding-right:16px">سنة إلى أقل من سنتين</td><td><span class="badge b-red">0%</span></td><td class="txt-muted-11">لا استحقاق قبل سنتين</td></tr><tr><td style="padding-right:16px">سنتان إلى أقل من 5 سنوات</td><td><span class="badge b-amber">33.33% (ثلث)</span></td><td class="txt-muted-11">المادة 85/1</td></tr><tr><td style="padding-right:16px">5 سنوات إلى أقل من 10 سنوات</td><td><span class="badge b-amber">66.67% (ثلثان)</span></td><td class="txt-muted-11">المادة 85/2</td></tr><tr><td style="padding-right:16px">10 سنوات فأكثر</td><td><span class="badge b-green">100%</span></td><td class="txt-muted-11">المادة 85/3</td></tr><tr style="background:var(--b50)"><td colspan="3" style="font-weight:600;color:var(--b800);padding:8px">📋 إنهاء من صاحب العمل — المادة 84</td></tr><tr><td style="padding-right:16px">أي مدة خدمة (≥ سنة)</td><td><span class="badge b-green">100%</span></td><td class="txt-muted-11">+ بدل إشعار شهر/شهرين (م.75)</td></tr><tr style="background:var(--b50)"><td colspan="3" style="font-weight:600;color:var(--b800);padding:8px">📋 أسباب خاصة</td></tr><tr><td>فصل تعسفي — المادة 77</td><td><span class="badge b-green">100% + شهرين</span></td><td class="txt-muted-11">تعويض شهران بالأجر الفعلي</td></tr><tr><td>نهاية عقد محدد المدة</td><td><span class="badge b-green">100%</span></td><td class="txt-muted-11">⚠️ التجديد مرتين → عقد غير محدد</td></tr><tr><td>وفاة أو عجز كلي</td><td><span class="badge b-green">100%</span></td><td class="txt-muted-11">المادة 84 فقرة (أ)</td></tr><tr><td>زواج المرأة</td><td><span class="badge b-green">100%</span></td><td class="txt-muted-11">⚠️ خلال شهر من عقد الزواج</td></tr><tr><td>مخالفة جسيمة — المادة 80</td><td><span class="badge b-red">0%</span></td><td class="txt-muted-11">⚠️ يستلزم قرار مسبَّب + إجراء تأديبي</td></tr><tr style="background:var(--y50)"><td colspan="3" style="font-size:11px;color:var(--o900);padding:8px">⚖️ <strong>الوعاء:</strong> الأجر الفعلي = أساسي + بدلات ثابتة ومنتظمة (المادة 2) | المعدل: نصف أجر شهري/سنة (أول 5) + أجر كامل/سنة (ما بعد 5) مع تناسب الكسور</td></tr></tbody></table></div></div></div></div><!-- ══ جدول التكلفة الشاملة ══ --><div class="card" style="margin-top:24px"><div class="card-title">جدول التكلفة الشاملة — جميع الموظفين</div><div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;align-items:flex-end"><div class="form-group" style="margin:0;min-width:200px"><label>سبب الإنهاء (للحساب)</label><select id="eos-tbl-reason" onchange="updateEOSTable()"><option value="emp_terminate" selected>إنهاء من صاحب العمل (100% — المادة 84)</option><option value="resign">استقالة (تلقائي حسب السنوات)</option><option value="contract_end">نهاية عقد محدد المدة (100%)</option><option value="arbitrary">فصل تعسفي (100% + شهرين)</option><option value="death">وفاة أو عجز كلي (100%)</option><option value="zero">فصل بسبب مخالفة جسيمة (0%)</option></select></div><div class="form-group" style="margin:0"><label>تاريخ الحساب</label><input type="date" id="eos-tbl-date" onchange="updateEOSTable()"></div><div class="form-group" style="margin:0"><label>ترتيب حسب</label><select id="eos-tbl-sort" onchange="updateEOSTable()"><option value="net-desc">الصافي (الأعلى أولاً)</option><option value="net-asc">الصافي (الأقل أولاً)</option><option value="years-desc">سنوات الخدمة</option><option value="name">الاسم</option></select></div><button class="btn btn-outline" onclick="updateEOSTable()" style="align-self:flex-end">🔄 تحديث</button></div><div class="kpi-grid" id="eos-table-kpis" style="margin-bottom:16px"></div><div class="tbl-wrap"><table><thead><tr><th>#</th><th>الموظف</th><th>الأجر الفعلي<br><span style="font-size:10px;font-weight:400;opacity:.7">أساسي + بدلات</span></th><th>تاريخ المباشرة</th><th>سنوات الخدمة</th><th>مدة الخدمة</th><th>رصيد الإجازات</th><th>السلف</th><th>المكافأة</th><th>قيمة الإجازات</th><th>تعويض إضافي</th><th>الخصومات</th><th style="background:#FDF6DC;color:#A07808">الصافي النهائي</th></tr></thead><tbody id="eos-table-body"></tbody><tfoot id="eos-table-footer"></tfoot></table></div></div><div class="card"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px"><div class="card-title" style="margin:0">سجل المنتهية خدماتهم</div><button class="btn btn-outline btn-sm" onclick="exportEOSHistory()">📊 تصدير السجل</button></div><div class="tbl-wrap"><table><thead><tr><th>#</th><th>الموظف</th><th>سبب الإنهاء</th><th>تاريخ الإنهاء</th><th>مدة الخدمة</th><th>المكافأة</th><th>الصافي النهائي</th></tr></thead><tbody id="eos-history"></tbody></table></div></div>
+             onclick="toggleEosRef(this)"><div class="card-title" style="margin:0">مرجع أسباب الإنهاء — نظام العمل السعودي</div><button id="eos-ref-toggle" style="background:none;border:1px solid var(--border);border-radius:6px;padding:3px 10px;font-size:12px;color:var(--muted);cursor:pointer;flex-shrink:0">▼ عرض</button></div><div id="eos-ref-body" style="padding:0 20px 16px;display:none"><table style="margin-top:12px"><thead><tr><th>السبب والمادة القانونية</th><th>النسبة</th><th>ملاحظات</th></tr></thead><tbody><tr style="background:var(--b50)"><td colspan="3" style="font-weight:600;color:var(--b800);padding:8px">📋 استقالة — المادة 85 (تدريجية حسب المدة)</td></tr><tr><td style="padding-right:16px">أقل من سنة كاملة</td><td><span class="badge b-red">0%</span></td><td class="txt-muted-11">لا استحقاق قبل سنة</td></tr><tr><td style="padding-right:16px">سنة إلى أقل من سنتين</td><td><span class="badge b-red">0%</span></td><td class="txt-muted-11">لا استحقاق قبل سنتين</td></tr><tr><td style="padding-right:16px">سنتان إلى أقل من 5 سنوات</td><td><span class="badge b-amber">33.33% (ثلث)</span></td><td class="txt-muted-11">المادة 85/1</td></tr><tr><td style="padding-right:16px">5 سنوات إلى أقل من 10 سنوات</td><td><span class="badge b-amber">66.67% (ثلثان)</span></td><td class="txt-muted-11">المادة 85/2</td></tr><tr><td style="padding-right:16px">10 سنوات فأكثر</td><td><span class="badge b-green">100%</span></td><td class="txt-muted-11">المادة 85/3</td></tr><tr style="background:var(--b50)"><td colspan="3" style="font-weight:600;color:var(--b800);padding:8px">📋 إنهاء من صاحب العمل — المادة 84</td></tr><tr><td style="padding-right:16px">أي مدة خدمة (≥ سنة)</td><td><span class="badge b-green">100%</span></td><td class="txt-muted-11">+ بدل إشعار شهر/شهرين (م.75)</td></tr><tr style="background:var(--b50)"><td colspan="3" style="font-weight:600;color:var(--b800);padding:8px">📋 أسباب خاصة</td></tr><tr><td>فصل تعسفي — المادة 77</td><td><span class="badge b-green">100% + شهرين</span></td><td class="txt-muted-11">تعويض شهران بالأجر الفعلي</td></tr><tr><td>نهاية عقد محدد المدة</td><td><span class="badge b-green">100%</span></td><td class="txt-muted-11">⚠️ التجديد مرتين → عقد غير محدد</td></tr><tr><td>وفاة أو عجز كلي</td><td><span class="badge b-green">100%</span></td><td class="txt-muted-11">المادة 84 فقرة (أ)</td></tr><tr><td>زواج المرأة</td><td><span class="badge b-green">100%</span></td><td class="txt-muted-11">⚠️ خلال شهر من عقد الزواج</td></tr><tr><td>مخالفة جسيمة — المادة 80</td><td><span class="badge b-red">0%</span></td><td class="txt-muted-11">⚠️ يستلزم قرار مسبَّب + إجراء تأديبي</td></tr><tr style="background:var(--y50)"><td colspan="3" style="font-size:11px;color:var(--o900);padding:8px">⚖️ <strong>الوعاء:</strong> الأجر الفعلي = أساسي + بدلات ثابتة ومنتظمة (المادة 2) | المعدل: نصف أجر شهري/سنة (أول 5) + أجر كامل/سنة (ما بعد 5) مع تناسب الكسور</td></tr></tbody></table></div></div></div></div><!-- ══ جدول التكلفة الشاملة ══ --><div class="card" style="margin-top:24px"><div class="card-title">جدول التكلفة الشاملة — جميع الموظفين</div><div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;align-items:flex-end"><div class="form-group" style="margin:0;min-width:200px"><label>سبب الإنهاء (للحساب)</label><select id="eos-tbl-reason" onchange="updateEOSTable()"><option value="emp_terminate" selected>إنهاء من صاحب العمل (100% — المادة 84)</option><option value="resign">استقالة (تلقائي حسب السنوات)</option><option value="contract_end">نهاية عقد محدد المدة (100%)</option><option value="arbitrary">فصل تعسفي (100% + شهرين)</option><option value="death">وفاة أو عجز كلي (100%)</option><option value="zero">فصل بسبب مخالفة جسيمة (0%)</option>
+<option value="mutual">إنهاء بالتراضي (100%)</option>
+<option value="contract_end_auto">انتهاء عقد محدد المدة تلقائياً (100%)</option>
+<option value="retire">إحالة للتقاعد (100%)</option>
+<option value="force_majeure">ظروف قهرية / إغلاق (100%)</option>
+</select></div><div class="form-group" style="margin:0"><label>تاريخ الحساب</label><input type="date" id="eos-tbl-date" onchange="updateEOSTable()"></div><div class="form-group" style="margin:0"><label>ترتيب حسب</label><select id="eos-tbl-sort" onchange="updateEOSTable()"><option value="net-desc">الصافي (الأعلى أولاً)</option><option value="net-asc">الصافي (الأقل أولاً)</option><option value="years-desc">سنوات الخدمة</option><option value="name">الاسم</option></select></div><button class="btn btn-outline" onclick="updateEOSTable()" style="align-self:flex-end">🔄 تحديث</button></div><div class="kpi-grid" id="eos-table-kpis" style="margin-bottom:16px"></div><div class="tbl-wrap"><table><thead><tr><th>#</th><th>الموظف</th><th>الأجر الفعلي<br><span style="font-size:10px;font-weight:400;opacity:.7">أساسي + بدلات</span></th><th>تاريخ المباشرة</th><th>سنوات الخدمة</th><th>مدة الخدمة</th><th>رصيد الإجازات</th><th>السلف</th><th>المكافأة</th><th>قيمة الإجازات</th><th>تعويض إضافي</th><th>الخصومات</th><th style="background:#FDF6DC;color:#A07808">الصافي النهائي</th></tr></thead><tbody id="eos-table-body"></tbody><tfoot id="eos-table-footer"></tfoot></table></div></div><div class="card"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px"><div class="card-title" style="margin:0">سجل المنتهية خدماتهم</div><button class="btn btn-outline btn-sm" onclick="exportEOSHistory()" style="color:#C9960C">📊 تصدير السجل</button></div><div class="tbl-wrap"><table><thead><tr><th>#</th><th>الموظف</th><th>سبب الإنهاء</th><th>تاريخ الإنهاء</th><th>مدة الخدمة</th><th>المكافأة</th><th>الصافي النهائي</th><th>استرجاع</th></tr></thead><tbody id="eos-history"></tbody></table></div></div>
 </div><!-- ══ النماذج ══ -->
 <div class="page" id="page-forms"><div class="page-hdr"><h2>النماذج الرسمية</h2></div><div class="card" style="margin-bottom:20px"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px"><div class="card-title" style="margin:0">📁 نماذج الشركة المخصصة</div><label class="btn btn-outline btn-sm" style="cursor:pointer">
         + رفع نموذج جديد (Word / PDF)
@@ -650,7 +660,13 @@ function renderEmpPage() {
   style="font-size:11px;border:1px solid var(--border);border-radius:5px;padding:2px 4px;background:#fff;cursor:pointer"><option value="open">غير محدد</option><option value="fixed" selected>محدد المدة</option></select><input id="ce-${empIdStr}" type="date" value="${endToShow}"
   onchange="saveContractInline(${empIdStr},'fixed',this.value)"
   style="font-size:10px;border:1px solid ${color};border-radius:5px;padding:2px 4px;width:120px;color:${color}"><div style="display:flex;gap:3px"><button onclick="setContractDuration(${empIdStr},1)" style="font-size:9px;padding:1px 5px;border:1px solid var(--b400);border-radius:4px;background:var(--b50);cursor:pointer;color:var(--b800)">+1س</button><button onclick="setContractDuration(${empIdStr},2)" style="font-size:9px;padding:1px 5px;border:1px solid var(--b400);border-radius:4px;background:var(--b50);cursor:pointer;color:var(--b800)">+2س</button></div>
-  ${daysLeft !== null && daysLeft <= 90 ? `<div style="font-size:10px;font-weight:700;color:${color}">${daysLeft<0?'انتهى':daysLeft+' يوم'}</div>` : ''}
+  ${daysLeft !== null && daysLeft < 0 ? `
+    <div style="font-size:10px;font-weight:700;color:var(--r900);margin-bottom:2px">⚠️ انتهى العقد</div>
+    <div style="display:flex;gap:3px">
+      <button onclick="renewContract(${empIdStr})" style="font-size:9px;padding:2px 6px;border:1px solid #1A6B3A;border-radius:4px;background:#EAF3DE;cursor:pointer;color:#1A6B3A;font-weight:600">🔄 تمديد</button>
+      <button onclick="terminateExpiredContract(${empIdStr})" style="font-size:9px;padding:2px 6px;border:1px solid var(--r900);border-radius:4px;background:var(--r100);cursor:pointer;color:var(--r900);font-weight:600">❌ إنهاء</button>
+    </div>` :
+    daysLeft !== null && daysLeft <= 90 ? `<div style="font-size:10px;font-weight:700;color:${color}">${daysLeft+' يوم'}</div>` : ''}
   </div>`;
   } else {
   contractCell = `
@@ -668,7 +684,12 @@ function renderEmpPage() {
   </td><td><span class="badge ${e.status==='منتهي الخدمة'?'b-red':'b-green'}">${e.status}</span>
   ${e.status==='منتهي الخدمة' && e.lastDate ? `<div class="txt-muted-10">${e.lastDate}</div>` : ''}
   ${e.status==='منتهي الخدمة' && e.endReason ? `<div style="font-size:10px;color:var(--r900);font-weight:600">${e.endReason}</div>` : ''}
-  </td><td style="display:flex;gap:4px"><button class="btn btn-outline btn-sm" onclick="openEditEmp(${e.id})">تعديل</button><button class="btn btn-outline btn-sm" style="color:var(--b700)"
+  </td><td style="display:flex;gap:4px;flex-wrap:wrap">
+  ${e.status==='منتهي الخدمة'
+    ? `<button class="btn btn-sm" style="background:#EAF3DE;color:#1A6B3A;border:1px solid #2E8B4A" onclick="restoreEmployee('${e.empId||''}')">↩️ استرجاع</button>`
+    : `<button class="btn btn-outline btn-sm" onclick="openEditEmp(${e.id})">تعديل</button>`
+  }
+  <button class="btn btn-outline btn-sm" style="color:var(--b700)"
   title="أرشيف الموظف"
   onclick="showPage2('archive','${e.name}')">📁</button></td></tr>`;
   }).join('');
@@ -715,20 +736,17 @@ function autoExpireContracts() {
   const today = new Date(); today.setHours(0,0,0,0);
   let expiredCount = 0;
   employees.forEach(e => {
-  if(e.status === 'منتهي الخدمة') return;
-  if(e.contractType !== 'fixed' || !e.contractEnd) return;
-  const endDate = new Date(e.contractEnd); endDate.setHours(0,0,0,0);
-  if(endDate < today) {
-  e.status    = 'منتهي الخدمة';
-  e.lastDate  = e.contractEnd;
-  e.endReason = 'انتهاء عقد';
-  expiredCount++;
-  }
+    if(e.status === 'منتهي الخدمة') return;
+    if(e.contractType !== 'fixed' || !e.contractEnd) return;
+    const endDate = new Date(e.contractEnd); endDate.setHours(0,0,0,0);
+    if(endDate < today) {
+      // تنبيه فقط — لا ننقل تلقائياً
+      expiredCount++;
+    }
   });
   if(expiredCount > 0) {
-  autoSave();
-  updateEmpBadges();
-  showNotif(`⚠️ ${expiredCount} موظف انتهت عقودهم وتم نقلهم لمنتهية الخدمة تلقائياً`);
+    // تنبيه بدون نقل تلقائي
+    showNotif(`⚠️ ${expiredCount} موظف انتهت عقودهم — راجع التنبيهات وقرر التجديد أو الإنهاء`);
   }
 }
 
@@ -1858,8 +1876,51 @@ function saveEOSHistory(empId, date, net, grat) {
 
 function renderEOSHistory() {
   document.getElementById('eos-history').innerHTML = eosHistory.length ?
-  eosHistory.map((h,i) => `<tr><td class="txt-muted-11">${i+1}</td><td style="font-weight:600">${h.emp}</td><td style="font-size:12px">${h.reason}</td><td>${h.date}</td><td>${h.years}</td><td style="color:var(--b800);font-weight:600">${h.grat}</td><td style="font-weight:700;color:#C9960C">${h.net}</td></tr>`).join('') :
+  eosHistory.map((h,i) => `<tr><td class="txt-muted-11">${i+1}</td><td style="font-weight:600">${h.emp}</td><td style="font-size:12px">${h.reason}</td><td>${h.date}</td><td>${h.years}</td><td style="color:var(--b800);font-weight:600">${h.grat}</td><td style="font-weight:700;color:#C9960C">${h.net}</td><td><button onclick="restoreEmployee('${h.empId||''}')" style="background:none;border:1px solid #1A6B3A;border-radius:6px;padding:3px 10px;font-size:11px;color:#1A6B3A;cursor:pointer">↩️ استرجاع</button></td></tr>`).join('') :
   '<tr><td colspan="7" style="text-align:center;color:var(--muted);padding:20px">لا توجد سجلات بعد — ستظهر هنا بعد أرشفة الموظفين</td></tr>';
+}
+
+function renewContract(empId) {
+  const emp = employees.find(e => e.id == empId);
+  if(!emp) return;
+  // فتح نافذة التمديد
+  const months = prompt(`تمديد عقد ${emp.name}\nأدخل عدد الأشهر للتمديد:`, '12');
+  if(!months || isNaN(months)) return;
+  const currentEnd = new Date(emp.contractEnd || new Date());
+  currentEnd.setMonth(currentEnd.getMonth() + parseInt(months));
+  emp.contractEnd = currentEnd.toISOString().split('T')[0];
+  // تحديث الـ input في الصفحة
+  const input = document.getElementById('ce-' + empId);
+  if(input) input.value = emp.contractEnd;
+  autoSave();
+  renderEmps(employees.filter(e=>e.status!=='منتهي الخدمة'));
+  showNotif(`✅ تم تمديد عقد ${emp.name} حتى ${emp.contractEnd}`);
+}
+
+function terminateExpiredContract(empId) {
+  const emp = employees.find(e => e.id == empId);
+  if(!emp) return;
+  if(!confirm(`إنهاء خدمة ${emp.name}؟\nسينتقل لقائمة منتهية الخدمة.`)) return;
+  emp.status    = 'منتهي الخدمة';
+  emp.lastDate  = emp.contractEnd;
+  emp.endReason = 'انتهاء عقد محدد المدة';
+  autoSave();
+  renderEmps(employees.filter(e=>e.status!=='منتهي الخدمة'));
+  updateEmpBadges();
+  showNotif(`تم إنهاء خدمة ${emp.name}`);
+}
+
+function restoreEmployee(empId) {
+  if(!empId) { showNotif('رقم الهوية غير موجود في السجل', 'error'); return; }
+  const emp = employees.find(e => e.empId === empId);
+  if(!emp) { showNotif('الموظف غير موجود في قاعدة البيانات', 'error'); return; }
+  if(emp.status !== 'منتهي الخدمة') { showNotif('الموظف نشط بالفعل', 'error'); return; }
+  if(!confirm(`استرجاع ${emp.name} كموظف نشط؟`)) return;
+  emp.status = 'نشط';
+  emp.eosDate = null;
+  autoSave();
+  renderEmps(employees.filter(e=>e.status!=='منتهي الخدمة'));
+  showNotif(`✅ تم استرجاع ${emp.name} كموظف نشط`);
 }
 
 function exportEOSHistory() {
