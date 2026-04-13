@@ -15,7 +15,7 @@
 .bb-ddd{border-bottom:1px solid #ddd}
 </style>
 </head>
-<body><div class="topbar"><canvas id="stars-canvas" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:.7"></canvas><div class="logo" style="position:relative;z-index:1"><div class="logo-dot"></div>Rikaz</div><div class="topbar-center" style="position:relative;z-index:1"><button class="nav-btn active" onclick="showPage('emp')">الموظفون</button><button class="nav-btn" onclick="showPage('leave')"><span class="nav-badge" id="badge-leave">0</span>الإجازات</button><button class="nav-btn" onclick="showPage('salary')">مسير الرواتب</button><button class="nav-btn" onclick="showPage('eos')">نهاية الخدمة</button><button class="nav-btn" onclick="showPage('forms')">النماذج</button><button class="nav-btn" onclick="showPage('archive')">أرشيف الموظفين</button><button class="nav-btn" onclick="showPage('muqeem')">🪪 مقيم</button><button class="nav-btn" onclick="showPage('dashboard')">لوحة التحكم</button><button class="nav-btn" onclick="showPage('attendance')">⏱️ الحضور</button></div><div class="topbar-right" style="position:relative;z-index:1"><div class="user-info" id="topbar-company-name">منصة الموارد البشرية<br>Rikaz v1.0</div></div>
+<body><div class="topbar"><canvas id="stars-canvas" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:.7"></canvas><div class="logo" style="position:relative;z-index:1"><div class="logo-dot"></div>Rikaz</div><div class="topbar-center" style="position:relative;z-index:1"><button class="nav-btn active" onclick="showPage('emp')">الموظفون</button><button class="nav-btn" onclick="showPage('leave')"><span class="nav-badge" id="badge-leave">0</span>الإجازات</button><button class="nav-btn" onclick="showPage('salary')">مسير الرواتب</button><button class="nav-btn" onclick="showPage('eos')">نهاية الخدمة</button><button class="nav-btn" onclick="showPage('forms')">النماذج</button><button class="nav-btn" onclick="showPage('archive')">أرشيف الموظفين</button><button class="nav-btn" onclick="showPage('muqeem')">🪪 مقيم</button><button class="nav-btn" onclick="showPage('dashboard')">لوحة التحكم</button><button class="nav-btn" onclick="showPage('managers')">👔 المديرون</button><button class="nav-btn" onclick="showPage('attendance')">⏱️ الحضور</button></div><div class="topbar-right" style="position:relative;z-index:1"><div class="user-info" id="topbar-company-name">منصة الموارد البشرية<br>Rikaz v1.0</div></div>
 </div></div><div class="notif" id="notif-container"></div><div style="background:linear-gradient(180deg,#12235C 0%,#0D1840 40%,#0A0F2E 70%,rgba(10,15,46,.3) 90%,transparent 100%);height:130px;margin-top:-2px;pointer-events:none;position:relative;z-index:0"></div>
 <div class="main" id="main-content" style="margin-top:-100px;position:relative;z-index:1"><!-- ══ الموظفون ══ -->
 <div class="page active" id="page-emp"><div class="page-hdr"><h2>سجل الموظفين</h2><div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><div style="position:relative" id="import-menu-wrap"><button class="btn btn-outline" onclick="toggleImportMenu()" id="import-menu-btn">
@@ -94,7 +94,87 @@
         </div></div><div style="display:flex;gap:10px"><div class="form-group" style="flex:1"><label>خط العرض</label><input id="loc-lat" type="number" step="0.000001" placeholder="يتعبأ تلقائياً" dir="ltr"></div><div class="form-group" style="flex:1"><label>خط الطول</label><input id="loc-lng" type="number" step="0.000001" placeholder="يتعبأ تلقائياً" dir="ltr"></div></div><div id="loc-map-preview" style="display:none;margin-top:4px"><a id="loc-map-link" href="#" target="_blank" style="font-size:12px;color:#C9960C">🗺️ تأكد من الموقع في الخريطة</a></div><div class="form-group"><label>النطاق المسموح (متر)</label><input id="loc-radius" type="number" value="100" placeholder="100"></div></div><div style="border-top:1px solid var(--border);padding-top:12px"><div style="font-weight:600;font-size:13px;margin-bottom:10px">⏰ سياسة الدوام</div><div style="display:flex;flex-direction:column;gap:8px"><label style="display:flex;align-items:center;gap:8px;cursor:pointer;padding:10px;border:1px solid var(--border);border-radius:8px" id="shift-fixed-lbl"><input type="radio" name="loc-shift" value="fixed" id="shift-fixed" onchange="toggleShiftFields()" checked><span style="font-size:13px">🏢 دوام ثابت — تحديد وقت الحضور والانصراف</span></label><div id="shift-fixed-fields" style="padding:10px;background:var(--b50);border-radius:8px;display:flex;gap:12px;flex-wrap:wrap"><div class="form-group" style="margin:0;flex:1;min-width:120px"><label>وقت الحضور</label><input id="loc-checkin-time" type="time" value="08:00" dir="ltr"></div><div class="form-group" style="margin:0;flex:1;min-width:120px"><label>وقت الانصراف</label><input id="loc-checkout-time" type="time" value="17:00" dir="ltr"></div><div class="form-group" style="margin:0;flex:1;min-width:120px"><label>تسامح التأخير (دقيقة)</label><input id="loc-grace" type="number" value="15" min="0" max="60"></div></div><label style="display:flex;align-items:center;gap:8px;cursor:pointer;padding:10px;border:1px solid var(--border);border-radius:8px"><input type="radio" name="loc-shift" value="flexible" id="shift-flexible" onchange="toggleShiftFields()"><span style="font-size:13px">🔄 دوام مرن — عدد ساعات محدد يومياً</span></label><div id="shift-flex-fields" style="padding:10px;background:var(--b50);border-radius:8px;display:none"><div class="form-group" style="margin:0"><label>عدد ساعات العمل اليومية</label><input id="loc-hours" type="number" value="8" min="1" max="12" dir="ltr"></div></div><label style="display:flex;align-items:center;gap:8px;cursor:pointer;padding:10px;border:1px solid var(--border);border-radius:8px"><input type="radio" name="loc-shift" value="field" id="shift-field" onchange="toggleShiftFields()"><span style="font-size:13px">🚗 ميداني — GPS من أي موقع</span></label><div id="shift-field-fields" style="padding:10px;background:var(--b50);border-radius:8px;display:none"><div class="form-group" style="margin:0"><label>وقت بدء الدوام الميداني</label><input id="loc-field-time" type="time" value="08:00" dir="ltr"></div></div></div></div><div style="border-top:1px solid var(--border);padding-top:12px"><label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin-bottom:10px"><input type="checkbox" id="loc-late-notify" checked onchange="toggleLateNotify()"><span style="font-size:13px;font-weight:600">🔔 تفعيل تنبيه التأخير</span></label><div id="late-notify-fields" style="display:flex;gap:10px;flex-wrap:wrap"><div class="form-group" style="margin:0;flex:1;min-width:120px"><label>إرسال التنبيه بعد (دقيقة)</label><input id="loc-late-grace" type="number" value="15" min="1" max="120" dir="ltr"></div></div></div><div style="font-size:12px;color:var(--muted);background:var(--b50);padding:10px;border-radius:8px;line-height:1.7">
         💡 <strong>للرابط المختصر</strong> (goo.gl): افتحه في المتصفح ← انسخ الرابط الكامل من شريط العنوان ← الصقه هنا
       </div><button class="btn btn-primary" onclick="saveLocation()">حفظ الموقع</button></div></div>
-</div><!-- ══ الاستقطاب ══ -->
+</div><!-- ══ المديرون ══ -->
+<div class="page" id="page-managers">
+  <div class="page-hdr">
+    <h2>👔 إدارة الصلاحيات والمديرين</h2>
+    <div style="display:flex;gap:8px">
+      <a href="rikaz-manager.html" target="_blank" class="btn btn-outline" style="color:#C9960C">🔗 بوابة المدير</a>
+      <button class="btn btn-primary" onclick="openModal('m-add-manager')">+ إضافة مدير</button>
+    </div>
+  </div>
+  <div class="kpi-grid" id="mgr-kpis" style="margin-bottom:16px"></div>
+  <div class="card">
+    <div class="card-title">قائمة المديرين</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr>
+          <th>الاسم</th><th>البريد</th><th>الدور</th>
+          <th>نطاق الصلاحية</th><th>إجراءات</th>
+        </tr></thead>
+        <tbody id="mgr-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Modal إضافة مدير -->
+<div class="modal-bg" id="m-add-manager">
+  <div class="modal">
+    <div class="modal-hdr">
+      <div class="modal-title">👔 إضافة مدير</div>
+      <button class="modal-close" onclick="closeModal('m-add-manager')">×</button>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="form-group">
+        <label>الاسم</label>
+        <input id="mgr-name" placeholder="خالد سعد">
+      </div>
+      <div class="form-group">
+        <label>البريد الإلكتروني</label>
+        <input id="mgr-email" type="email" placeholder="khalid@company.com" dir="ltr">
+      </div>
+      <div class="form-group">
+        <label>كلمة المرور المؤقتة</label>
+        <input id="mgr-pass" placeholder="Rikaz@2026" dir="ltr">
+      </div>
+      <div class="form-group">
+        <label>الدور</label>
+        <select id="mgr-role" onchange="updateMgrScopeUI()">
+          <option value="manager">مدير قسم / تشغيل</option>
+          <option value="hr">HR مساعد</option>
+          <option value="gm">مدير عام (يشوف الكل)</option>
+        </select>
+      </div>
+
+      <!-- نطاق الصلاحية -->
+      <div id="mgr-scope-section">
+        <div style="font-weight:600;font-size:13px;margin-bottom:8px">نطاق الصلاحية:</div>
+
+        <!-- حسب القسم -->
+        <div style="margin-bottom:8px">
+          <label style="font-size:12px;font-weight:600;color:var(--muted);display:block;margin-bottom:4px">الأقسام</label>
+          <div id="mgr-dept-list" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+        </div>
+
+        <!-- يدوي -->
+        <div class="form-group" style="margin:0">
+          <label>إضافة موظف يدوياً (رقم الهوية)</label>
+          <div style="display:flex;gap:8px">
+            <input id="mgr-manual-id" placeholder="1234567890" style="flex:1;padding:8px 10px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit">
+            <button onclick="addMgrEmp()" style="padding:8px 14px;background:var(--b800);color:#fff;border:none;border-radius:8px;font-size:12px;cursor:pointer;font-family:inherit">إضافة</button>
+          </div>
+          <div id="mgr-manual-list" style="margin-top:6px;font-size:12px;color:var(--muted)"></div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" onclick="saveManager()">حفظ المدير</button>
+      <div id="mgr-save-msg" style="font-size:12px;text-align:center"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ الاستقطاب ══ -->
 <div class="page" id="page-recruit"><div class="page-hdr"><h2>استقطاب المواهب</h2><button class="btn btn-primary" onclick="openModal('m-add-candidate')">+ إضافة مرشح</button></div><div class="kpi-grid" id="recruit-kpis"></div><div class="card" style="padding:16px"><div class="card-title">🔍 فلترة وبحث ذكي</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:12px"><div class="form-group" style="margin:0"><label>المسمى الوظيفي</label><input id="f-job" placeholder="مدير، مطور..." oninput="applyFilters()"></div><div class="form-group" style="margin:0"><label>الجنسية</label><select id="f-nat" onchange="applyFilters()"><option value="">الكل</option><option>سعودي</option><option>أجنبي</option></select></div><div class="form-group" style="margin:0"><label>الجنس</label><select id="f-gender" onchange="applyFilters()"><option value="">الكل</option><option>ذكر</option><option>انثى</option></select></div><div class="form-group" style="margin:0"><label>الخبرة (سنوات)</label><select id="f-exp" onchange="applyFilters()"><option value="">الكل</option><option value="0-2">0-2 سنة</option><option value="3-5">3-5 سنوات</option><option value="6-10">6-10 سنوات</option><option value="10+">أكثر من 10</option></select></div><div class="form-group" style="margin:0"><label>منصة التوظيف</label><select id="f-source" onchange="applyFilters()"><option value="">الكل</option><option>LinkedIn</option><option>Indeed</option><option>توصية</option><option>الموقع الإلكتروني</option><option>بدر</option><option>طاقات</option><option>أخرى</option></select></div><div class="form-group" style="margin:0"><label>المرحلة</label><select id="f-stage" onchange="applyFilters()"><option value="">الكل</option><option>جديد</option><option>مقابلة</option><option>عرض</option><option>تم التوظيف</option><option>مرفوض</option></select></div><div class="form-group" style="margin:0"><label>الراتب المتوقع (حتى)</label><input type="number" id="f-salary" placeholder="15000" oninput="applyFilters()"></div><div class="form-group" style="margin:0"><label>الأهلية</label><select id="f-elig" onchange="applyFilters()"><option value="">الكل</option><option value="high">عالية 80%+</option><option value="mid">متوسطة 50-79%</option><option value="low">منخفضة أقل من 50%</option></select></div></div><div style="display:flex;gap:8px;align-items:center"><button class="btn btn-outline btn-sm" onclick="clearFilters()">مسح الفلاتر</button><span id="filter-count" class="txt-muted-12"></span></div></div><div class="card"><div class="tbl-wrap"><table><thead><tr><th>#</th><th>المرشح</th><th>الوظيفة</th><th>الجنسية</th><th>الجنس</th><th>الخبرة</th><th>الراتب المتوقع</th><th>المصدر</th><th>المرحلة</th><th>التقييم</th><th style="background:#FDF6DC;color:#A07808;min-width:100px">نسبة الأهلية</th><th>إجراءات</th></tr></thead><tbody id="recruit-tbody"></tbody></table></div></div>
 </div><!-- ══ لوحة التحكم ══ -->
 <div class="page" id="page-dashboard"><div class="page-hdr"><div><h2>لوحة التحكم</h2><div style="font-size:12px;color:var(--muted);margin-top:2px" id="dash-date"></div></div><button class="btn btn-outline btn-sm" onclick="exportDashboardAlerts()" style="color:#C9960C">📊 تصدير التنبيهات</button></div><div class="kpi-grid" id="dash-kpis"></div><div id="dash-contract-alerts"></div><div style="display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:16px"><div class="card" style="padding:20px"><div class="card-title">📈 تطور الرواتب الشهرية</div><canvas id="chart-salary" height="180" style="width:100%"></canvas><div id="chart-salary-empty" style="display:none;text-align:center;padding:40px;color:var(--muted);font-size:13px">لا يوجد سجل رواتب بعد — أغلق شهراً أولاً</div></div><div class="card" style="padding:20px"><div class="card-title">🏢 توزيع الأقسام</div><canvas id="chart-dept" width="240" height="240" style="display:block;margin:0 auto"></canvas><div id="chart-dept-legend" style="margin-top:12px;display:flex;flex-direction:column;gap:5px"></div></div></div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px"><div class="card" style="padding:20px"><div class="card-title">🌍 الجنسية والسعودة</div><canvas id="chart-nat" width="200" height="200" style="display:block;margin:0 auto 12px"></canvas><div id="chart-nat-legend" style="display:flex;flex-direction:column;gap:5px"></div></div><div class="card" style="padding:20px"><div class="card-title">🔐 أنظمة التأمين</div><canvas id="chart-ins" width="200" height="200" style="display:block;margin:0 auto 12px"></canvas><div id="chart-ins-legend" style="display:flex;flex-direction:column;gap:5px"></div></div><div class="card" style="padding:20px"><div class="card-title">🌴 حالة الإجازات</div><div id="leave-stats" style="display:flex;flex-direction:column;gap:10px;margin-top:8px"></div></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:16px"><div class="card"><div class="card-title">⏳ طلبات الإجازة المعلقة</div><div id="pending-leaves"></div></div><div class="card"><div class="card-title">💡 نسب التأمينات</div><div id="ins-breakdown"></div></div></div>
@@ -114,7 +194,7 @@
           </label></div></div><div class="form-group"><label>السلف الحالية</label><input type="number" id="n-loans" value="0"></div></div><div class="modal-footer"><button class="btn btn-outline" onclick="closeModal('m-add-emp')">إلغاء</button><button class="btn btn-primary" onclick="addEmployee()">إضافة الموظف</button></div></div>
 </div><div class="modal-bg" id="m-add-leave"><div class="modal"><div class="modal-hdr"><div class="modal-title">تقديم طلب إجازة</div><button class="modal-close" onclick="closeModal('m-add-leave')">×</button></div><div class="form-grid"><div class="form-group"><label>الموظف</label><select id="l-emp" onchange="updateLeaveBalance()"></select></div><div class="form-group"><label>نوع الإجازة</label><select id="l-type" onchange="onLeaveTypeChange()"><option>سنوية</option><option>مرضية</option><option>أمومة</option><option>أبوة</option><option>حج</option><option>زواج</option><option>وفاة</option><option>طارئة</option><option>بدون راتب</option></select></div><div id="l-annual-balance-info" style="grid-column:span 2;display:none;background:var(--b50);border:1px solid var(--b200);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--b800)"></div><div id="l-sick-info" style="grid-column:span 2;display:none;background:var(--o100);border:1px solid #FFCC80;border-radius:8px;padding:12px 14px"><div style="font-weight:700;font-size:12px;color:var(--o900);margin-bottom:8px">📋 الإجازة المرضية — المادة 117 نظام العمل</div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;font-size:11px"><div style="background:#fff;border-radius:6px;padding:8px;border-right:3px solid #C9960C"><div style="font-weight:600;color:#C9960C">اليوم 1 – 30</div><div>بالأجر الكامل ✅</div></div><div style="background:#fff;border-radius:6px;padding:8px;border-right:3px solid var(--o900)"><div style="font-weight:600;color:var(--o900)">اليوم 31 – 90</div><div>بثلاثة أرباع الأجر ⚠️</div></div><div style="background:#fff;border-radius:6px;padding:8px;border-right:3px solid var(--r900)"><div style="font-weight:600;color:var(--r900)">اليوم 91+</div><div>بدون أجر ❌</div></div></div><div id="l-sick-stage" style="margin-top:8px;font-size:12px;font-weight:600;color:var(--o900)"></div></div><div class="form-group"><label>تاريخ البداية</label><input type="date" id="l-from" onchange="calcLeaveDays();updateSickStage()"></div><div class="form-group"><label>تاريخ النهاية</label><input type="date" id="l-to" onchange="calcLeaveDays();updateSickStage()"></div><div class="form-group"><label>عدد الأيام (تلقائي)</label><input type="number" id="l-days" readonly style="background:var(--b50)"></div><div class="form-group"><label>تاريخ التقديم</label><input type="date" id="l-submit"></div><div class="form-group" style="grid-column:span 2"><label>ملاحظات</label><input id="l-notes" placeholder="أي ملاحظات..."></div></div><div class="modal-footer"><button class="btn btn-outline" onclick="closeModal('m-add-leave')">إلغاء</button><button class="btn btn-primary" onclick="addLeave()">تقديم الطلب</button></div></div>
 </div><div class="modal-bg" id="m-add-candidate"><div class="modal"><div class="modal-hdr"><div class="modal-title">إضافة مرشح جديد</div><button class="modal-close" onclick="closeModal('m-add-candidate')">×</button></div><div class="form-grid"><div class="form-group"><label>اسم المرشح *</label><input id="c-name" placeholder="اسم المرشح"></div><div class="form-group"><label>الوظيفة المتقدم لها</label><input id="c-job" placeholder="مدير مبيعات"></div><div class="form-group"><label>الجنسية</label><select id="c-nat"><option>سعودي</option><option>أجنبي</option></select></div><div class="form-group"><label>الجنس</label><select id="c-gender"><option>ذكر</option><option>انثى</option></select></div><div class="form-group"><label>مصدر التقديم</label><select id="c-source"><option>LinkedIn</option><option>Indeed</option><option>توصية</option><option>الموقع الإلكتروني</option><option>بدر</option><option>طاقات</option><option>أخرى</option></select></div><div class="form-group"><label>سنوات الخبرة</label><input type="number" id="c-exp" placeholder="5" min="0"></div><div class="form-group"><label>الراتب المتوقع</label><input type="number" id="c-salary" placeholder="10000"></div><div class="form-group"><label>الراتب المعروض (بعد المقابلة)</label><input type="number" id="c-offered" placeholder="10000"></div><div class="form-group"><label>رقم الجوال</label><input id="c-phone" placeholder="05XXXXXXXX"></div><div class="form-group"><label>البريد الإلكتروني</label><input type="email" id="c-email"></div><div class="form-group" style="grid-column:span 2"><label>ملاحظات ونقاط القوة</label><textarea id="c-notes" rows="2" placeholder="تقييم أولي، نقاط القوة..."></textarea></div></div><div class="modal-footer"><button class="btn btn-outline" onclick="closeModal('m-add-candidate')">إلغاء</button><button class="btn btn-primary" onclick="addCandidate()">إضافة المرشح</button></div></div>
-</div><script src="https:
+</div><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 
 function _demoDate(offsetDays) {
@@ -435,6 +515,7 @@ function showPage(p) {
   if(p==='eos') {renderEOSHistory(); renderEOSTable(); document.getElementById('eos-search').value=''; document.getElementById('eos-emp').value=''; document.getElementById('eos-result-area').innerHTML=''; document.getElementById('eos-emp-info').style.display='none';}
   if(p==='recruit') renderCandidates(candidates);
   if(p==='muqeem') renderMuqeem();
+  if(p==='managers') { loadManagers(); updateMgrScopeUI(); }
   if(p==='attendance') {
   const d = document.getElementById('att-date-filter');
   if(d && !d.value) d.value = new Date().toISOString().split('T')[0];
@@ -3060,6 +3141,136 @@ let companySettings = {
 };
 
 window.letterheadImgData = null;
+
+// ══ إدارة المديرين ══
+let managersData = [];
+let mgrManualEmps = [];
+
+async function loadManagers() {
+  if(!rikazTenantId) return;
+  try {
+    const {data} = await rikazDB.from('managers').select('*').eq('owner_user_id', rikazTenantId);
+    managersData = data || [];
+    renderManagersPage();
+  } catch(e) { console.warn('loadManagers:', e.message); }
+}
+
+function renderManagersPage() {
+  const tbody = document.getElementById('mgr-tbody');
+  const kpis  = document.getElementById('mgr-kpis');
+  if(!tbody) return;
+
+  const roleLabels = {manager:'👔 مدير قسم', hr:'🗂️ HR مساعد', gm:'👑 مدير عام'};
+
+  if(!managersData.length) {
+    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:20px">لا يوجد مديرون — أضف مدير</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = managersData.map(m => {
+    const scopeParts = [];
+    if(m.dept_filter?.length) scopeParts.push(m.dept_filter.join('، '));
+    if(m.manual_emp_ids?.length) scopeParts.push(`${m.manual_emp_ids.length} موظف يدوي`);
+    if(m.role === 'gm' || m.role === 'hr') scopeParts.push('جميع الموظفين');
+
+    return `<tr>
+      <td style="font-weight:600">${m.manager_name}</td>
+      <td style="font-size:12px;color:var(--muted)" dir="ltr">${m.manager_email}</td>
+      <td><span class="badge b-blue">${roleLabels[m.role]||m.role}</span></td>
+      <td style="font-size:12px">${scopeParts.join(' | ') || '—'}</td>
+      <td>
+        <button onclick="deleteManager('${m.id}')"
+          style="background:none;border:1px solid var(--r900);border-radius:6px;padding:3px 10px;font-size:11px;color:var(--r900);cursor:pointer">
+          حذف
+        </button>
+      </td>
+    </tr>`;
+  }).join('');
+
+  if(kpis) kpis.innerHTML = `
+    <div class="kpi"><div class="kpi-val">${managersData.length}</div><div class="kpi-lbl">المديرون</div></div>
+    <div class="kpi"><div class="kpi-val">${managersData.filter(m=>m.role==='manager').length}</div><div class="kpi-lbl">مدير قسم</div></div>
+    <div class="kpi"><div class="kpi-val">${managersData.filter(m=>m.role==='gm').length}</div><div class="kpi-lbl">مدير عام</div></div>
+  `;
+}
+
+function updateMgrScopeUI() {
+  const role = document.getElementById('mgr-role')?.value;
+  const section = document.getElementById('mgr-scope-section');
+  if(section) section.style.display = (role==='gm') ? 'none' : 'block';
+
+  // عبّئ قائمة الأقسام
+  const deptList = document.getElementById('mgr-dept-list');
+  if(deptList) {
+    const depts = [...new Set(employees.filter(e=>e.dept).map(e=>e.dept))];
+    deptList.innerHTML = depts.map(d => `
+      <label style="display:flex;align-items:center;gap:4px;padding:4px 8px;border:1px solid var(--border);border-radius:6px;cursor:pointer;font-size:12px;background:#fff">
+        <input type="checkbox" name="mgr-dept" value="${d}"> ${d}
+      </label>`).join('');
+  }
+}
+
+function addMgrEmp() {
+  const id = document.getElementById('mgr-manual-id')?.value.trim();
+  if(!id) return;
+  const emp = employees.find(e=>e.empId===id);
+  if(!emp) { showNotif('الموظف غير موجود', 'error'); return; }
+  if(!mgrManualEmps.find(e=>e.id===id)) {
+    mgrManualEmps.push({id, name: emp.name});
+  }
+  document.getElementById('mgr-manual-id').value = '';
+  const list = document.getElementById('mgr-manual-list');
+  if(list) list.innerHTML = mgrManualEmps.map(e =>
+    `<span style="background:var(--b50);padding:2px 8px;border-radius:4px;margin-left:4px">${e.name} ×</span>`
+  ).join('');
+}
+
+async function saveManager() {
+  const name  = document.getElementById('mgr-name').value.trim();
+  const email = document.getElementById('mgr-email').value.trim();
+  const pass  = document.getElementById('mgr-pass').value.trim();
+  const role  = document.getElementById('mgr-role').value;
+  const msg   = document.getElementById('mgr-save-msg');
+
+  if(!name||!email||!pass) { showNotif('أدخل جميع البيانات', 'error'); return; }
+
+  msg.style.color='#6B7C93'; msg.textContent='جاري الإنشاء...';
+
+  // إنشاء حساب Supabase
+  const {error: signupErr} = await rikazDB.auth.signUp({email, password:pass});
+  if(signupErr && !signupErr.message.includes('already')) {
+    msg.style.color='var(--r900)'; msg.textContent='خطأ: '+signupErr.message; return;
+  }
+
+  // جلب الأقسام المحددة
+  const deptFilter = [...document.querySelectorAll('input[name="mgr-dept"]:checked')].map(i=>i.value);
+
+  // حفظ في جدول managers
+  const {error} = await rikazDB.from('managers').insert({
+    owner_user_id: rikazTenantId,
+    manager_name: name,
+    manager_email: email,
+    role,
+    dept_filter: deptFilter,
+    manual_emp_ids: mgrManualEmps.map(e=>e.id),
+    location_filter: []
+  });
+
+  if(error) { msg.style.color='var(--r900)'; msg.textContent='خطأ في الحفظ'; return; }
+
+  msg.style.color='#1A6B3A';
+  msg.textContent=`✅ تم — أرسل للمدير: ${email} / ${pass}`;
+  mgrManualEmps = [];
+  await loadManagers();
+  setTimeout(() => closeModal('m-add-manager'), 2000);
+}
+
+async function deleteManager(id) {
+  if(!confirm('حذف هذا المدير؟')) return;
+  await rikazDB.from('managers').delete().eq('id', id);
+  await loadManagers();
+  showNotif('تم حذف المدير');
+}
 
 // ══ PINs الموظفين ══
 function generatePin() {
@@ -6541,9 +6752,9 @@ function debouncedRenderSalary() {
       Rikaz v1.0 — جميع الحقوق محفوظة
     </div></div>
 </div><!-- ══ Supabase + Auth Script ══ -->
-<script src="https:
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const RIKAZ_URL = 'https:
+const RIKAZ_URL = 'https://dkbpajjnadlycnpoivim.supabase.co';
 const RIKAZ_KEY = 'sb_publishable_b3dw5D-des45_hhx1RB8eA_N6bbLU3A';
 const rikazDB = supabase.createClient(RIKAZ_URL, RIKAZ_KEY);
 let rikazCurrentUser = null;
@@ -6841,8 +7052,8 @@ async function loadAttendanceReport() {
   tbody.innerHTML = records.map((r,i) => {
     const t = new Date(r.timestamp);
     const timeStr = t.toLocaleTimeString('ar-SA', {hour:'2-digit',minute:'2-digit'});
-    const mapsUrl = r.lat ? `https:
-    return `<tr><td>${i+1}</td><td style="font-weight:600">${r.emp_name||r.emp_id}</td><td><span class="badge ${r.type==='checkin'?'b-green':'b-red'}">${r.type==='checkin'?'✅ حضور':'🚪 انصراف'}</span></td><td>${timeStr}</td><td>${mapsUrl ? `<a href="${mapsUrl}" target="_blank" style="color:#C9960C;font-size:12px">📍 خريطة</a>` : '—'}</td><td class="txt-muted-12">${r.notes||'—'}</td></tr>`;
+    const mapsUrl = r.lat ? `https://www.google.com/maps?q=${r.lat},${r.lng}` : '';
+    return `<tr><td>${i+1}</td><td style="font-weight:600">${r.emp_name||r.emp_id}</td><td><span class="badge ${r.type==='checkin'?'b-green':'b-red'}">${r.type==='checkin'?'✅ حضور':'🚪 انصراف'}</span></td><td>${timeStr}</td><td>${mapsUrl ? '<a href="'+mapsUrl+'" target="_blank" style="color:#C9960C;font-size:12px">📍 خريطة</a>' : '—'}</td><td class="txt-muted-12">${r.notes||'—'}</td></tr>`;
   }).join('');
 }
 
@@ -6865,7 +7076,7 @@ function useCurrentLocation() {
       document.getElementById('loc-lat').value = lat;
       document.getElementById('loc-lng').value = lng;
       const link = document.getElementById('loc-map-link');
-      link.href = `https:
+      link.href = `https://www.google.com/maps?q=${lat},${lng}`;
       document.getElementById('loc-map-preview').style.display = 'block';
       btn.innerHTML = `✅ تم — ${lat}, ${lng}`;
       btn.style.background = '#EAF3DE';
@@ -6896,7 +7107,7 @@ function parseCoordsManual(val) {
       document.getElementById('loc-lng').value = lng;
       const link = document.getElementById('loc-map-link');
       if(link) {
-        link.href = `https:
+        link.href = `https://www.google.com/maps?q=${lat},${lng}`;
         document.getElementById('loc-map-preview').style.display = 'block';
       }
       showNotif('✅ تم استخراج الإحداثيات');
@@ -6926,7 +7137,7 @@ async function extractCoordsFromUrl(url) {
       showNotif('✅ تم استخراج الإحداثيات من الرابط');
       const link = document.getElementById('loc-map-link');
       if(link) {
-        link.href = `https:
+        link.href = `https://www.google.com/maps?q=${lat},${lng}`;
         document.getElementById('loc-map-preview').style.display = 'block';
       }
       return;
@@ -7129,7 +7340,8 @@ function renderLocations() {
     const empCount = (loc.assignedEmps || []).length;
     return `
     <div style="background:var(--b50);border:1px solid var(--b200);border-radius:10px;padding:10px 14px"><div style="display:flex;align-items:center;gap:10px"><div style="flex:1"><div style="font-weight:700;font-size:13px">${loc.name}</div><div class="txt-muted-11">${sp.type==='field'?'🚗 ميداني':loc.lat?.toFixed(4)+', '+loc.lng?.toFixed(4)+' — نطاق '+loc.radius+'م'}</div><div style="font-size:11px;color:#1A3A8F;margin-top:2px">${shiftLabel}${notifyLabel}</div></div>
-        ${sp.type!=='field'?`<a href="https:
+        ${sp.type!=='field'?`<a href="https://www.google.com/maps?q=${loc.lat},${loc.lng}" target="_blank" style="font-size:11px;color:#C9960C">🗺️</a>`:''}
+        <button onclick="editLocation('${loc.id}')" style="background:none;border:1px solid var(--b400);border-radius:6px;padding:3px 10px;font-size:11px;color:var(--b800);cursor:pointer">✏️ تعديل</button>
         <button onclick="deleteLocation('${loc.id}')" style="background:none;border:none;color:var(--r900);cursor:pointer;font-size:16px">×</button></div><div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--b200);display:flex;align-items:center;gap:8px;flex-wrap:wrap"><span class="txt-muted-11">👥 ${empCount} موظف مرتبط</span><label style="cursor:pointer;background:#fff;border:1px solid var(--b400);border-radius:6px;padding:4px 10px;font-size:11px;font-weight:600;color:var(--b800)">
           📥 رفع قائمة Excel
           <input type="file" accept=".xlsx,.xls" style="display:none" onchange="importLocEmps(this,'${loc.id}')"></label>
@@ -7138,7 +7350,69 @@ function renderLocations() {
       </div></div>`;}).join('');
 }
 
+function editLocation(locId) {
+  const loc = workLocations.find(l => l.id === locId);
+  if(!loc) return;
+
+  let sp = {};
+  try { sp = JSON.parse(loc.shift_policy||'{}'); } catch(_){}
+
+  // عبّئ Modal الإضافة ببيانات الموقع الحالي
+  openModal('m-add-location');
+
+  // غيّر العنوان للتعديل
+  const titleEl = document.querySelector('#m-add-location .modal-title');
+  if(titleEl) titleEl.textContent = '✏️ تعديل موقع العمل';
+
+  // عبّئ الحقول
+  setTimeout(() => {
+    document.getElementById('loc-name').value = loc.name || '';
+    document.getElementById('loc-lat').value  = loc.lat || '';
+    document.getElementById('loc-lng').value  = loc.lng || '';
+    document.getElementById('loc-radius').value = loc.radius || 100;
+
+    // سياسة الدوام
+    const shiftType = sp.type || 'fixed';
+    const radio = document.getElementById('shift-' + shiftType);
+    if(radio) { radio.checked = true; toggleShiftFields(); }
+
+    if(sp.checkin) document.getElementById('loc-checkin-time').value = sp.checkin;
+    if(sp.checkout) document.getElementById('loc-checkout-time').value = sp.checkout;
+    if(sp.grace) document.getElementById('loc-grace').value = sp.grace;
+    if(sp.hours) document.getElementById('loc-hours').value = sp.hours;
+    if(sp.checkin && shiftType==='field') document.getElementById('loc-field-time').value = sp.checkin;
+
+    // تنبيه التأخير
+    const notifyEl = document.getElementById('loc-late-notify');
+    const graceEl  = document.getElementById('loc-late-grace');
+    if(notifyEl) notifyEl.checked = sp.lateNotify !== false;
+    if(graceEl)  graceEl.value   = sp.lateGrace || 15;
+
+    // احفظ ID للتعديل
+    document.getElementById('m-add-location').dataset.editId = locId;
+
+    // غيّر زر الحفظ
+    const saveBtn = document.querySelector('#m-add-location .btn-primary');
+    if(saveBtn) saveBtn.textContent = 'حفظ التعديلات';
+  }, 100);
+}
+
 function openAddLocationModal() {
+  // تأكد إنه في وضع الإضافة
+  delete document.getElementById('m-add-location').dataset.editId;
+  const titleEl = document.querySelector('#m-add-location .modal-title');
+  if(titleEl) titleEl.textContent = '📍 إضافة موقع عمل';
+  const saveBtn = document.querySelector('#m-add-location .btn-primary');
+  if(saveBtn) saveBtn.textContent = 'حفظ الموقع';
+  // مسح الحقول
+  ['loc-name','loc-maps-url','loc-coords-manual','loc-lat','loc-lng'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.value = '';
+  });
+  document.getElementById('loc-radius').value = 100;
+  document.getElementById('loc-map-preview').style.display = 'none';
+  const useBtn = document.getElementById('use-location-btn');
+  if(useBtn) { useBtn.innerHTML = '📍 استخدم موقعي الحالي'; useBtn.style.background=''; useBtn.style.color=''; useBtn.disabled=false; }
   openModal('m-add-location');
 }
 
@@ -7168,14 +7442,29 @@ async function saveLocation() {
   if(shiftType === 'flexible') { shiftPolicy.hours = hours; }
   if(shiftType === 'field')    { shiftPolicy.checkin = fieldTime; }
 
-  const { error } = await rikazDB.from('work_locations').insert({
-    user_id: rikazTenantId, name, lat: finalLat, lng: finalLng, radius,
-    shift_policy: JSON.stringify(shiftPolicy)
-  });
+  const editId = document.getElementById('m-add-location')?.dataset?.editId;
+  let error;
+
+  if(editId) {
+    // تعديل موجود
+    const res = await rikazDB.from('work_locations').update({
+      name, lat: finalLat, lng: finalLng, radius,
+      shift_policy: JSON.stringify(shiftPolicy)
+    }).eq('id', editId);
+    error = res.error;
+  } else {
+    // إضافة جديد
+    const res = await rikazDB.from('work_locations').insert({
+      user_id: rikazTenantId, name, lat: finalLat, lng: finalLng, radius,
+      shift_policy: JSON.stringify(shiftPolicy)
+    });
+    error = res.error;
+  }
 
   if(error) { showNotif('خطأ في الحفظ', 'error'); return; }
 
-  showNotif('✅ تم إضافة الموقع');
+  const wasEdit = !!document.getElementById('m-add-location')?.dataset?.editId;
+  showNotif(wasEdit ? '✅ تم تعديل الموقع' : '✅ تم إضافة الموقع');
   closeModal('m-add-location');
   loadWorkLocations();
 }
@@ -7316,7 +7605,3 @@ if(localStorage.getItem('rikaz_is_demo')==='1') {
 }
 </script></body>
 </html>
-
-
-
-
