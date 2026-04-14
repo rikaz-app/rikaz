@@ -15,7 +15,7 @@
 .bb-ddd{border-bottom:1px solid #ddd}
 </style>
 </head>
-<body><div class="topbar"><canvas id="stars-canvas" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:.7"></canvas><div class="logo" style="position:relative;z-index:1"><div class="logo-dot"></div>Rikaz</div><div class="topbar-center" style="position:relative;z-index:1"><button class="nav-btn active" onclick="showPage('emp')">الموظفون</button><button class="nav-btn" onclick="showPage('leave')"><span class="nav-badge" id="badge-leave">0</span>الإجازات</button><button class="nav-btn" onclick="showPage('salary')">مسير الرواتب</button><button class="nav-btn" onclick="showPage('eos')">نهاية الخدمة</button><button class="nav-btn" onclick="showPage('forms')">النماذج</button><button class="nav-btn" onclick="showPage('archive')">أرشيف الموظفين</button><button class="nav-btn" onclick="showPage('muqeem')">🪪 مقيم</button><button class="nav-btn" onclick="showPage('dashboard')">لوحة التحكم</button><button class="nav-btn" onclick="showPage('managers')">👔 المديرون</button><button class="nav-btn" onclick="showPage('attendance')">⏱️ الحضور</button></div><div class="topbar-right" style="position:relative;z-index:1"><div class="user-info" id="topbar-company-name">منصة الموارد البشرية<br>Rikaz v1.0</div></div>
+<body><div class="topbar"><canvas id="stars-canvas" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:.7"></canvas><div class="logo" style="position:relative;z-index:1"><div class="logo-dot"></div>Rikaz</div><div class="topbar-center" style="position:relative;z-index:1"><button class="nav-btn active" onclick="showPage('emp')">الموظفون</button><button class="nav-btn" onclick="showPage('leave')"><span class="nav-badge" id="badge-leave">0</span>الإجازات</button><button class="nav-btn" onclick="showPage('salary')">مسير الرواتب</button><button class="nav-btn" onclick="showPage('eos')">نهاية الخدمة</button><button class="nav-btn" onclick="showPage('forms')">النماذج</button><button class="nav-btn" onclick="showPage('archive')">أرشيف الموظفين</button><button class="nav-btn" onclick="showPage('muqeem')">🪪 مقيم</button><button class="nav-btn" onclick="showPage('dashboard')">لوحة التحكم</button><button class="nav-btn" onclick="showPage('settings')">⚙️ الإعدادات</button><button class="nav-btn" onclick="showPage('custom')">📌 مخصص</button><button class="nav-btn" onclick="showPage('orgchart')">🏗️ الهيكل</button><button class="nav-btn" onclick="showPage('attendance')">⏱️ الحضور</button></div><div class="topbar-right" style="position:relative;z-index:1"><div class="user-info" id="topbar-company-name">منصة الموارد البشرية<br>Rikaz v1.0</div></div>
 </div></div><div class="notif" id="notif-container"></div><div style="background:linear-gradient(180deg,#12235C 0%,#0D1840 40%,#0A0F2E 70%,rgba(10,15,46,.3) 90%,transparent 100%);height:130px;margin-top:-2px;pointer-events:none;position:relative;z-index:0"></div>
 <div class="main" id="main-content" style="margin-top:-100px;position:relative;z-index:1"><!-- ══ الموظفون ══ -->
 <div class="page active" id="page-emp"><div class="page-hdr"><h2>سجل الموظفين</h2><div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><div style="position:relative" id="import-menu-wrap"><button class="btn btn-outline" onclick="toggleImportMenu()" id="import-menu-btn">
@@ -30,7 +30,7 @@
             📱 استيراد جوال / إيميل / آيبان
           </button><div style="border-top:1px solid var(--border);margin:4px 0"></div><button class="import-menu-item" onclick="closeImportMenu();updateAllLeaveBalances()" style="color:#C9960C">
             🔄 تحديث أرصدة الإجازات
-          </button></div></div><button class="btn btn-outline" onclick="openModal('m-company-settings')" title="إعدادات الشركة">⚙️ إعدادات</button><button class="btn btn-outline" onclick="openBulkContractModal()" title="ضبط نوع العقد جماعي">📋 نوع العقد</button><button class="btn btn-outline" onclick="exportEmpsExcel()" style="color:#C9960C" title="تصدير بيانات الموظفين">📊 تصدير Excel</button><button class="btn btn-outline" onclick="restoreAllExpired()" style="color:#1A6B3A" title="استرجاع الموظفين المنقولين تلقائياً">↩️ استرجاع تلقائي</button><button class="btn btn-outline" onclick="showPinsModal()" style="color:#C9960C">🔑 PINs</button><button class="btn btn-primary" onclick="openModal('m-add-emp')">+ إضافة موظف</button></div></div><div class="kpi-grid" id="emp-kpis"></div><div id="contract-alerts-section"></div><div id="import-status"></div><div class="tabs" style="margin-bottom:0"><button class="tab active" id="tab-active" onclick="switchEmpTab('active',this)">
+          </button></div></div><button class="btn btn-outline" onclick="showPage('settings')" title="إعدادات الشركة">⚙️ إعدادات</button><button class="btn btn-outline" onclick="openBulkContractModal()" title="ضبط نوع العقد جماعي">📋 نوع العقد</button><button class="btn btn-outline" onclick="exportEmpsExcel()" style="color:#C9960C" title="تصدير بيانات الموظفين">📊 تصدير Excel</button><button class="btn btn-outline" onclick="showPinsModal()" style="color:#C9960C">🔑 PINs</button><button class="btn btn-primary" onclick="openModal('m-add-emp')">+ إضافة موظف</button></div></div><div class="kpi-grid" id="emp-kpis"></div><div id="contract-alerts-section"></div><div id="import-status"></div><div class="tabs" style="margin-bottom:0"><button class="tab active" id="tab-active" onclick="switchEmpTab('active',this)">
       الموظفون النشطون
       <span id="badge-active" style="background:var(--b700);color:#fff;font-size:11px;padding:2px 8px;border-radius:10px;margin-right:6px"></span></button><button class="tab" id="tab-archived" onclick="switchEmpTab('archived',this)">
       منتهية الخدمة
@@ -50,7 +50,7 @@
           onchange="quickUpdateMax(this.value)"><span style="opacity:.7;font-size:11px">يوم</span></span></div></div><!-- ══ سجل الطلبات — أول شيء يراه HR ══ --><div class="card"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px"><div class="card-title" style="margin-bottom:0">طلبات الإجازة</div><span id="leave-pending-badge" style="display:none;background:var(--b800);color:#fff;padding:3px 12px;border-radius:20px;font-size:12px;font-weight:700"></span></div><div class="tabs"><button class="tab active" onclick="showLeaveTab('all',this)">جميع الطلبات</button><button class="tab" id="tab-pending-lbl" onclick="showLeaveTab('pending',this)">معلقة</button><button class="tab" onclick="showLeaveTab('approved',this)">موافق عليها</button><button class="tab" onclick="showLeaveTab('rejected',this)">مرفوضة</button></div><div class="tbl-wrap"><table><thead><tr><th>#</th><th>الموظف</th><th>نوع الإجازة</th><th>من</th><th>إلى</th><th>الأيام</th><th>الحالة</th><th>تحقق الرصيد</th><th>تداخل</th><th>ملاحظة HR</th><th>إجراءات</th></tr></thead><tbody id="leave-tbody"></tbody></table></div></div><!-- ══ بطاقات أرصدة الموظفين ══ --><div class="card"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px"><div class="card-title" style="margin-bottom:0">أرصدة الإجازة السنوية</div><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><input id="leave-emp-search" class="search-input" placeholder="بحث باسم الموظف..." style="width:180px" oninput="renderLeaveBalanceCards(this.value)"><select class="filter-select" id="leave-bal-filter" onchange="renderLeaveBalanceCards()"><option value="">الكل</option><option value="low">رصيد منخفض (أقل من 5)</option><option value="high">رصيد مرتفع (أكثر من 20)</option><option value="zero">رصيد صفر</option></select></div></div><div id="leave-balance-cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px"></div></div><!-- ══ تنبيهات نهاية السنة ══ --><div class="card"><div class="card-title">تنبيهات نهاية السنة</div><div id="year-end-alerts"></div></div>
 </div><!-- ══ مسير الرواتب ══ -->
 <div class="page" id="page-salary"><div class="page-hdr"><h2>مسير الرواتب</h2><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap" id="sal-actions"><input class="search-input" id="sal-search" placeholder="🔍 بحث باسم الموظف أو رقم الهوية..."
-             oninput="debouncedRenderSalary()" style="min-width:220px;flex:1"><select class="filter-select" id="sal-month" onchange="renderSalary()"><option>يناير</option><option>فبراير</option><option selected>مارس</option><option>أبريل</option><option>مايو</option><option>يونيو</option><option>يوليو</option><option>أغسطس</option><option>سبتمبر</option><option>أكتوبر</option><option>نوفمبر</option><option>ديسمبر</option></select><select class="filter-select" id="sal-year" onchange="renderSalary()"></select><select class="filter-select" id="sal-filter-new" onchange="renderSalary()" title="فلترة الموظفين الجدد هذا الشهر"><option value="">جميع الموظفين</option><option value="new">الموظفون الجدد هذا الشهر 🆕</option><option value="prorated">رواتب نسبية فقط</option></select><select class="filter-select" id="sal-ot-basis" onchange="renderSalary()" title="أساس حساب الوقت الإضافي"><option value="basic">وقت إضافي على الأساسي فقط</option><option value="gross">وقت إضافي على الإجمالي</option></select><button class="btn btn-green btn-sm" onclick="closeMonth()">🔒 إغلاق الشهر</button><button class="btn btn-outline btn-sm" onclick="openModal('m-attendance')" style="color:var(--b700)">⏱️ رفع الحضور</button><button class="btn btn-outline btn-sm" onclick="exportSalaryExcel()" style="color:#C9960C">📊 تصدير Excel</button></div></div><div class="tabs" id="sal-tabs"><button class="tab active" id="sal-tab-payroll" onclick="switchSalTab('payroll',this)">مسير الشهر</button><button class="tab" id="sal-tab-history" onclick="switchSalTab('history',this)">سجل الشهور</button><button class="tab" id="sal-tab-loans" onclick="switchSalTab('loans',this)">
+             oninput="debouncedRenderSalary()" style="min-width:220px;flex:1"><select class="filter-select" id="sal-month" onchange="renderSalary()"><option>يناير</option><option>فبراير</option><option selected>مارس</option><option>أبريل</option><option>مايو</option><option>يونيو</option><option>يوليو</option><option>أغسطس</option><option>سبتمبر</option><option>أكتوبر</option><option>نوفمبر</option><option>ديسمبر</option></select><select class="filter-select" id="sal-year" onchange="renderSalary()"></select><select class="filter-select" id="sal-filter-new" onchange="renderSalary()" title="فلترة الموظفين الجدد هذا الشهر"><option value="">جميع الموظفين</option><option value="new">الموظفون الجدد هذا الشهر 🆕</option><option value="prorated">رواتب نسبية فقط</option></select><select class="filter-select" id="sal-ot-basis" onchange="renderSalary()" title="أساس حساب الوقت الإضافي"><option value="basic">وقت إضافي على الأساسي فقط</option><option value="gross">وقت إضافي على الإجمالي</option></select><button class="btn btn-outline btn-sm" onclick="syncAttendanceToSalary()" style="color:#1A6B3A" id="sync-att-btn">🔄 مزامنة الحضور</button><button class="btn btn-green btn-sm" onclick="closeMonth()">🔒 إغلاق الشهر</button><button class="btn btn-outline btn-sm" onclick="openModal('m-attendance')" style="color:var(--b700)">⏱️ رفع الحضور</button><button class="btn btn-outline btn-sm" onclick="exportSalaryExcel()" style="color:#C9960C">📊 تصدير Excel</button></div></div><div class="tabs" id="sal-tabs"><button class="tab active" id="sal-tab-payroll" onclick="switchSalTab('payroll',this)">مسير الشهر</button><button class="tab" id="sal-tab-history" onclick="switchSalTab('history',this)">سجل الشهور</button><button class="tab" id="sal-tab-loans" onclick="switchSalTab('loans',this)">
       💰 السلف
       <span id="badge-loans" style="display:none;background:var(--r900);color:#fff;font-size:10px;padding:1px 6px;border-radius:10px;margin-right:4px">!</span></button></div><div id="sal-pane-payroll"><div class="sal-summary" id="sal-summary"></div><div class="card" style="padding:0;overflow:hidden"><div class="sal-tbl-wrap"><table id="sal-table"><thead><tr><th class="col-sticky">الموظف</th><th>الجنسية</th><th>نظام التأمين</th><th>أساسي</th><th>سكن</th><th>بدلات</th><th>وقت إضافي</th><th>مكافأة</th><th>أيام العمل</th><th>خصم غياب</th><th>خصم تأخير</th><th>وعاء التأمين</th><th>تأمين موظف</th><th>تأمين صاحب عمل</th><th>خصم سلف</th><th>خصومات أخرى</th><th class="col-net">الصافي</th><th class="col-cost">تكلفة صاحب العمل</th></tr></thead><tbody id="sal-tbody"></tbody><tfoot id="sal-tfoot"></tfoot></table></div></div></div><div id="sal-pane-history" style="display:none"><div class="card" style="padding:0;overflow:hidden"><div style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--border)"><div class="card-title" style="margin:0">سجل الشهور المغلقة</div><div style="display:flex;gap:8px"><button class="btn btn-outline btn-sm" onclick="undoLastMonth()" style="color:var(--r900)">↩️ تراجع عن آخر إغلاق</button><button class="btn btn-outline btn-sm" onclick="exportHistoryExcel()" style="color:#C9960C">📊 تصدير Excel</button></div></div><div class="tbl-wrap" style="padding:0"><table><thead><tr><th>الشهر</th><th>رواتب سعوديين</th><th>رواتب أجانب</th><th>تأمين صاحب عمل</th><th>إجمالي الرواتب</th><th>الصافي</th><th style="background:#EDE7F6;color:var(--b800)">تكلفة صاحب العمل</th><th>📥</th></tr></thead><tbody id="month-history"></tbody></table></div></div></div><div id="sal-pane-loans" style="display:none"><div class="page-hdr" style="margin-bottom:16px"><div></div><button class="btn btn-primary" onclick="openModal('m-add-loan')">+ طلب سلفة جديد</button></div><div class="kpi-grid" id="loans-kpis"></div><div id="loans-alerts"></div><div class="card"><div class="tbl-wrap"><table><thead><tr><th>#</th><th>الموظف</th><th>مبلغ السلفة</th><th>تاريخ السلفة</th><th>أشهر السداد</th><th>القسط الشهري</th><th>المبلغ المسدد</th><th>المتبقي</th><th>التقدم</th><th>الحالة</th><th>إجراءات</th></tr></thead><tbody id="loans-tbody"></tbody><tfoot id="loans-tfoot"></tfoot></table></div></div></div>
 </div><!-- ══ نهاية الخدمة ══ -->
@@ -93,7 +93,18 @@
         <input type="file" id="muqeem-file" accept=".xlsx,.xls" style="display:none" onchange="importMuqeem(this)"></label></div></div><div class="kpi-grid" id="muqeem-kpis" style="margin-bottom:16px"></div><div id="muqeem-alerts"></div><div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;align-items:center"><input class="search-input" id="muqeem-search" placeholder="بحث بالاسم أو رقم الإقامة..."
            oninput="renderMuqeem()" style="flex:1;min-width:200px"><select class="filter-select" id="muqeem-filter" onchange="renderMuqeem()"><option value="">جميع الإقامات</option><option value="expired">منتهية ✅</option><option value="30">تنتهي خلال 30 يوم 🔴</option><option value="90">تنتهي خلال 90 يوم 🟡</option><option value="180">تنتهي خلال 180 يوم 🟢</option></select><select class="filter-select" id="muqeem-nat" onchange="renderMuqeem()"><option value="">جميع الجنسيات</option></select></div><div class="card"><div class="tbl-wrap"><table><thead><tr><th>#</th><th>الاسم</th><th>رقم الإقامة</th><th>الجنسية</th><th>المهنة</th><th>تاريخ انتهاء الإقامة</th><th>الأيام المتبقية</th><th>تاريخ انتهاء الجواز</th><th>خارج المملكة</th><th>الحالة</th><th style="background:#EAF3DE;color:#1A6B3A">🏥 حالة التأمين</th><th style="background:#EAF3DE;color:#1A6B3A">انتهاء التأمين</th><th style="background:var(--b50);color:var(--b800)">🔄 آخر تحديث</th><th style="background:#FDF6DC;color:#A07808">💰 تكلفة سنوية</th></tr></thead><tbody id="muqeem-tbody"></tbody></table></div><div id="muqeem-empty" style="text-align:center;padding:40px;color:var(--muted);display:none"><div style="font-size:48px;margin-bottom:12px">🪪</div><div style="font-size:16px;font-weight:600;margin-bottom:8px">لا توجد بيانات</div><div style="font-size:13px">استوردي ملف مقيم للبدء</div></div></div>
 </div><!-- ══ الحضور والبصمة ══ -->
-<div class="page" id="page-attendance"><div class="page-hdr"><h2>⏱️ تقارير الحضور والبصمة</h2><div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><input type="date" id="att-date-filter" class="search-input" style="width:160px" onchange="loadAttendanceReport()"><button class="btn btn-outline" onclick="exportAttendanceExcel()" style="color:#C9960C">📊 تصدير Excel</button><a href="rikaz-attendance.html" target="_blank" class="btn btn-primary">🪪 رابط بصمة الموظفين</a></div></div><div class="kpi-grid" id="att-kpis" style="margin-bottom:16px"></div><div class="card" style="margin-bottom:16px"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px"><div class="card-title" style="margin:0">📍 مواقع العمل</div><button class="btn btn-primary btn-sm" onclick="openAddLocationModal()">+ إضافة موقع</button></div><div id="locations-list" style="display:flex;flex-wrap:wrap;gap:10px"><div style="color:var(--muted);font-size:13px">لا يوجد مواقع — أضف موقع العمل</div></div></div><div class="card" id="violation-excuses-card" style="display:none;margin-bottom:16px"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px"><div class="card-title" style="margin:0">📨 أعذار المخالفات — بانتظار موافقتك</div><span id="excuse-count-badge" class="badge b-red"></span></div><div id="violation-excuses-body"></div></div><div class="card" id="absence-list-card" style="display:none"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px"><div class="card-title" style="margin:0">🔴 قائمة الغياب اليوم</div></div><div id="absence-list-body"></div></div><div class="card"><div class="card-title">سجل الحضور</div><div class="tbl-wrap"><table><thead><tr><th>#</th><th>الموظف</th><th>النوع</th><th>الوقت</th><th>الموقع</th><th>ملاحظات</th></tr></thead><tbody id="att-tbody"></tbody></table></div></div>
+<div class="page" id="page-attendance"><div class="page-hdr"><h2>⏱️ تقارير الحضور والبصمة</h2><div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><input type="date" id="att-date-filter" class="search-input" style="width:160px" onchange="loadAttendanceReport()"><button class="btn btn-outline" onclick="exportAttendanceExcel()" style="color:#C9960C">📊 تصدير Excel</button><a href="rikaz-attendance.html" target="_blank" class="btn btn-primary">🪪 رابط بصمة الموظفين</a></div></div><div class="kpi-grid" id="att-kpis" style="margin-bottom:16px"></div><div class="card" style="margin-bottom:16px"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px"><div class="card-title" style="margin:0">📍 مواقع العمل</div><button class="btn btn-primary btn-sm" onclick="openAddLocationModal()">+ إضافة موقع</button></div><div id="locations-list" style="display:flex;flex-wrap:wrap;gap:10px"><div style="color:var(--muted);font-size:13px">لا يوجد مواقع — أضف موقع العمل</div></div></div><div class="card" id="violation-excuses-card" style="display:none;margin-bottom:16px"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px"><div class="card-title" style="margin:0">📨 أعذار المخالفات — بانتظار موافقتك</div><span id="excuse-count-badge" class="badge b-red"></span></div><div id="violation-excuses-body"></div></div><div class="card" id="absence-list-card" style="display:none"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px"><div class="card-title" style="margin:0">🔴 قائمة الغياب اليوم</div></div><div id="absence-list-body"></div></div><!-- طلبات الغياب والتأخر من البوابة -->
+  <div class="card" id="absence-requests-card">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+      <div class="card-title" style="margin:0">📋 طلبات الغياب والتأخر</div>
+      <span id="absence-req-badge" class="badge b-red" style="display:none"></span>
+    </div>
+    <div id="absence-requests-body">
+      <div style="color:var(--muted);font-size:13px;text-align:center;padding:16px">لا يوجد طلبات</div>
+    </div>
+  </div>
+
+  <div class="card"><div class="card-title">سجل الحضور</div><div class="tbl-wrap"><table><thead><tr><th>#</th><th>الموظف</th><th>النوع</th><th>الوقت</th><th>الموقع</th><th>ملاحظات</th></tr></thead><tbody id="att-tbody"></tbody></table></div></div>
 </div><div class="modal-bg" id="m-add-location"><div class="modal"><div class="modal-hdr"><div class="modal-title">📍 إضافة موقع عمل</div><button class="modal-close" onclick="closeModal('m-add-location')">×</button></div><div style="display:flex;flex-direction:column;gap:12px"><div class="form-group"><label>اسم الموقع</label><input id="loc-name" placeholder="مثل: المقر الرئيسي، الفرع"></div><div id="loc-location-fields"><button type="button" onclick="useCurrentLocation()" id="use-location-btn"
         style="width:100%;padding:11px;background:var(--b50);border:1px solid var(--b400);border-radius:8px;font-size:13px;font-weight:600;color:var(--b800);cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px">
         📍 استخدم موقعي الحالي
@@ -105,28 +116,142 @@
         💡 <strong>للرابط المختصر</strong> (goo.gl): افتحه في المتصفح ← انسخ الرابط الكامل من شريط العنوان ← الصقه هنا
       </div><button class="btn btn-primary" onclick="saveLocation()">حفظ الموقع</button></div></div>
 </div><!-- ══ المديرون ══ -->
-<div class="page" id="page-managers">
+<div class="page" id="page-settings">
   <div class="page-hdr">
-    <h2>👔 إدارة الصلاحيات والمديرين</h2>
-    <div style="display:flex;gap:8px">
-      <a href="rikaz-manager.html" target="_blank" class="btn btn-outline" style="color:#C9960C">🔗 بوابة المدير</a>
-      <button class="btn btn-primary" onclick="openModal('m-add-manager')">+ إضافة مدير</button>
+    <h2>⚙️ الإعدادات</h2>
+  </div>
+
+  <!-- تبويبات الإعدادات -->
+  <div class="tabs" style="margin-bottom:20px;flex-wrap:wrap">
+    <button class="tab active" id="stab-company"   onclick="switchSettingsTab('company',this)">🏢 الشركة</button>
+    <button class="tab" id="stab-managers"  onclick="switchSettingsTab('managers',this)">👔 المديرون</button>
+    <button class="tab" id="stab-divisions" onclick="switchSettingsTab('divisions',this)">🏗️ الإدارات</button>
+    <button class="tab" id="stab-chains"    onclick="switchSettingsTab('chains',this)">🔗 الموافقات</button>
+    <button class="tab" id="stab-requests"  onclick="switchSettingsTab('requests',this)">📱 البوابة</button>
+    <button class="tab" id="stab-absence"   onclick="switchSettingsTab('absence',this)">⚠️ الغياب</button>
+    <button class="tab" id="stab-leave"     onclick="switchSettingsTab('leave',this)">🌴 سياسة الإجازات</button>
+    <button class="tab" id="stab-pins"      onclick="switchSettingsTab('pins',this)">🔑 PINs</button>
+  </div>
+
+  <!-- تبويب الشركة -->
+  <div id="spanel-company">
+    <div class="card" style="max-width:700px">
+      <div class="card-title">معلومات الشركة</div>
+      <div class="form-grid">
+        <div class="form-group" style="grid-column:span 2"><label>اسم الشركة</label><input id="cs-name" placeholder="أدخل اسم شركتك"></div>
+        <div class="form-group"><label>رقم السجل التجاري</label><input id="cs-cr" placeholder="1234567890"></div>
+        <div class="form-group"><label>المدينة</label><input id="cs-city" value="الرياض"></div>
+        <div class="form-group"><label>رقم الهاتف</label><input id="cs-phone" placeholder="0112345678"></div>
+        <div class="form-group"><label>البريد الإلكتروني</label><input id="cs-email" placeholder="hr@company.com"></div>
+        <div class="form-group" style="grid-column:span 2"><label>العنوان</label><input id="cs-address" placeholder="حي الريان، الرياض"></div>
+      </div>
+      <div style="margin-top:16px;text-align:left">
+        <button class="btn btn-primary" onclick="saveCompanySettings()">💾 حفظ الإعدادات</button>
+      </div>
     </div>
   </div>
-  <div class="kpi-grid" id="mgr-kpis" style="margin-bottom:16px"></div>
-  <div class="card">
-    <div class="card-title">قائمة المديرين</div>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr>
-          <th>الاسم</th><th>البريد</th><th>الدور</th>
-          <th>نطاق الصلاحية</th><th>إجراءات</th>
-        </tr></thead>
-        <tbody id="mgr-tbody"></tbody>
-      </table>
+
+  <!-- تبويب المديرون -->
+  <div id="spanel-managers" style="display:none">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+      <div class="kpi-grid" id="mgr-kpis" style="margin:0;flex:1"></div>
+      <div style="display:flex;gap:8px">
+        <a href="rikaz-manager.html" target="_blank" class="btn btn-outline" style="color:#C9960C">🔗 بوابة المدير</a>
+        <button class="btn btn-primary" onclick="openModal('m-add-manager')">+ إضافة مدير</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr>
+            <th>المدير</th><th>الإدارة / النطاق</th><th>الصلاحيات</th><th>إجراءات</th>
+          </tr></thead>
+          <tbody id="mgr-tbody"></tbody>
+        </table>
+      </div>
     </div>
   </div>
+
+  <!-- تبويب الإدارات -->
+  <div id="spanel-divisions" style="display:none">
+    <div class="card" style="max-width:700px">
+      <div class="card-title">🏢 الإدارات التنظيمية</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:12px">أضف إدارات الشركة — كل إدارة لها مديرون وموظفون</div>
+      <div id="divisions-list" style="margin-bottom:10px"></div>
+      <div style="display:flex;gap:8px">
+        <input id="new-division-name" placeholder="اسم الإدارة (مثل: إدارة العمليات)"
+          style="flex:1;padding:8px 10px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit">
+        <button onclick="addDivision()" style="padding:8px 14px;background:var(--b800);color:#fff;border:none;border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit">+ إضافة</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- تبويب سلاسل الموافقات -->
+  <div id="spanel-chains" style="display:none">
+    <div class="card" style="max-width:700px">
+      <div class="card-title">🔗 سلاسل الموافقات</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:12px">حدد مسار الموافقة لكل نوع طلب</div>
+      <div id="approval-chains-list" style="margin-bottom:10px"></div>
+      <button onclick="addApprovalChain()" style="padding:8px 14px;background:var(--b800);color:#fff;border:none;border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit">+ إضافة سلسلة</button>
+    </div>
+  </div>
+
+  <!-- تبويب طلبات البوابة -->
+  <div id="spanel-requests" style="display:none">
+    <div class="card" style="max-width:700px">
+      <div class="card-title">📱 طلبات بوابة الموظف</div>
+      <div style="display:flex;gap:6px;margin-bottom:12px;border-bottom:2px solid var(--b100);padding-bottom:0">
+        <button id="req-tab-office" onclick="switchReqTab('office')"
+          style="background:none;border:none;padding:8px 16px;font-size:13px;font-weight:600;color:#C9960C;border-bottom:2px solid #C9960C;margin-bottom:-2px;cursor:pointer;font-family:inherit">مكتبي</button>
+        <button id="req-tab-field" onclick="switchReqTab('field')"
+          style="background:none;border:none;padding:8px 16px;font-size:13px;font-weight:600;color:var(--muted);border-bottom:2px solid transparent;cursor:pointer;font-family:inherit">ميداني</button>
+      </div>
+      <div id="req-panel-office"></div>
+      <div id="req-panel-field" style="display:none"></div>
+      <div style="margin-top:12px;text-align:left">
+        <button class="btn btn-primary" onclick="saveCompanySettings()">💾 حفظ</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- تبويب الغياب والخصومات -->
+  <div id="spanel-absence" style="display:none">
+    <div class="card" style="max-width:700px" id="spanel-absence-inner">
+      <!-- يُعبأ من openCompanySettings -->
+    </div>
+  </div>
+
 </div>
+
+  <!-- تبويب سياسة الإجازات -->
+  <div id="spanel-leave" style="display:none">
+    <div class="card" style="max-width:700px" id="spanel-leave-inner"><!-- يُعبأ ديناميكياً --></div>
+  </div>
+
+  <!-- تبويب PINs -->
+  <div id="spanel-pins" style="display:none">
+    <div class="card" style="max-width:900px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+        <div class="card-title" style="margin:0">🔑 بيانات تسجيل الدخول (PINs)</div>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-outline btn-sm" onclick="generateAllPins()">🔄 توليد PINs</button>
+          <button class="btn btn-outline btn-sm" onclick="exportPinsExcel()" style="color:#C9960C">📊 تصدير Excel</button>
+        </div>
+      </div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:12px">كل موظف يسجل دخوله ببوابة الموظف عبر رقم الهوية + PIN</div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>#</th><th>الموظف</th><th>رقم الهوية</th><th>PIN</th><th>تعديل</th></tr></thead>
+          <tbody id="pins-tbody-settings"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end page-settings -->
+
+<!-- الصفحة القديمة للمديرين -->
+<div class="page" id="page-managers" style="display:none"></div>
 
 <!-- Modal إضافة مدير -->
 <div class="modal-bg" id="m-add-manager">
@@ -186,8 +311,60 @@
 
 <!-- ══ الاستقطاب ══ -->
 <div class="page" id="page-recruit"><div class="page-hdr"><h2>استقطاب المواهب</h2><button class="btn btn-primary" onclick="openModal('m-add-candidate')">+ إضافة مرشح</button></div><div class="kpi-grid" id="recruit-kpis"></div><div class="card" style="padding:16px"><div class="card-title">🔍 فلترة وبحث ذكي</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:12px"><div class="form-group" style="margin:0"><label>المسمى الوظيفي</label><input id="f-job" placeholder="مدير، مطور..." oninput="applyFilters()"></div><div class="form-group" style="margin:0"><label>الجنسية</label><select id="f-nat" onchange="applyFilters()"><option value="">الكل</option><option>سعودي</option><option>أجنبي</option></select></div><div class="form-group" style="margin:0"><label>الجنس</label><select id="f-gender" onchange="applyFilters()"><option value="">الكل</option><option>ذكر</option><option>انثى</option></select></div><div class="form-group" style="margin:0"><label>الخبرة (سنوات)</label><select id="f-exp" onchange="applyFilters()"><option value="">الكل</option><option value="0-2">0-2 سنة</option><option value="3-5">3-5 سنوات</option><option value="6-10">6-10 سنوات</option><option value="10+">أكثر من 10</option></select></div><div class="form-group" style="margin:0"><label>منصة التوظيف</label><select id="f-source" onchange="applyFilters()"><option value="">الكل</option><option>LinkedIn</option><option>Indeed</option><option>توصية</option><option>الموقع الإلكتروني</option><option>بدر</option><option>طاقات</option><option>أخرى</option></select></div><div class="form-group" style="margin:0"><label>المرحلة</label><select id="f-stage" onchange="applyFilters()"><option value="">الكل</option><option>جديد</option><option>مقابلة</option><option>عرض</option><option>تم التوظيف</option><option>مرفوض</option></select></div><div class="form-group" style="margin:0"><label>الراتب المتوقع (حتى)</label><input type="number" id="f-salary" placeholder="15000" oninput="applyFilters()"></div><div class="form-group" style="margin:0"><label>الأهلية</label><select id="f-elig" onchange="applyFilters()"><option value="">الكل</option><option value="high">عالية 80%+</option><option value="mid">متوسطة 50-79%</option><option value="low">منخفضة أقل من 50%</option></select></div></div><div style="display:flex;gap:8px;align-items:center"><button class="btn btn-outline btn-sm" onclick="clearFilters()">مسح الفلاتر</button><span id="filter-count" class="txt-muted-12"></span></div></div><div class="card"><div class="tbl-wrap"><table><thead><tr><th>#</th><th>المرشح</th><th>الوظيفة</th><th>الجنسية</th><th>الجنس</th><th>الخبرة</th><th>الراتب المتوقع</th><th>المصدر</th><th>المرحلة</th><th>التقييم</th><th style="background:#FDF6DC;color:#A07808;min-width:100px">نسبة الأهلية</th><th>إجراءات</th></tr></thead><tbody id="recruit-tbody"></tbody></table></div></div>
-</div><!-- ══ لوحة التحكم ══ -->
-<div class="page" id="page-dashboard"><div class="page-hdr"><div><h2>لوحة التحكم</h2><div style="font-size:12px;color:var(--muted);margin-top:2px" id="dash-date"></div></div><button class="btn btn-outline btn-sm" onclick="exportDashboardAlerts()" style="color:#C9960C">📊 تصدير التنبيهات</button></div><div class="kpi-grid" id="dash-kpis"></div><div id="dash-contract-alerts"></div><div style="display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:16px"><div class="card" style="padding:20px"><div class="card-title">📈 تطور الرواتب الشهرية</div><canvas id="chart-salary" height="180" style="width:100%"></canvas><div id="chart-salary-empty" style="display:none;text-align:center;padding:40px;color:var(--muted);font-size:13px">لا يوجد سجل رواتب بعد — أغلق شهراً أولاً</div></div><div class="card" style="padding:20px"><div class="card-title">🏢 توزيع الأقسام</div><canvas id="chart-dept" width="240" height="240" style="display:block;margin:0 auto"></canvas><div id="chart-dept-legend" style="margin-top:12px;display:flex;flex-direction:column;gap:5px"></div></div></div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px"><div class="card" style="padding:20px"><div class="card-title">🌍 الجنسية والسعودة</div><canvas id="chart-nat" width="200" height="200" style="display:block;margin:0 auto 12px"></canvas><div id="chart-nat-legend" style="display:flex;flex-direction:column;gap:5px"></div></div><div class="card" style="padding:20px"><div class="card-title">🔐 أنظمة التأمين</div><canvas id="chart-ins" width="200" height="200" style="display:block;margin:0 auto 12px"></canvas><div id="chart-ins-legend" style="display:flex;flex-direction:column;gap:5px"></div></div><div class="card" style="padding:20px"><div class="card-title">🌴 حالة الإجازات</div><div id="leave-stats" style="display:flex;flex-direction:column;gap:10px;margin-top:8px"></div></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:16px"><div class="card"><div class="card-title">⏳ طلبات الإجازة المعلقة</div><div id="pending-leaves"></div></div><div class="card"><div class="card-title">💡 نسب التأمينات</div><div id="ins-breakdown"></div></div></div>
+</div><!-- ══ الهيكل التنظيمي ══ -->
+<div class="page" id="page-orgchart">
+  <div class="page-hdr">
+    <h2>🏗️ الهيكل التنظيمي</h2>
+    <div style="display:flex;gap:8px">
+      <button class="btn btn-primary btn-sm" onclick="openAddDivisionModal()">+ إضافة إدارة</button>
+      <button class="btn btn-outline btn-sm" onclick="autoAssignDivisions()" style="color:#1A6B3A">🔗 ربط تلقائي</button>
+      <button class="btn btn-outline btn-sm" onclick="renderOrgChart()" style="color:#C9960C">🔄 تحديث</button>
+    </div>
+  </div>
+  <div id="org-assign-guide" style="background:var(--b50);border:1px solid var(--b200);border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:12px;color:var(--b800);display:none">
+    <strong>كيفية ربط الموظفين بالإدارات:</strong><br>
+    1. أضف الإدارات في ⚙️ إعدادات الشركة<br>
+    2. اضغط "ربط تلقائي" لربط كل قسم بإدارته<br>
+    3. أو عدّل يدوياً من سجل الموظفين (عمود الإدارة)
+  </div>
+  <div id="orgchart-container" style="overflow-x:auto;padding:16px"></div>
+</div>
+
+<!-- ══ الصفحة المخصصة ══ -->
+<div class="page" id="page-custom">
+  <div class="page-hdr">
+    <h2 id="custom-page-title">📌 صفحة مخصصة</h2>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn btn-outline btn-sm" onclick="editCustomPageTitle()">✏️ تغيير الاسم</button>
+      <label class="btn btn-outline btn-sm" style="cursor:pointer;color:#C9960C">
+        📥 استيراد Excel
+        <input type="file" accept=".xlsx,.xls" style="display:none" onchange="importCustomExcel(this)">
+      </label>
+      <button class="btn btn-outline btn-sm" onclick="exportCustomExcel()" style="color:#C9960C">📊 تصدير Excel</button>
+      <button class="btn btn-primary btn-sm" onclick="openAddCustomRecord()">+ إضافة سجل</button>
+      <button class="btn btn-sm" style="background:var(--r100);color:var(--r900);border:1px solid var(--r900)" onclick="deleteAllCustomRecords()">🗑️ حذف الكل</button>
+    </div>
+  </div>
+
+  <!-- أعمدة مخصصة -->
+  <div id="custom-cols-bar" style="margin-bottom:12px;display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+    <span style="font-size:12px;color:var(--muted)">الأعمدة:</span>
+    <div id="custom-cols-list" style="display:flex;gap:6px;flex-wrap:wrap"></div>
+    <button onclick="addCustomColumn()" style="padding:4px 10px;background:var(--b50);border:1px solid var(--border);border-radius:6px;font-size:12px;cursor:pointer;font-family:inherit">+ عمود</button>
+  </div>
+
+  <div class="card">
+    <div class="tbl-wrap">
+      <table id="custom-table">
+        <thead id="custom-thead"><tr id="custom-header-row"></tr></thead>
+        <tbody id="custom-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══ لوحة التحكم ══ -->
+<div class="page" id="page-dashboard"><div class="page-hdr"><div><h2>لوحة التحكم</h2><div style="font-size:12px;color:var(--muted);margin-top:2px" id="dash-date"></div></div><button class="btn btn-outline btn-sm" onclick="exportDashboardAlerts()" style="color:#C9960C">📊 تصدير التنبيهات</button></div><div class="kpi-grid" id="dash-kpis"></div><div id="dash-contract-alerts"></div><div style="display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:16px"><div class="card" style="padding:20px"><div class="card-title">📈 تطور الرواتب الشهرية</div><canvas id="chart-salary" height="180" style="width:100%"></canvas><div id="chart-salary-empty" style="display:none;text-align:center;padding:40px;color:var(--muted);font-size:13px">لا يوجد سجل رواتب بعد — أغلق شهراً أولاً</div></div><div class="card" style="padding:20px"><div class="card-title">🏢 توزيع الأقسام</div><canvas id="chart-dept" width="240" height="240" style="display:block;margin:0 auto"></canvas><div id="chart-dept-legend" style="margin-top:12px;display:flex;flex-direction:column;gap:5px"></div></div></div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px"><div class="card" style="padding:20px"><div class="card-title">🌍 الجنسية والسعودة</div><canvas id="chart-nat" width="200" height="200" style="display:block;margin:0 auto 12px"></canvas><div id="chart-nat-legend" style="display:flex;flex-direction:column;gap:5px"></div></div><div class="card" style="padding:20px"><div class="card-title">🔐 أنظمة التأمين</div><canvas id="chart-ins" width="200" height="200" style="display:block;margin:0 auto 12px"></canvas><div id="chart-ins-legend" style="display:flex;flex-direction:column;gap:5px"></div></div><div class="card" style="padding:20px"><div class="card-title">🌴 حالة الإجازات</div><div id="leave-stats" style="display:flex;flex-direction:column;gap:10px;margin-top:8px"></div></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:16px"><div class="card"><div class="card-title">⏳ الطلبات المعلقة</div><div id="pending-leaves"></div></div><div class="card"><div class="card-title">💡 نسب التأمينات</div><div id="ins-breakdown"></div></div></div>
 </div></div><!-- ══ PINs الموظفين ══ -->
 <div class="modal-bg" id="m-pins"><div class="modal" style="max-width:640px"><div class="modal-hdr"><div class="modal-title">🔑 PINs بوابة الموظفين</div><button class="modal-close" onclick="closeModal('m-pins')">×</button></div><div style="background:var(--b50);border-radius:10px;padding:12px;margin-bottom:16px;font-size:13px;color:var(--b800);line-height:1.7">📱 أرسل لكل موظف: <strong>رقم هويته + PIN</strong> ليدخل بوابة الحضور<br>الرابط: <code style="font-size:11px;background:#fff;padding:2px 6px;border-radius:4px">rikaz-app.github.io/rikaz/rikaz-attendance.html</code></div><div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap"><button onclick="generateAllPins()" class="btn btn-primary btn-sm">⚡ توليد PIN للجميع</button><button onclick="exportPinsExcel()" class="btn btn-outline btn-sm" style="color:#C9960C">📊 تصدير Excel</button></div><div class="tbl-wrap"><table><thead><tr><th>الموظف</th><th>رقم الهوية</th><th>PIN</th><th>إجراء</th></tr></thead><tbody id="pins-tbody"></tbody></table></div></div></div>
 
@@ -521,17 +698,24 @@ function showPage(p) {
   renderEmpsRespectTab();
   }
   if(p==='leave') renderLeaves();
-  if(p==='salary') renderSalary();
+  if(p==='salary') {
+    renderSalary();
+    if(rikazTenantId) syncAttendanceToSalary();
+  }
   if(p==='eos') {renderEOSHistory(); renderEOSTable(); document.getElementById('eos-search').value=''; document.getElementById('eos-emp').value=''; document.getElementById('eos-result-area').innerHTML=''; document.getElementById('eos-emp-info').style.display='none';}
   if(p==='recruit') renderCandidates(candidates);
   if(p==='muqeem') renderMuqeem();
-  if(p==='managers') { loadManagers(); updateMgrScopeUI(); }
+  if(p==='managers') { showPage('settings'); return; }
+  if(p==='settings') { loadManagers(); updateMgrScopeUI(); renderDivisionsList(); renderApprovalChains(); renderManagersPage(); }
+  if(p==='custom') { initCustomPage(); }
+  if(p==='orgchart') { renderOrgChart(); }
   if(p==='attendance') {
   const d = document.getElementById('att-date-filter');
   if(d && !d.value) d.value = new Date().toISOString().split('T')[0];
   loadAttendanceReport();
   loadWorkLocations();
   loadPendingExcuses();
+  renderAbsenceRequests();
   }
   if(p==='forms') {}
   if(p==='archive') {
@@ -908,7 +1092,11 @@ function addEmployee() {
   manualLeaveOverride: !!(document.getElementById('n-manual-override')?.checked),
   loans:parseInt(document.getElementById('n-loans').value)||0,
   status:"نشط",
-  division:document.getElementById('n-division')?.value.trim()||''
+  division:(()=>{
+    const manual = document.getElementById('n-division')?.value;
+    if(manual && manual !== '— اختر الإدارة —') return manual;
+    return guessDivisionFromTitle(document.getElementById('n-title')?.value||'');
+  })()
   });
   closeModal('m-add-emp');
   rebuildEmpMap();
@@ -941,8 +1129,10 @@ function renderLeaves() {
   const activeEmps = employees.filter(e => e.status !== 'منتهي الخدمة');
   const totalBal   = activeEmps.reduce((s,e) => s + getEmpLeaveEntitlement(e).balance, 0);
   const lowBal     = activeEmps.filter(e => getEmpLeaveEntitlement(e).balance < 5).length;
-  const pending    = leaves.filter(l => l.status === 'معلق').length;
-  const approved   = leaves.filter(l => l.status === 'موافق').length;
+  const LEAVE_TYPES_KPI = ['سنوية','مرضية','أمومة','أبوة','حج','زواج','وفاة','طارئة','بدون راتب','استئذان'];
+  const leaveOnlyKPI = leaves.filter(l => LEAVE_TYPES_KPI.some(t => (l.type||'').includes(t)));
+  const pending    = leaveOnlyKPI.filter(l => l.status === 'معلق').length;
+  const approved   = leaveOnlyKPI.filter(l => l.status === 'موافق').length;
   const totalLeaveValue = activeEmps.reduce((s,e) => {
   const bal      = getEmpLeaveEntitlement(e).balance;
   const dayRate  = (e.basic+(e.housing||0)+(e.commission||0)+(e.other||0)) / 30;
@@ -965,7 +1155,10 @@ function renderLeaves() {
   }
   if(pendingTab) pendingTab.textContent = pending > 0 ? `معلقة (${pending})` : 'معلقة';
   renderLeaveBalanceCards();
-  let list = currentLeaveFilter==='all' ? leaves : leaves.filter(l=>
+  // أنواع الإجازات فقط في هذه الصفحة
+  const LEAVE_TYPES_ONLY = ['سنوية','مرضية','أمومة','أبوة','حج','زواج','وفاة','طارئة','بدون راتب','استئذان'];
+  const leaveOnly = leaves.filter(l => LEAVE_TYPES_ONLY.some(t => (l.type||'').includes(t)));
+  let list = currentLeaveFilter==='all' ? leaveOnly : leaveOnly.filter(l=>
   currentLeaveFilter==='pending'  ? l.status==='معلق'  :
   currentLeaveFilter==='approved' ? l.status==='موافق' : l.status==='مرفوض');
 
@@ -1292,8 +1485,21 @@ function calcEmpSalaryRow(e, month, year, otBasis) {
   const absDeduct  = Math.round(fullDailyRate * (e.absence||0));
   const lateDeduct = Math.round(fullHourlyRate * (e.lateness||0));
 
+  // الخصم التأديبي حسب لائحة الشركة (م.66)
+  let disciplinaryDeduct = 0;
+  if(companySettings.absenceMode !== 'simple' && e.absence > 0) {
+    const penalty = calcOfficialPenalty(e, e.absence || 0);
+    disciplinaryDeduct = Math.round(penalty.disciplinaryDeduct || 0);
+  }
+  // إضافة الخصم التأديبي المحفوظ في سجل المخالفات
+  const monthKey = `${year}-${String(['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'].indexOf(month||'يناير')+1).padStart(2,'0')}`;
+  const monthVioDeduct = (e.violations||[])
+    .filter(v => v.date?.startsWith(monthKey) && v.disciplinaryDeduct > 0 && v.status !== 'excuse_approved' && !v.deductCancelled)
+    .reduce((s,v) => s + (v.disciplinaryDeduct||0), 0);
+  const totalDisciplinary = Math.round(Math.max(disciplinaryDeduct, monthVioDeduct));
+
   const grossTotal = base + overtimePay + (e.bonus||0);
-  const totalDeductions = absDeduct + lateDeduct + empIns + (e.loans||0) + (e.otherDeduct||0);
+  const totalDeductions = absDeduct + lateDeduct + totalDisciplinary + empIns + (e.loans||0) + (e.otherDeduct||0);
   const maxAllowedDeduct = Math.round(grossTotal * 0.5);
   const deductOver50 = totalDeductions > maxAllowedDeduct;
 
@@ -1304,13 +1510,139 @@ function calcEmpSalaryRow(e, month, year, otBasis) {
   e, base, fullBase, workDays, isProrated, proratedRatio,
   empIns, erIns, net, insBase, ir, err,
   grossTotal, absDeduct, lateDeduct, overtimePay,
-  totalDeductions, deductOver50, maxAllowedDeduct, employerCost
+  totalDisciplinary, totalDeductions, deductOver50, maxAllowedDeduct, employerCost
   };
 }
 
 function renderSalaryKPIs() {
   renderSalary();
 }
+async function syncAttendanceToSalary() {
+  const btn = document.getElementById('sync-att-btn');
+  if(btn) { btn.innerHTML = '⏳ جاري المزامنة...'; btn.disabled = true; }
+
+  try {
+    const month  = document.getElementById('sal-month').value;
+    const year   = document.getElementById('sal-year').value;
+
+    const monthMap = {يناير:1,فبراير:2,مارس:3,أبريل:4,مايو:5,يونيو:6,يوليو:7,أغسطس:8,سبتمبر:9,أكتوبر:10,نوفمبر:11,ديسمبر:12};
+    const monthNum = monthMap[month] || new Date().getMonth()+1;
+    const yr = parseInt(year) || new Date().getFullYear();
+    const monthStr = `${yr}-${String(monthNum).padStart(2,'0')}`;
+
+    // دائماً من أول الشهر حتى اليوم الحالي
+    const today = new Date().toISOString().split('T')[0];
+    const fromDate = `${monthStr}-01`;
+    const toDate   = today;
+
+    // جلب سجلات الحضور من Supabase للفترة المحددة
+    const { data: attRecords, error } = await rikazDB
+      .from('attendance')
+      .select('*')
+      .eq('user_id', rikazTenantId)
+      .gte('timestamp', fromDate)
+      .lte('timestamp', toDate + 'T23:59:59');
+
+    if(error) throw error;
+
+    if(!attRecords?.length) {
+      showNotif('لا يوجد سجلات حضور لهذا الشهر في البوابة', 'info');
+      if(btn) { btn.innerHTML = '🔄 مزامنة الحضور'; btn.disabled = false; }
+      return;
+    }
+
+    // حساب التأخر والغياب لكل موظف
+    const empStats = {};
+
+    // أيام العمل في الفترة المحددة فقط
+    const rangeFrom = new Date(fromDate);
+    const rangeTo   = new Date(toDate);
+    const fromDay   = rangeFrom.getDate();
+    const toDay     = rangeTo.getDate();
+    const fromMon   = rangeFrom.getMonth()+1;
+    const fromYr    = rangeFrom.getFullYear();
+    const workDaysSoFar = getWorkDaysBetween(fromYr, fromMon, fromDay, toDay);
+
+    // تجميع بصمات كل موظف
+    attRecords.forEach(rec => {
+      const id = rec.emp_id || rec.emp_name;
+      if(!id) return;
+      if(!empStats[id]) empStats[id] = { checkins: [], checkouts: [], lateMinutes: 0 };
+      if(rec.type === 'checkin') empStats[id].checkins.push(rec);
+      if(rec.type === 'checkout') empStats[id].checkouts.push(rec);
+    });
+
+    // حساب التأخر والغياب
+    let syncCount = 0;
+    employees.forEach(emp => {
+      if(emp.status === 'منتهي الخدمة') return;
+      const stats = empStats[emp.empId] || empStats[emp.name];
+      if(!stats) return;
+
+      // أيام الحضور في الفترة المحددة فقط
+      const presentDays = new Set(
+        stats.checkins
+          .map(r => r.timestamp?.split('T')[0])
+          .filter(d => d && d >= fromDate && d <= toDate)
+      ).size;
+      const absenceDays = Math.max(0, workDaysSoFar - presentDays);
+
+      // حساب التأخر بالساعات
+      let lateHours = 0;
+      const sp = getEmpShiftPolicy(emp);
+      if(sp?.checkin) {
+        const [h,m] = sp.checkin.split(':').map(Number);
+        const limitMins = h*60 + m + (sp.grace || 15);
+        stats.checkins.forEach(rec => {
+          const t = new Date(rec.timestamp);
+          const inMins = t.getHours()*60 + t.getMinutes();
+          if(inMins > limitMins) lateHours += (inMins - limitMins) / 60;
+        });
+      }
+
+      emp.absence  = Math.round(absenceDays * 10) / 10;
+      emp.lateness = Math.round(lateHours * 100) / 100;
+      syncCount++;
+    });
+
+    autoSave();
+    renderSalary();
+    showNotif(`✅ مزامنة ${monthStr} (1 → ${today.split('-')[2]}) — ${syncCount} موظف | ${attRecords.length} سجل`);
+
+  } catch(e) {
+    showNotif('خطأ في المزامنة: ' + e.message, 'error');
+  }
+
+  if(btn) { btn.innerHTML = '🔄 مزامنة الحضور'; btn.disabled = false; }
+}
+
+function getWorkDaysInMonth(year, month) {
+  return getWorkDaysBetween(year, month, 1, new Date(year, month, 0).getDate());
+}
+
+function getWorkDaysBetween(year, month, fromDay, toDay) {
+  let days = 0;
+  const daysPerWeek = companySettings.workDaysPerWeek || 5;
+  for(let d = fromDay; d <= toDay; d++) {
+    const dow = new Date(year, month-1, d).getDay();
+    if(daysPerWeek === 5 && (dow === 5 || dow === 6)) continue;
+    if(daysPerWeek === 6 && dow === 5) continue;
+    days++;
+  }
+  return days;
+}
+
+function getEmpShiftPolicy(emp) {
+  if(!workLocations?.length) return null;
+  for(const loc of workLocations) {
+    const assigned = loc.assignedEmps || [];
+    if(assigned.includes(emp.name) || assigned.includes(emp.empId)) {
+      try { return JSON.parse(loc.shift_policy || '{}'); } catch(_) {}
+    }
+  }
+  return null;
+}
+
 function renderSalary() {
   syncLoansToEmployees();
   const month   = document.getElementById('sal-month').value;
@@ -1356,7 +1688,7 @@ function renderSalary() {
   ${newThisMonth>0?`<div class="sal-card"><div class="sal-lbl">جدد هذا الشهر<span class="sal-accent" style="background:var(--o900)"></span></div><div class="sal-val" style="color:var(--o900)">${newThisMonth} <span class="txt-muted-12-5">موظف</span></div></div>`:''}
   ${warnCount>0?`<div class="sal-card"><div class="sal-lbl">تجاوز خصم 50%<span class="sal-accent" style="background:var(--r900)"></span></div><div class="sal-val red">${warnCount} <span class="txt-muted-12-5">موظف</span></div></div>`:''}`;
 
-  document.getElementById('sal-tbody').innerHTML=rows.map(({e,base,fullBase,workDays,isProrated,empIns,erIns,net,insBase,ir,err,grossTotal,absDeduct,lateDeduct,overtimePay,deductOver50,maxAllowedDeduct,totalDeductions,employerCost})=>`
+  document.getElementById('sal-tbody').innerHTML=rows.map(({e,base,fullBase,workDays,isProrated,empIns,erIns,net,insBase,ir,err,grossTotal,absDeduct,lateDeduct,overtimePay,totalDisciplinary,deductOver50,maxAllowedDeduct,totalDeductions,employerCost})=>`
   <tr style="background:${net<0?'var(--r100)':isProrated?'#FFFDE7':''}"><td class="col-sticky" style="font-weight:600"><div style="font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:160px" title="${e.name}">${e.name}</div><div style="font-size:10px;color:var(--muted);font-family:monospace">${e.empId||'—'}</div>
   ${isProrated?`<div style="font-size:9px;color:var(--o900);font-weight:700">🆕 ${workDays.toFixed(1)}/30 يوم</div>`:''}
   ${deductOver50?`<div style="font-size:9px;color:var(--r900);font-weight:700">⚠️ م.91</div>`:''}
@@ -1373,6 +1705,7 @@ function renderSalary() {
   </td><td><input class="sal-input ${absDeduct>0?'abs':''}" type="number" min="0" max="30" value="${e.absence||0}"
   onchange="updateSalField(${e.id},'absence',this.value)" title="أيام الغياب">
   ${absDeduct>0?`<div style="font-size:10px;color:var(--r900);font-weight:600;margin-top:1px">−${fmt(absDeduct)}</div>`:''}
+  ${totalDisciplinary>0?`<div style="font-size:10px;color:var(--o900);font-weight:600;margin-top:1px">⚖️−${fmt(totalDisciplinary)}</div>`:''}
   </td><td><input class="sal-input ${lateDeduct>0?'late':''}" type="number" min="0" value="${e.lateness||0}"
   onchange="updateSalField(${e.id},'lateness',this.value)" title="ساعات التأخير">
   ${lateDeduct>0?`<div style="font-size:10px;color:var(--r900);font-weight:600;margin-top:1px">−${fmt(lateDeduct)}</div>`:''}
@@ -2122,7 +2455,7 @@ function renderDashboard() {
   const dateEl = document.getElementById('dash-date');
   if(dateEl) dateEl.textContent = new Date().toLocaleDateString('ar-SA-u-nu-latn',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
   document.getElementById('dash-kpis').innerHTML=`
-  <div class="kpi" style="cursor:pointer;transition:transform .15s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''" onclick="showPage('emp')"><div style="font-size:26px;margin-bottom:4px">👥</div><div class="kpi-val">${active.length}</div><div class="kpi-lbl">الموظفون النشطون</div></div><div class="kpi green" style="cursor:pointer;transition:transform .15s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''" onclick="showPage('salary')"><div style="font-size:26px;margin-bottom:4px">💰</div><div class="kpi-val">${fmt(totSalary)}</div><div class="kpi-lbl">إجمالي الرواتب</div></div><div class="kpi blue"><div style="font-size:26px;margin-bottom:4px">🇸🇦</div><div class="kpi-val">${Math.round(saudis/Math.max(active.length,1)*100)}%</div><div class="kpi-lbl">نسبة السعودة</div></div><div class="kpi ${pending>0?'red':''}" style="cursor:pointer;transition:transform .15s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''" onclick="showPage('leave')"><div style="font-size:26px;margin-bottom:4px">🌴</div><div class="kpi-val">${pending}</div><div class="kpi-lbl">إجازات معلقة</div></div>
+  <div class="kpi" style="cursor:pointer;transition:transform .15s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''" onclick="showPage('emp')"><div style="font-size:26px;margin-bottom:4px">👥</div><div class="kpi-val">${active.length}</div><div class="kpi-lbl">الموظفون النشطون</div></div><div class="kpi green" style="cursor:pointer;transition:transform .15s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''" onclick="showPage('salary')"><div style="font-size:26px;margin-bottom:4px">💰</div><div class="kpi-val">${fmt(totSalary)}</div><div class="kpi-lbl">إجمالي الرواتب</div></div><div class="kpi blue"><div style="font-size:26px;margin-bottom:4px">🇸🇦</div><div class="kpi-val">${Math.round(saudis/Math.max(active.length,1)*100)}%</div><div class="kpi-lbl">نسبة السعودة</div></div><div class="kpi ${pending>0?'red':''}" style="cursor:pointer;transition:transform .15s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''" onclick="showPage('leave')"><div style="font-size:26px;margin-bottom:4px">🌴</div><div class="kpi-val">${pending}</div><div class="kpi-lbl">طلبات معلقة</div></div>
   ${activeLoansCount>0?`<div class="kpi" style="cursor:pointer;border-color:#FFCC80;background:#FFF8E1;transition:transform .15s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''" onclick="showPage('salary');setTimeout(()=>switchSalTab('loans',document.getElementById('sal-tab-loans')),200)"><div style="font-size:26px;margin-bottom:4px">💳</div><div class="kpi-val" style="color:var(--o900)">${activeLoansCount}</div><div class="kpi-lbl" style="color:var(--o900)">سلف نشطة</div></div>`:''}
   ${terminated>0?`<div class="kpi" style="cursor:pointer;border-color:#FFCDD2;background:var(--r100);transition:transform .15s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''" onclick="showPage('emp');setTimeout(()=>{const t=document.getElementById('tab-archived');const ta=document.getElementById('tab-active');if(t&&ta){ta.classList.remove('active');t.classList.add('active');renderEmps(employees.filter(e=>e.status==='منتهي الخدمة'));}},200)"><div style="font-size:26px;margin-bottom:4px">🗂️</div><div class="kpi-val" style="color:var(--r900)">${terminated}</div><div class="kpi-lbl" style="color:var(--r900)">منتهو الخدمة</div></div>`:''}
   `;
@@ -3314,43 +3647,392 @@ async function loadManagers() {
   } catch(e) { console.warn('loadManagers:', e.message); }
 }
 
+const MGR_PERMS_LABELS = {
+  salary:'💰 الرواتب', leave:'🌴 الإجازات', loan:'💳 السلف',
+  eos:'📋 نهاية الخدمة', attendance:'⏱️ الحضور',
+  violations:'⚠️ المخالفات', custom:'📌 مخصص'
+};
+
 function renderManagersPage() {
+  const wrap = document.getElementById('mgr-tbody')?.closest('.tbl-wrap') || document.getElementById('mgr-tbody')?.parentElement;
   const tbody = document.getElementById('mgr-tbody');
   const kpis  = document.getElementById('mgr-kpis');
   if(!tbody) return;
 
-  const roleLabels = {manager:'👔 مدير قسم', hr:'🗂️ HR مساعد', gm:'👑 مدير عام'};
+  const active = employees.filter(e => e.status !== 'منتهي الخدمة');
 
-  if(!managersData.length) {
-    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:20px">لا يوجد مديرون — أضف مدير</td></tr>';
+  // بناء قائمة المديرين من الإدارات
+  const divMgrs = [];
+  (companySettings.divisions||[]).forEach(div => {
+    const divEmps = active.filter(e => e.division === div.name);
+    (div.managers||[{name:div.manager||'',perms:[]}]).filter(m=>m.name).forEach(m => {
+      const emp = active.find(e => e.name===m.name || e.empId===m.name);
+      divMgrs.push({
+        _divMgr: true,
+        _divId: div.id,
+        _divName: div.name,
+        _mgrName: m.name,
+        _mgrEmail: emp?.email || '',
+        _perms: m.perms || [],
+        _empCount: divEmps.length,
+        _emps: divEmps,
+      });
+    });
+  });
+
+  // مديرون مضافون يدوياً
+  const manualMgrs = managersData || [];
+
+  if(!divMgrs.length && !manualMgrs.length) {
+    tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:32px">
+      لا يوجد مديرون — أضف مديرين من 🏗️ الهيكل التنظيمي أو من هنا
+    </td></tr>`;
     return;
   }
 
-  tbody.innerHTML = managersData.map(m => {
-    const scopeParts = [];
-    if(m.dept_filter?.length) scopeParts.push(m.dept_filter.join('، '));
-    if(m.manual_emp_ids?.length) scopeParts.push(`${m.manual_emp_ids.length} موظف يدوي`);
-    if(m.role === 'gm' || m.role === 'hr') scopeParts.push('جميع الموظفين');
+  let rows = '';
 
+  // ── مديرو الإدارات ──
+  if(divMgrs.length) {
+    rows += `<tr style="background:var(--b50)">
+      <td colspan="5" style="font-size:12px;font-weight:700;color:var(--b800);padding:8px 14px">👔 مديرو الإدارات</td>
+    </tr>`;
+
+    divMgrs.forEach(m => {
+      const permsHtml = m._perms.length
+        ? m._perms.map(p=>`<span style="background:var(--b100);color:var(--b800);padding:1px 6px;border-radius:10px;font-size:10px;margin-left:3px">${MGR_PERMS_LABELS[p]||p}</span>`).join('')
+        : `<span style="color:var(--muted);font-size:11px">لا صلاحيات</span>`;
+
+      // أول 3 موظفين
+      const empPreview = m._emps.slice(0,3).map(e=>`
+        <span style="display:inline-flex;align-items:center;gap:4px;background:var(--b50);padding:2px 7px;border-radius:12px;font-size:10px;margin-left:4px;margin-bottom:3px">
+          <span style="width:16px;height:16px;border-radius:50%;background:var(--b200);color:var(--b800);display:inline-flex;align-items:center;justify-content:center;font-size:8px;font-weight:700">
+            ${e.name.split(' ').map(w=>w[0]||'').slice(0,2).join('')}
+          </span>
+          ${e.name.split(' ').slice(0,2).join(' ')}
+        </span>`).join('');
+
+      rows += `
+      <tr id="mgr-row-div-${m._divId}-${m._mgrName.replace(/\s/g,'_')}">
+        <td>
+          <div style="display:flex;align-items:center;gap:8px">
+            <div style="width:34px;height:34px;border-radius:50%;background:var(--b800);color:#D4AF37;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">
+              ${m._mgrName.split(' ').slice(0,2).map(w=>w[0]||'').join('')}
+            </div>
+            <div>
+              <div style="font-weight:600;font-size:13px">${m._mgrName}</div>
+              <div style="font-size:11px;color:var(--muted)">${m._mgrEmail||'—'}</div>
+            </div>
+          </div>
+        </td>
+        <td>
+          <span style="background:var(--b100);color:var(--b800);padding:2px 10px;border-radius:12px;font-size:12px;font-weight:600">
+            🏢 ${m._divName}
+          </span>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px">
+            👥 ${m._empCount} موظف
+          </div>
+          <div style="margin-top:5px;flex-wrap:wrap">${empPreview}
+            ${m._emps.length>3?`<span style="font-size:10px;color:var(--muted)">+${m._emps.length-3} آخرين</span>`:''}
+          </div>
+        </td>
+        <td>${permsHtml}</td>
+        <td>
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <button onclick="openDivMgrPermsModal('${m._divId}','${m._mgrName.replace(/'/g,"\\'")}',event)"
+              style="padding:4px 10px;background:var(--b50);border:1px solid var(--border);border-radius:6px;font-size:11px;color:var(--b700);cursor:pointer">
+              ⚙️ الصلاحيات
+            </button>
+            <button onclick="copyMgrLink('${m._mgrName.replace(/'/g,"\\'")}',event)"
+              style="padding:4px 10px;background:var(--b50);border:1px solid var(--border);border-radius:6px;font-size:11px;color:var(--b700);cursor:pointer">
+              🔗 رابط البوابة
+            </button>
+          </div>
+        </td>
+      </tr>`;
+    });
+  }
+
+  // ── المديرون اليدويون ──
+  if(manualMgrs.length) {
+    rows += `<tr style="background:var(--b50)">
+      <td colspan="5" style="font-size:12px;font-weight:700;color:var(--b800);padding:8px 14px">👥 مديرون مضافون يدوياً</td>
+    </tr>`;
+    const roleLabels = {manager:'👔 مدير قسم', hr:'🗂️ HR', gm:'👑 مدير عام'};
+    manualMgrs.forEach(m => {
+      const scopeParts=[];
+      if(m.dept_filter?.length) scopeParts.push(m.dept_filter.join('، '));
+      if(m.manual_emp_ids?.length) scopeParts.push(m.manual_emp_ids.length+' موظف');
+      if(m.role==='gm'||m.role==='hr') scopeParts.push('الكل');
+      rows += `<tr>
+        <td style="font-weight:600">${m.manager_name}</td>
+        <td style="font-size:12px;color:var(--muted)">${m.manager_email}</td>
+        <td><span class="badge b-blue">${roleLabels[m.role]||m.role}</span></td>
+        <td style="font-size:12px">${scopeParts.join(' | ')||'—'}</td>
+        <td><button onclick="deleteManager('${m.id}')"
+          style="background:none;border:1px solid var(--r900);border-radius:6px;padding:3px 10px;font-size:11px;color:var(--r900);cursor:pointer">حذف</button></td>
+      </tr>`;
+    });
+  }
+
+  tbody.innerHTML = rows;
+
+  const totalMgrs = divMgrs.length + manualMgrs.length;
+  if(kpis) kpis.innerHTML = `
+    <div class="kpi"><div class="kpi-val">${totalMgrs}</div><div class="kpi-lbl">إجمالي المديرين</div></div>
+    <div class="kpi"><div class="kpi-val">${divMgrs.length}</div><div class="kpi-lbl">مديرو الإدارات</div></div>
+    <div class="kpi"><div class="kpi-val">${divMgrs.filter(m=>m._perms.length>0).length}</div><div class="kpi-lbl">لديهم صلاحيات</div></div>
+  `;
+}
+
+function openDivMgrPermsModal(divId, mgrName, evt) {
+  evt?.stopPropagation();
+  const div = companySettings.divisions?.find(d => String(d.id) === String(divId));
+  if(!div) return;
+  if(!div.managers) div.managers = [{name:div.manager||'',perms:[]}];
+  const mgr = div.managers.find(m=>m.name===mgrName) || {name:mgrName, perms:[]};
+  if(!div.managers.find(m=>m.name===mgrName)) div.managers.push(mgr);
+  const currentPerms = mgr.perms || [];
+
+  const modal = document.createElement('div');
+  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;display:flex;align-items:center;justify-content:center';
+  modal.innerHTML = `
+    <div style="background:#fff;border-radius:16px;padding:24px;width:min(420px,90vw);direction:rtl">
+      <div style="font-weight:700;font-size:15px;margin-bottom:4px;color:var(--b900)">⚙️ صلاحيات المدير</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:14px">${mgrName} · ${div.name}</div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
+        ${Object.entries(MGR_PERMS_LABELS).map(([id,label]) => `
+          <label style="display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--border);border-radius:8px;cursor:pointer"
+            onmouseover="this.style.background='var(--b50)'" onmouseout="this.style.background=''">
+            <input type="checkbox" id="dp-${id}" ${currentPerms.includes(id)?'checked':''} style="width:15px;height:15px;cursor:pointer;flex-shrink:0">
+            <div>
+              <div style="font-size:13px;font-weight:600;color:var(--b900)">${label}</div>
+            </div>
+          </label>`).join('')}
+      </div>
+      <div style="display:flex;gap:8px">
+        <button onclick="this.closest('div[style*=fixed]').remove()"
+          style="flex:1;padding:10px;background:#fff;border:1px solid var(--border);border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit">إلغاء</button>
+        <button onclick="saveDivMgrPerms('${divId}','${mgrName.replace(/'/g,"\\'")}',this.closest('div[style*=fixed]'))"
+          style="flex:1;padding:10px;background:var(--b800);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">حفظ</button>
+      </div>
+    </div>`;
+  document.body.appendChild(modal);
+}
+
+function saveDivMgrPerms(divId, mgrName, modal) {
+  const div = companySettings.divisions?.find(d => String(d.id) === String(divId));
+  if(!div) return;
+  if(!div.managers) div.managers = [];
+  let mgr = div.managers.find(m=>m.name===mgrName);
+  if(!mgr) { mgr={name:mgrName,perms:[]}; div.managers.push(mgr); }
+  mgr.perms = Object.keys(MGR_PERMS_LABELS).filter(id => document.getElementById('dp-'+id)?.checked);
+  autoSave();
+  renderManagersPage();
+  modal.remove();
+  showNotif(`✅ تم حفظ صلاحيات ${mgrName}`);
+}
+
+function copyMgrLink(mgrName, evt) {
+  evt?.stopPropagation();
+  const url = window.location.href.replace('rikaz.html','rikaz-manager.html');
+  navigator.clipboard?.writeText(url).then(()=>showNotif(`📋 تم نسخ رابط البوابة`));
+  showNotif(`🔗 أرسل رابط البوابة لـ ${mgrName}: rikaz-manager.html`);
+}
+
+function switchSettingsTab(tab, btn) {
+  ['company','managers','divisions','chains','requests','absence','leave','pins'].forEach(t => {
+    const panel = document.getElementById('spanel-'+t);
+    const tabEl = document.getElementById('stab-'+t);
+    if(panel) panel.style.display = t===tab ? 'block' : 'none';
+    if(tabEl) tabEl.classList.toggle('active', t===tab);
+  });
+  if(tab==='company')   loadCompanyInfoPanel();
+  if(tab==='managers')  renderManagersPage();
+  if(tab==='divisions') renderDivisionsList();
+  if(tab==='chains')    renderApprovalChains();
+  if(tab==='requests')  { renderCustomReqs('office'); renderCustomReqs('field'); }
+  if(tab==='absence')   loadAbsencePanel();
+  if(tab==='leave')     loadLeavePolicyPanel();
+  if(tab==='pins')      loadPinsPanel();
+}
+
+function loadLeavePolicyPanel() {
+  const inner = document.getElementById('spanel-leave-inner');
+  if(!inner) return;
+
+  // نسخ محتوى سياسة الإجازات من الإعدادات الأصلية
+  const policy = companySettings.leavePolicy || 'accumulate';
+  const carryMax = companySettings.carryoverMax || 30;
+  const annualDays = companySettings.annualLeaveDays || 21;
+
+  inner.innerHTML = `
+    <div class="card-title">🌴 سياسة الإجازات السنوية</div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:16px">وفق نظام العمل السعودي — المادة 109</div>
+
+    <div style="margin-bottom:16px">
+      <div style="font-weight:600;font-size:13px;margin-bottom:10px">أيام الإجازة السنوية:</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div style="padding:12px;background:var(--b50);border-radius:8px;border:1px solid var(--border)">
+          <div style="font-size:11px;color:var(--muted)">أقل من 5 سنوات</div>
+          <div style="display:flex;align-items:center;gap:8px;margin-top:4px">
+            <input id="lp-days-lt5" type="number" value="${companySettings.annualLeaveDays||21}" min="21" max="30"
+              style="width:70px;padding:6px;border:1px solid var(--border);border-radius:6px;font-size:14px;font-weight:700">
+            <span style="font-size:12px;color:var(--muted)">يوم</span>
+          </div>
+        </div>
+        <div style="padding:12px;background:var(--b50);border-radius:8px;border:1px solid var(--border)">
+          <div style="font-size:11px;color:var(--muted)">5 سنوات فأكثر</div>
+          <div style="display:flex;align-items:center;gap:8px;margin-top:4px">
+            <input id="lp-days-gt5" type="number" value="${companySettings.annualLeaveDays5||30}" min="30" max="30"
+              style="width:70px;padding:6px;border:1px solid var(--border);border-radius:6px;font-size:14px;font-weight:700">
+            <span style="font-size:12px;color:var(--muted)">يوم</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="font-weight:600;font-size:13px;margin-bottom:10px">سياسة الرصيد المتراكم:</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
+      <label style="display:flex;align-items:flex-start;gap:10px;padding:12px;border:2px solid ${policy==='accumulate'?'var(--b600)':'var(--border)'};border-radius:8px;cursor:pointer;background:${policy==='accumulate'?'var(--b50)':'#fff'}">
+        <input type="radio" name="lp-policy" value="accumulate" id="lp-acc" ${policy==='accumulate'?'checked':''} onchange="onLeavePolicyChange()" style="margin-top:2px;flex-shrink:0">
+        <div>
+          <div style="font-weight:700;font-size:13px">🔄 تراكم كامل بلا حد <span style="font-size:10px;background:#FDF6DC;color:#C9960C;padding:2px 8px;border-radius:10px">الافتراضي النظامي</span></div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px">الأضمن نظامياً — المادة 109 نظام العمل</div>
+        </div>
+      </label>
+      <label style="display:flex;align-items:flex-start;gap:10px;padding:12px;border:2px solid ${policy==='carryover'?'var(--b600)':'var(--border)'};border-radius:8px;cursor:pointer;background:${policy==='carryover'?'var(--b50)':'#fff'}">
+        <input type="radio" name="lp-policy" value="carryover" id="lp-carry" ${policy==='carryover'?'checked':''} onchange="onLeavePolicyChange()" style="margin-top:2px;flex-shrink:0">
+        <div style="flex:1">
+          <div style="font-weight:700;font-size:13px">📦 ترحيل بحد أقصى</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px">ما زاد يُصرف نقداً أو يسقط</div>
+          <div id="lp-carry-max-wrap" style="display:${policy==='carryover'?'flex':'none'};align-items:center;gap:8px;margin-top:8px">
+            <span style="font-size:12px">الحد الأقصى:</span>
+            <input type="number" id="cs-carryover-max" value="${carryMax}" min="1" max="365"
+              style="width:70px;padding:6px;border:1px solid var(--border);border-radius:6px;font-size:13px">
+            <span style="font-size:12px;color:var(--muted)">يوم</span>
+          </div>
+        </div>
+      </label>
+      <label style="display:flex;align-items:flex-start;gap:10px;padding:12px;border:2px solid ${policy==='expire'?'var(--b600)':'var(--border)'};border-radius:8px;cursor:pointer;background:${policy==='expire'?'var(--b50)':'#fff'}">
+        <input type="radio" name="lp-policy" value="expire" id="lp-exp" ${policy==='expire'?'checked':''} onchange="onLeavePolicyChange()" style="margin-top:2px;flex-shrink:0">
+        <div>
+          <div style="font-weight:700;font-size:13px">🗓️ تسقط بنهاية السنة</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px">الرصيد غير المستخدم يسقط عند انتهاء السنة</div>
+        </div>
+      </label>
+    </div>
+    <div id="cs-legal-note" style="font-size:11px;padding:10px;border-radius:8px;background:var(--y50);border:1px solid #FFF176;color:#5D4037;display:none;margin-bottom:12px"></div>
+    <button class="btn btn-primary" onclick="saveLeavePolicyFromPanel()">💾 حفظ السياسة</button>`;
+}
+
+function saveLeavePolicyFromPanel() {
+  const policy = document.querySelector('input[name="lp-policy"]:checked')?.value || 'accumulate';
+  companySettings.leavePolicy = policy;
+  companySettings.carryoverMax = parseInt(document.getElementById('cs-carryover-max')?.value)||30;
+  companySettings.annualLeaveDays = parseInt(document.getElementById('lp-days-lt5')?.value)||21;
+  companySettings.annualLeaveDays5 = parseInt(document.getElementById('lp-days-gt5')?.value)||30;
+  autoSave();
+  showNotif('✅ تم حفظ سياسة الإجازات');
+}
+
+function loadPinsPanel() {
+  const tbody = document.getElementById('pins-tbody-settings');
+  if(!tbody) return;
+
+  const active = employees.filter(e => e.status !== 'منتهي الخدمة');
+  if(!active.length) {
+    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:20px">لا يوجد موظفون</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = active.map((e,i) => {
+    const pin = e.pin || '';
     return `<tr>
-      <td style="font-weight:600">${m.manager_name}</td>
-      <td style="font-size:12px;color:var(--muted)" dir="ltr">${m.manager_email}</td>
-      <td><span class="badge b-blue">${roleLabels[m.role]||m.role}</span></td>
-      <td style="font-size:12px">${scopeParts.join(' | ') || '—'}</td>
+      <td style="color:var(--muted)">${i+1}</td>
+      <td style="font-weight:600">${e.name}</td>
+      <td style="font-family:monospace;font-size:12px">${e.empId||'—'}</td>
       <td>
-        <button onclick="deleteManager('${m.id}')"
-          style="background:none;border:1px solid var(--r900);border-radius:6px;padding:3px 10px;font-size:11px;color:var(--r900);cursor:pointer">
-          حذف
-        </button>
+        <div style="display:flex;align-items:center;gap:6px">
+          <input type="text" value="${pin}" maxlength="6" id="pin-inp-${e.id}"
+            style="width:80px;padding:5px 8px;border:1px solid var(--border);border-radius:6px;font-family:monospace;font-size:14px;font-weight:700;letter-spacing:2px"
+            oninput="this.value=this.value.replace(/\D/g,'')">
+          <button onclick="saveEmpPin(${e.id})" style="padding:4px 10px;background:var(--b800);color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer">حفظ</button>
+        </div>
+      </td>
+      <td>
+        <button onclick="genSinglePin(${e.id})" style="padding:4px 10px;background:var(--b50);border:1px solid var(--border);border-radius:6px;font-size:11px;cursor:pointer;color:var(--b700)">🔄 توليد</button>
       </td>
     </tr>`;
   }).join('');
+}
 
-  if(kpis) kpis.innerHTML = `
-    <div class="kpi"><div class="kpi-val">${managersData.length}</div><div class="kpi-lbl">المديرون</div></div>
-    <div class="kpi"><div class="kpi-val">${managersData.filter(m=>m.role==='manager').length}</div><div class="kpi-lbl">مدير قسم</div></div>
-    <div class="kpi"><div class="kpi-val">${managersData.filter(m=>m.role==='gm').length}</div><div class="kpi-lbl">مدير عام</div></div>
-  `;
+function saveEmpPin(empId) {
+  const emp = employees.find(e=>e.id===empId);
+  if(!emp) return;
+  const val = document.getElementById('pin-inp-'+empId)?.value.trim();
+  if(val.length < 4) { showNotif('PIN يجب أن يكون 4 أرقام على الأقل','error'); return; }
+  emp.pin = val;
+  autoSave();
+  showNotif(`✅ تم حفظ PIN لـ ${emp.name.split(' ')[0]}`);
+}
+
+function genSinglePin(empId) {
+  const emp = employees.find(e=>e.id===empId);
+  if(!emp) return;
+  const pin = String(Math.floor(1000+Math.random()*9000));
+  emp.pin = pin;
+  const inp = document.getElementById('pin-inp-'+empId);
+  if(inp) inp.value = pin;
+  autoSave();
+  showNotif(`🔄 تم توليد PIN جديد لـ ${emp.name.split(' ')[0]}: ${pin}`);
+}
+
+function loadCompanyInfoPanel() {
+  // تعبئة حقول الشركة
+  const f = (id, val) => { const el=document.getElementById(id); if(el) el.value=val||''; };
+  f('cs-name',    companySettings.name);
+  f('cs-cr',      companySettings.cr);
+  f('cs-city',    companySettings.city||'الرياض');
+  f('cs-phone',   companySettings.phone);
+  f('cs-email',   companySettings.email);
+  f('cs-address', companySettings.address);
+}
+
+function loadAbsencePanel() {
+  const inner = document.getElementById('spanel-absence-inner');
+  if(!inner) return;
+  // نسخ محتوى لائحة الغياب من الإعدادات الأصلية
+  inner.innerHTML = `
+    <div class="card-title">⚠️ لائحة الغياب والخصومات</div>
+    <div class="txt-muted-12-mb">وفق نظام العمل السعودي — المادة 64 و66</div>
+    <div style="margin-bottom:14px">
+      <div style="font-weight:600;font-size:13px;margin-bottom:8px">طريقة حساب الغياب:</div>
+      <label style="display:flex;align-items:flex-start;gap:8px;padding:10px;border:2px solid var(--b400);border-radius:8px;cursor:pointer;margin-bottom:6px;background:var(--b50)" id="absent-mode-official-lbl">
+        <input type="radio" name="absent-mode" value="official" id="absent-mode-official" onchange="updateAbsentModeUI()" style="margin-top:3px">
+        <div>
+          <div class="fw6-13">📋 حسب اللائحة الرسمية (موصى به)</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px">التدرج: 15% ← 25% ← 50% ← يوم كامل</div>
+        </div>
+      </label>
+      <label style="display:flex;align-items:flex-start;gap:8px;padding:10px;border:2px solid var(--border);border-radius:8px;cursor:pointer" id="absent-mode-simple-lbl">
+        <input type="radio" name="absent-mode" value="simple" id="absent-mode-simple" onchange="updateAbsentModeUI()" style="margin-top:3px">
+        <div>
+          <div class="fw6-13">📅 يوم مقابل يوم</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px">خصم يوم راتب عن كل يوم غياب مباشرة</div>
+        </div>
+      </label>
+    </div>
+    <div id="cs-legal-note" style="font-size:11px;padding:10px 12px;border-radius:8px;background:var(--y50);border:1px solid #FFF176;color:#5D4037;display:none"></div>
+    <div style="margin-top:14px;text-align:left">
+      <button class="btn btn-primary" onclick="saveCompanySettings()">💾 حفظ</button>
+    </div>`;
+
+  // تعيين القيم الحالية
+  const mode = companySettings.absenceMode || 'official';
+  const radioEl = document.getElementById('absent-mode-' + mode);
+  if(radioEl) radioEl.checked = true;
+  updateAbsentModeUI();
 }
 
 function updateMgrScopeUI() {
@@ -3546,6 +4228,201 @@ function deleteDivision(id) {
   updateDivisionSelects();
 }
 
+// ══ إدارة المديرين المتعددين ══
+
+const MGR_PERMS_LIST = [
+  {id:'salary',   label:'💰 الرواتب',      sub:'عرض وتعديل رواتب الموظفين'},
+  {id:'leave',    label:'🌴 الإجازات',      sub:'الموافقة على طلبات الإجازة'},
+  {id:'loan',     label:'💳 السلف',         sub:'الموافقة على طلبات السلف'},
+  {id:'eos',      label:'📋 نهاية الخدمة', sub:'عرض حسابات نهاية الخدمة'},
+  {id:'attendance',label:'⏱️ الحضور',       sub:'عرض سجلات الحضور والغياب'},
+  {id:'violations',label:'⚠️ المخالفات',   sub:'عرض وإصدار المخالفات'},
+  {id:'custom',   label:'📌 الصفحة المخصصة',sub:'الوصول للسجلات المخصصة'},
+];
+
+function liveSearchMgr(input, divId, mgrIdx) {
+  const q = input.value.trim();
+  const suggEl = document.getElementById(`msugg-${divId}-${mgrIdx}`);
+  if(!suggEl) return;
+  if(q.length < 1) { suggEl.style.display='none'; return; }
+
+  const matches = employees.filter(e =>
+    e.status !== 'منتهي الخدمة' && (
+      e.name.includes(q) ||
+      (e.empId||'').includes(q) ||
+      (e.title||'').includes(q)
+    )
+  ).slice(0, 7);
+
+  if(!matches.length) { suggEl.style.display='none'; return; }
+
+  suggEl.style.display = 'block';
+  suggEl.innerHTML = matches.map(e => `
+    <div style="display:flex;align-items:center;gap:8px;padding:7px 12px;cursor:pointer;font-size:12px;transition:background .1s"
+      onmouseover="this.style.background='var(--b50)'" onmouseout="this.style.background=''"
+      onmousedown="selectMgrFromSugg(event,'${divId}',${mgrIdx},'${e.name.replace(/'/g,"\\'")}')">
+      <div style="width:26px;height:26px;border-radius:50%;background:var(--b100);color:var(--b800);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0">
+        ${e.name.split(' ').slice(0,2).map(w=>w[0]||'').join('')}
+      </div>
+      <div>
+        <div style="font-weight:600;color:var(--b900)">${e.name}</div>
+        <div style="font-size:10px;color:var(--muted)">${e.title||e.job||'—'} · ${e.empId||'—'}</div>
+      </div>
+    </div>`).join('');
+
+  document.addEventListener('click', function close(ev) {
+    if(!suggEl.contains(ev.target) && ev.target !== input) {
+      suggEl.style.display='none';
+      document.removeEventListener('click', close);
+    }
+  });
+}
+
+function selectMgrFromSugg(evt, divId, mgrIdx, name) {
+  evt.preventDefault();
+  const row = document.getElementById(`mgr-row-${divId}-${mgrIdx}`);
+  if(row) row.querySelector('input').value = name;
+  const sugg = document.getElementById(`msugg-${divId}-${mgrIdx}`);
+  if(sugg) sugg.style.display='none';
+  saveMgrRow(divId, mgrIdx, name);
+}
+
+function saveMgrRow(divId, mgrIdx, name) {
+  const div = companySettings.divisions?.find(d => d.id == divId);
+  if(!div) return;
+  if(!div.managers) div.managers = [{name: div.manager||'', perms:[]}];
+  if(!div.managers[mgrIdx]) div.managers[mgrIdx] = {name:'', perms:[]};
+  div.managers[mgrIdx].name = name;
+  // حفظ أول مدير كـ manager الرئيسي أيضاً
+  if(mgrIdx === 0) div.manager = name;
+  autoSave();
+}
+
+function addDivManagerRow(divId) {
+  const div = companySettings.divisions?.find(d => d.id == divId);
+  if(!div) return;
+  if(!div.managers) div.managers = [{name: div.manager||'', perms:[]}];
+  div.managers.push({name:'', perms:[]});
+  autoSave();
+  renderDivisionsList();
+}
+
+function removeMgrRow(divId, mgrIdx) {
+  const div = companySettings.divisions?.find(d => d.id == divId);
+  if(!div || !div.managers) return;
+  div.managers.splice(mgrIdx, 1);
+  if(div.managers.length === 0) div.managers = [{name:'', perms:[]}];
+  div.manager = div.managers[0]?.name || '';
+  autoSave();
+  renderDivisionsList();
+}
+
+function openMgrPermsModal(divId, mgrIdx) {
+  const div = companySettings.divisions?.find(d => d.id == divId);
+  if(!div) return;
+  if(!div.managers) div.managers = [{name: div.manager||'', perms:[]}];
+  const mgr = div.managers[mgrIdx] || {name:'', perms:[]};
+  const currentPerms = mgr.perms || [];
+
+  const modal = document.createElement('div');
+  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;display:flex;align-items:center;justify-content:center';
+  modal.innerHTML = `
+    <div style="background:#fff;border-radius:16px;padding:24px;width:min(420px,90vw);direction:rtl">
+      <div style="font-weight:700;font-size:15px;margin-bottom:4px;color:var(--b900)">⚙️ صلاحيات المدير</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:14px">${mgr.name||'مدير جديد'} · ${div.name}</div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
+        ${MGR_PERMS_LIST.map(p => `
+          <label style="display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:background .12s"
+            onmouseover="this.style.background='var(--b50)'" onmouseout="this.style.background=''">
+            <input type="checkbox" id="perm-${p.id}" ${currentPerms.includes(p.id)?'checked':''} style="width:15px;height:15px;cursor:pointer;flex-shrink:0">
+            <div>
+              <div style="font-size:13px;font-weight:600;color:var(--b900)">${p.label}</div>
+              <div style="font-size:11px;color:var(--muted)">${p.sub}</div>
+            </div>
+          </label>`).join('')}
+      </div>
+      <div style="display:flex;gap:8px">
+        <button onclick="this.closest('div[style*=fixed]').remove()"
+          style="flex:1;padding:10px;background:#fff;border:1px solid var(--border);border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit">إلغاء</button>
+        <button onclick="saveMgrPerms(${divId},${mgrIdx},this.closest('div[style*=fixed]'))"
+          style="flex:1;padding:10px;background:var(--b800);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">حفظ</button>
+      </div>
+    </div>`;
+  document.body.appendChild(modal);
+}
+
+function saveMgrPerms(divId, mgrIdx, modal) {
+  const div = companySettings.divisions?.find(d => d.id == divId);
+  if(!div || !div.managers) return;
+  const perms = MGR_PERMS_LIST.filter(p => document.getElementById(`perm-${p.id}`)?.checked).map(p => p.id);
+  div.managers[mgrIdx].perms = perms;
+  autoSave();
+  renderDivisionsList();
+  modal.remove();
+  showNotif(`✅ تم حفظ صلاحيات ${div.managers[mgrIdx].name||'المدير'}`);
+}
+
+function filterMgrSuggestions(input, divId) {
+  const q = input.value.trim().toLowerCase();
+  const sugg = document.getElementById('mgr-sugg-' + divId);
+  if(!sugg) return;
+
+  if(!q) { sugg.style.display = 'none'; return; }
+
+  // البحث في الموظفين
+  const matches = employees.filter(e =>
+    e.status !== 'منتهي الخدمة' && (
+      e.name.toLowerCase().includes(q) ||
+      (e.empId||'').includes(q) ||
+      (e.title||'').toLowerCase().includes(q)
+    )
+  ).slice(0, 8);
+
+  if(!matches.length) { sugg.style.display = 'none'; return; }
+
+  sugg.style.display = 'block';
+  sugg.innerHTML = matches.map(e => `
+    <div onclick="selectMgrSuggestion('${divId}','${e.name.replace(/'/g,"\\'")}',event)"
+      style="padding:8px 12px;cursor:pointer;display:flex;align-items:center;gap:8px;font-size:12px;transition:background .1s"
+      onmouseover="this.style.background='var(--b50)'" onmouseout="this.style.background=''">
+      <div style="width:28px;height:28px;border-radius:50%;background:var(--b100);color:var(--b800);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0">
+        ${e.name.split(' ').slice(0,2).map(w=>w[0]).join('')}
+      </div>
+      <div>
+        <div style="font-weight:600;color:var(--b900)">${e.name}</div>
+        <div style="font-size:10px;color:var(--muted)">${e.title||e.job||'—'} · ${e.empId||''}</div>
+      </div>
+    </div>`).join('') +
+    `<div onclick="selectMgrSuggestion('${divId}',document.getElementById('mgr-inp-${divId}')?.value||document.getElementById('new-div-manager')?.value||'',event)"
+      style="padding:8px 12px;cursor:pointer;font-size:12px;color:var(--b700);border-top:0.5px solid var(--border);transition:background .1s"
+      onmouseover="this.style.background='var(--b50)'" onmouseout="this.style.background=''">
+      ✏️ استخدم النص كما هو
+    </div>`;
+
+  // إغلاق عند الضغط خارجاً
+  document.addEventListener('click', function closeSugg(e) {
+    if(!sugg.contains(e.target) && e.target !== input) {
+      sugg.style.display = 'none';
+      document.removeEventListener('click', closeSugg);
+    }
+  });
+}
+
+function selectMgrSuggestion(divId, name, evt) {
+  evt?.stopPropagation();
+  const inp = document.getElementById('mgr-inp-' + divId) ||
+              document.getElementById('new-div-manager');
+  if(inp) inp.value = name;
+  const sugg = document.getElementById('mgr-sugg-' + divId);
+  if(sugg) sugg.style.display = 'none';
+
+  // حفظ تلقائي إذا من إعدادات الشركة
+  if(divId !== 'new') {
+    const idNum = parseInt(divId);
+    if(!isNaN(idNum)) setDivisionManager(idNum, name);
+  }
+}
+
 function setDivisionManager(id, managerName) {
   if(!companySettings.divisions) return;
   const div = companySettings.divisions.find(d => d.id === id);
@@ -3560,22 +4437,1432 @@ function renderDivisionsList() {
     list.innerHTML = '<div style="font-size:12px;color:var(--muted);margin-bottom:8px">لا يوجد إدارات — أضف إدارة أدناه</div>';
     return;
   }
-  list.innerHTML = divs.map(d => `
-    <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:#fff;border:1px solid var(--border);border-radius:8px;margin-bottom:6px">
-      <div style="flex:1">
-        <div style="font-weight:600;font-size:13px">🏢 ${d.name}</div>
-        <div style="display:flex;align-items:center;gap:6px;margin-top:4px">
-          <span style="font-size:11px;color:var(--muted)">المدير:</span>
-          <input value="${d.manager||''}" placeholder="اسم المدير المسؤول"
-            onchange="setDivisionManager(${d.id}, this.value)"
-            style="flex:1;padding:4px 8px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:inherit">
+
+  list.innerHTML = divs.map(d => {
+    const divEmps = employees.filter(e => e.division === d.name && e.status !== 'منتهي الخدمة');
+    // تجميع المسميات الوظيفية تلقائياً
+    const roles = [...new Set(divEmps.map(e => e.title || e.job).filter(Boolean))];
+    const topRoles = roles.slice(0, 3);
+
+    return `
+    <div style="background:#fff;border:1px solid var(--border);border-radius:10px;margin-bottom:8px;overflow:hidden">
+      <!-- رأس الإدارة -->
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--b50);border-bottom:1px solid var(--border)">
+        <div style="flex:1">
+          <div style="font-weight:700;font-size:13px;color:var(--b900)">🏢 ${d.name}</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px">👥 ${divEmps.length} موظف</div>
         </div>
-        <div style="font-size:11px;color:var(--muted);margin-top:3px">
-          👥 ${employees.filter(e=>e.division===d.name).length} موظف
+        <button onclick="toggleDivisionDetails(${d.id})"
+          style="background:none;border:1px solid var(--border);border-radius:6px;padding:3px 10px;font-size:11px;color:var(--b700);cursor:pointer">
+          📋 تفاصيل
+        </button>
+        <button onclick="deleteDivision(${d.id})"
+          style="background:none;border:none;color:var(--r900);cursor:pointer;font-size:18px;line-height:1">×</button>
+      </div>
+
+      <!-- المديرون -->
+      <div style="padding:8px 14px;border-bottom:1px solid var(--border)">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+          <span style="font-size:12px;font-weight:600;color:var(--muted)">👔 المديرون</span>
+          <button onclick="addDivManagerRow(${d.id})" style="background:none;border:1px solid var(--b400);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--b700);cursor:pointer">+ مدير</button>
+        </div>
+        <div id="mgrs-list-${d.id}">
+          ${(d.managers||[{name:d.manager||'',perms:[]}]).filter(m=>m).map((m,mi)=>`
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px" id="mgr-row-${d.id}-${mi}">
+              <div style="position:relative;flex:1">
+                <input value="${m.name||''}" placeholder="ابحث بالاسم أو رقم الهوية..."
+                  oninput="liveSearchMgr(this,'${d.id}',${mi})"
+                  onblur="saveMgrRow(${d.id},${mi},this.value)"
+                  style="width:100%;padding:5px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:inherit;background:#fff">
+                <div id="msugg-${d.id}-${mi}" style="display:none;position:absolute;top:100%;right:0;left:0;z-index:60;background:#fff;border:1px solid var(--border);border-radius:6px;box-shadow:0 4px 12px rgba(0,0,0,.1);max-height:150px;overflow-y:auto"></div>
+              </div>
+              <button onclick="openMgrPermsModal(${d.id},${mi})" title="الصلاحيات"
+                style="background:var(--b50);border:1px solid var(--border);border-radius:6px;padding:4px 8px;font-size:11px;cursor:pointer;white-space:nowrap;color:var(--b700)">
+                ⚙️ ${(m.perms&&m.perms.length)?m.perms.length+' صلاحية':'صلاحيات'}
+              </button>
+              ${mi>0?`<button onclick="removeMgrRow(${d.id},${mi})" style="background:none;border:none;color:var(--r900);cursor:pointer;font-size:16px;padding:0 4px">×</button>`:''}
+            </div>`).join('')}
         </div>
       </div>
-      <button onclick="deleteDivision(${d.id})" style="background:none;border:none;color:var(--r900);cursor:pointer;font-size:18px">×</button>
+
+      <!-- المسميات تلقائياً -->
+      ${topRoles.length ? `
+      <div style="padding:8px 14px;font-size:11px;color:var(--muted)">
+        <span style="font-weight:600;color:var(--b800)">المسميات: </span>
+        ${topRoles.map(r=>`<span style="background:var(--b50);padding:2px 8px;border-radius:12px;margin-left:4px">${r}</span>`).join('')}
+        ${roles.length > 3 ? `<span style="color:var(--muted)">+${roles.length-3} أخرى</span>` : ''}
+      </div>` : ''}
+
+      <!-- تفاصيل الموظفين (مخفية) -->
+      <div id="div-details-${d.id}" style="display:none;max-height:160px;overflow-y:auto;border-top:1px solid var(--border)">
+        ${divEmps.length ? divEmps.map(e => `
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 14px;font-size:12px;border-bottom:1px solid var(--border)">
+            <span style="font-weight:600">${e.name}</span>
+            <span style="color:var(--muted)">${e.title||e.job||'—'}</span>
+          </div>`).join('') :
+          '<div style="padding:10px 14px;font-size:12px;color:var(--muted)">لا يوجد موظفون في هذه الإدارة</div>'
+        }
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ══ سلاسل الموافقات ══
+const APPROVAL_STEPS = ['مدير مباشر', 'مدير قسم', 'HR', 'مدير عام'];
+
+function addApprovalChain() {
+  if(!companySettings.approvalChains) companySettings.approvalChains = [];
+  companySettings.approvalChains.push({
+    id: Date.now(),
+    name: 'سلسلة جديدة',
+    steps: ['مدير مباشر', 'HR']
+  });
+  renderApprovalChains();
+}
+
+function deleteApprovalChain(id) {
+  if(!companySettings.approvalChains) return;
+  companySettings.approvalChains = companySettings.approvalChains.filter(c => c.id !== id);
+  renderApprovalChains();
+}
+
+function toggleChainStep(chainId, step) {
+  const chain = companySettings.approvalChains?.find(c => c.id === chainId);
+  if(!chain) return;
+  if(chain.steps.includes(step)) {
+    chain.steps = chain.steps.filter(s => s !== step);
+  } else {
+    // أضف بالترتيب الصحيح
+    chain.steps.push(step);
+    chain.steps.sort((a,b) => APPROVAL_STEPS.indexOf(a) - APPROVAL_STEPS.indexOf(b));
+  }
+  renderApprovalChains();
+}
+
+function updateChainName(id, name) {
+  const chain = companySettings.approvalChains?.find(c => c.id === id);
+  if(chain) chain.name = name;
+}
+
+function renderApprovalChains() {
+  const list = document.getElementById('approval-chains-list');
+  if(!list) return;
+  const chains = companySettings.approvalChains || [];
+
+  if(!chains.length) {
+    list.innerHTML = '<div style="font-size:12px;color:var(--muted);margin-bottom:8px">لا يوجد سلاسل موافقات — أضف سلسلة</div>';
+    return;
+  }
+
+  list.innerHTML = chains.map(c => `
+    <div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:8px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+        <input value="${c.name}" onchange="updateChainName(${c.id}, this.value)"
+          style="flex:1;padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:13px;font-weight:600;font-family:inherit">
+        <button onclick="deleteApprovalChain(${c.id})" style="background:none;border:none;color:var(--r900);cursor:pointer;font-size:18px">×</button>
+      </div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:6px">اختر خطوات الموافقة بالترتيب:</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        ${APPROVAL_STEPS.map(step => {
+          const active = c.steps.includes(step);
+          return `<button onclick="toggleChainStep(${c.id},'${step}')"
+            style="padding:5px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-family:inherit;
+            background:${active?'var(--b800)':'var(--b50)'};
+            color:${active?'#fff':'var(--muted)'};
+            border:1px solid ${active?'var(--b800)':'var(--border)'}">
+            ${active ? '✅ ' : ''}${step}
+          </button>`;
+        }).join('')}
+      </div>
+      <div style="margin-top:8px;font-size:12px;color:var(--b700)">
+        المسار: ${c.steps.length ? c.steps.join(' ← ') + ' ← موظف' : '⚠️ لم تُحدد خطوات'}
+      </div>
     </div>`).join('');
+}
+
+// ══ الصفحة المخصصة ══
+let customPageData = {
+  title: 'صفحة مخصصة',
+  columns: [],
+  records: []
+};
+
+function initCustomPage() {
+  const saved = localStorage.getItem('rikaz_custom_page');
+  if(saved) try { customPageData = JSON.parse(saved); } catch(_) {}
+  renderCustomPage();
+}
+
+function saveCustomPage() {
+  localStorage.setItem('rikaz_custom_page', JSON.stringify(customPageData));
+}
+
+function editCustomPageTitle() {
+  const name = prompt('اسم الصفحة:', customPageData.title);
+  if(name) {
+    customPageData.title = name;
+    document.getElementById('custom-page-title').textContent = '📌 ' + name;
+    saveCustomPage();
+  }
+}
+
+function addCustomColumn() {
+  const modal = document.createElement('div');
+  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;display:flex;align-items:center;justify-content:center';
+  modal.innerHTML = `
+    <div style="background:#fff;border-radius:14px;padding:22px;width:min(360px,90vw)">
+      <div style="font-weight:700;font-size:15px;margin-bottom:14px">➕ إضافة عمود</div>
+      <div class="form-group" style="margin-bottom:10px">
+        <label>اسم العمود</label>
+        <input id="col-name-inp" placeholder="مثل: تاريخ الانتهاء، رقم العقد..." style="padding:9px 12px;border:1px solid var(--border);border-radius:8px;width:100%;font-size:13px;font-family:inherit">
+      </div>
+      <div class="form-group" style="margin-bottom:14px">
+        <label>نوع العمود</label>
+        <select id="col-type-sel" onchange="toggleColAlertField()" style="padding:9px 12px;border:1px solid var(--border);border-radius:8px;width:100%;font-size:13px;font-family:inherit">
+          <option value="text">📝 نص</option>
+          <option value="number">🔢 رقم</option>
+          <option value="date">📅 تاريخ</option>
+          <option value="file">📎 مستند (صورة / PDF)</option>
+        </select>
+      </div>
+      <div id="col-alert-wrap" style="display:none">
+        <div style="margin-bottom:10px">
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin-bottom:8px">
+            <input type="checkbox" id="col-alert-enabled" onchange="toggleAlertDaysInput()">
+            <span style="font-size:13px;font-weight:600">🔔 تفعيل تنبيه قبل الانتهاء</span>
+          </label>
+          <div id="col-alert-days-wrap" style="display:none">
+            <input id="col-alert-days" type="number" value="30" min="1" max="365"
+              placeholder="عدد الأيام قبل الانتهاء"
+              style="padding:9px 12px;border:1px solid var(--border);border-radius:8px;width:100%;font-size:13px">
+            <div style="font-size:11px;color:var(--muted);margin-top:3px">مثال: 30 = تنبيه قبل الانتهاء بشهر</div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button onclick="this.closest('div[style*=fixed]').remove()"
+          style="flex:1;padding:9px;background:#fff;border:1px solid var(--border);border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit">إلغاء</button>
+        <button onclick="confirmAddCol(this.closest('div[style*=fixed]'))"
+          style="flex:1;padding:9px;background:var(--b800);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">إضافة</button>
+      </div>
+    </div>`;
+  document.body.appendChild(modal);
+  setTimeout(() => document.getElementById('col-name-inp')?.focus(), 100);
+}
+
+function editCustomColumn(id) {
+  const col = customPageData.columns.find(c => c.id === id);
+  if(!col) return;
+
+  const modal = document.createElement('div');
+  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;display:flex;align-items:center;justify-content:center';
+  modal.innerHTML = `
+    <div style="background:#fff;border-radius:14px;padding:22px;width:min(360px,90vw)">
+      <div style="font-weight:700;font-size:15px;margin-bottom:14px">✏️ تعديل العمود</div>
+      <div class="form-group" style="margin-bottom:10px">
+        <label>اسم العمود</label>
+        <input id="edit-col-name" value="${col.name}"
+          style="padding:9px 12px;border:1px solid var(--border);border-radius:8px;width:100%;font-size:13px;font-family:inherit">
+      </div>
+      ${col.type === 'date' ? `
+      <div style="margin-bottom:14px">
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin-bottom:8px">
+          <input type="checkbox" id="edit-col-alert-enabled" ${col.alertDays>0?'checked':''} onchange="document.getElementById('edit-col-days-wrap').style.display=this.checked?'block':'none'">
+          <span style="font-size:13px;font-weight:600">🔔 تفعيل تنبيه قبل الانتهاء</span>
+        </label>
+        <div id="edit-col-days-wrap" style="display:${col.alertDays>0?'block':'none'}">
+          <input id="edit-col-alert-days" type="number" value="${col.alertDays||30}" min="1" max="365"
+            placeholder="عدد الأيام"
+            style="padding:9px 12px;border:1px solid var(--border);border-radius:8px;width:100%;font-size:13px">
+          <div style="font-size:11px;color:var(--muted);margin-top:3px">يوم قبل الانتهاء</div>
+        </div>
+      </div>` : ''}
+      <div style="display:flex;gap:8px">
+        <button onclick="this.closest('div[style*=fixed]').remove()"
+          style="flex:1;padding:9px;background:#fff;border:1px solid var(--border);border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit">إلغاء</button>
+        <button onclick="saveEditColumn(${id}, this.closest('div[style*=fixed]'))"
+          style="flex:1;padding:9px;background:var(--b800);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">حفظ</button>
+      </div>
+    </div>`;
+  document.body.appendChild(modal);
+}
+
+function saveEditColumn(id, modal) {
+  const col = customPageData.columns.find(c => c.id === id);
+  if(!col) return;
+  const newName = document.getElementById('edit-col-name')?.value.trim();
+  if(!newName) { showNotif('أدخل اسم العمود', 'error'); return; }
+  const alertEnabled = document.getElementById('edit-col-alert-enabled')?.checked;
+  const alertDays = alertEnabled ? (parseInt(document.getElementById('edit-col-alert-days')?.value)||30) : 0;
+  col.name = newName;
+  col.alertDays = alertDays;
+  saveCustomPage();
+  renderCustomPage();
+  modal.remove();
+  showNotif(`✅ تم تعديل العمود — ${newName}${alertDays>0?' 🔔'+alertDays+'د':''}`);
+}
+
+function toggleAlertDaysInput() {
+  const enabled = document.getElementById('col-alert-enabled')?.checked;
+  const wrap = document.getElementById('col-alert-days-wrap');
+  if(wrap) wrap.style.display = enabled ? 'block' : 'none';
+}
+
+function toggleColAlertField() {
+  const type = document.getElementById('col-type-sel')?.value;
+  const wrap = document.getElementById('col-alert-wrap');
+  if(wrap) wrap.style.display = type === 'date' ? 'block' : 'none';
+}
+
+function confirmAddCol(modal) {
+  const name = document.getElementById('col-name-inp')?.value.trim();
+  const type = document.getElementById('col-type-sel')?.value || 'text';
+  const alertEnabled = document.getElementById('col-alert-enabled')?.checked;
+  const alertDays = (type === 'date' && alertEnabled) ? (parseInt(document.getElementById('col-alert-days')?.value)||30) : 0;
+  if(!name) { showNotif('أدخل اسم العمود', 'error'); return; }
+  customPageData.columns.push({ id: Date.now(), name, type, alertDays });
+  saveCustomPage();
+  renderCustomPage();
+  modal.remove();
+}
+
+function deleteCustomColumn(id) {
+  if(!confirm('حذف هذا العمود؟')) return;
+  customPageData.columns = customPageData.columns.filter(c => c.id !== id);
+  customPageData.records.forEach(r => delete r['col_' + id]);
+  saveCustomPage();
+  renderCustomPage();
+}
+
+function openAddCustomRecord() {
+  if(!customPageData.columns.length) {
+    showNotif('أضف عموداً أولاً', 'error'); return;
+  }
+  const fields = customPageData.columns.map(c => {
+    let input = '';
+    if(c.type === 'date')
+      input = `<input id="cr-${c.id}" type="date" style="padding:9px 12px;border:1px solid var(--border);border-radius:8px;width:100%;font-size:13px">`;
+    else if(c.type === 'number')
+      input = `<input id="cr-${c.id}" type="number" placeholder="0" style="padding:9px 12px;border:1px solid var(--border);border-radius:8px;width:100%;font-size:13px">`;
+    else if(c.type === 'file')
+      input = `<label style="display:flex;align-items:center;gap:8px;padding:9px 12px;border:1px dashed var(--b400);border-radius:8px;cursor:pointer;background:var(--b50)">
+        <span style="font-size:13px;color:var(--muted)">📎 اختر ملف (صورة أو PDF)</span>
+        <input id="cr-${c.id}" type="file" accept="image/*,.pdf" style="display:none" onchange="previewCustomFile(this,'prev-${c.id}')">
+        </label>
+        <div id="prev-${c.id}" style="font-size:11px;color:#1A6B3A;margin-top:3px"></div>`;
+    else
+      input = `<input id="cr-${c.id}" type="text" placeholder="${c.name}" style="padding:9px 12px;border:1px solid var(--border);border-radius:8px;width:100%;font-size:13px;font-family:inherit">`;
+    return `<div class="form-group"><label style="font-size:12px;font-weight:600;color:var(--muted)">${c.name}</label>${input}</div>`;
+  }).join('');
+
+  const modal = document.createElement('div');
+  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;display:flex;align-items:center;justify-content:center';
+  modal.innerHTML = `
+    <div style="background:#fff;border-radius:16px;padding:24px;width:min(480px,90vw);max-height:85vh;overflow-y:auto">
+      <div style="font-weight:700;font-size:16px;margin-bottom:16px">+ إضافة سجل جديد</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">${fields}</div>
+      <div style="display:flex;gap:8px;margin-top:16px">
+        <button onclick="this.closest('div[style*=fixed]').remove()"
+          style="flex:1;padding:10px;background:#fff;border:1px solid var(--border);border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit">إلغاء</button>
+        <button onclick="saveCustomRecord(this.closest('div[style*=fixed]'))"
+          style="flex:1;padding:10px;background:linear-gradient(135deg,#C9960C,#D4AF37);color:#0A0F2E;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit">حفظ</button>
+      </div>
+    </div>`;
+  document.body.appendChild(modal);
+}
+
+function previewCustomFile(input, previewId) {
+  const file = input.files[0];
+  const prev = document.getElementById(previewId);
+  if(!file || !prev) return;
+  prev.textContent = '✅ ' + file.name + ' (' + (file.size/1024).toFixed(1) + ' KB)';
+}
+
+async function saveCustomRecord(modal) {
+  const record = { id: Date.now() };
+
+  for(const c of customPageData.columns) {
+    const el = document.getElementById('cr-' + c.id);
+    if(!el) continue;
+    if(c.type === 'file' && el.files?.[0]) {
+      // تحويل الملف لـ base64
+      const file = el.files[0];
+      const b64 = await new Promise(res => {
+        const r = new FileReader();
+        r.onload = e => res(e.target.result);
+        r.readAsDataURL(file);
+      });
+      record['col_' + c.id] = { name: file.name, data: b64, type: file.type };
+    } else {
+      record['col_' + c.id] = el.value || '';
+    }
+  }
+
+  customPageData.records.push(record);
+  saveCustomPage();
+  renderCustomPage();
+  modal.remove();
+  showNotif('✅ تم إضافة السجل');
+}
+
+function deleteAllCustomRecords() {
+  if(!customPageData.records.length) { showNotif('لا يوجد سجلات'); return; }
+  if(!confirm(`حذف جميع السجلات (${customPageData.records.length} سجل)؟`)) return;
+  customPageData.records = [];
+  saveCustomPage();
+  renderCustomPage();
+  showNotif('✅ تم حذف جميع السجلات');
+}
+
+function openEditCustomRecord(id) {
+  const record = customPageData.records.find(r => r.id === id);
+  if(!record) return;
+
+  const fields = customPageData.columns.map(c => {
+    const val = record['col_' + c.id];
+    let input = '';
+    if(c.type === 'file') {
+      const hasFile = val && typeof val === 'object';
+      const isImg = hasFile && val.type?.startsWith('image');
+      input = `
+        <div style="margin-bottom:4px">
+          ${hasFile
+            ? (isImg
+                ? `<img src="${val.data}" style="max-width:80px;max-height:50px;border-radius:4px;margin-bottom:4px"><br><span style="font-size:11px;color:#1A6B3A">✅ ${val.name}</span>`
+                : `<a href="${val.data}" download="${val.name}" style="font-size:12px;color:var(--b700)">📄 ${val.name}</a>`)
+            : '<span style="font-size:11px;color:var(--muted)">لا يوجد ملف</span>'}
+        </div>
+        <label style="display:flex;align-items:center;gap:8px;padding:8px 12px;border:1px dashed var(--b400);border-radius:8px;cursor:pointer;background:var(--b50)">
+          <span style="font-size:12px;color:var(--muted)">📎 ${hasFile ? 'استبدال الملف' : 'رفع ملف'}</span>
+          <input id="cr-${c.id}" type="file" accept="image/*,.pdf" style="display:none" onchange="previewCustomFile(this,'prev-${c.id}')">
+        </label>
+        <div id="prev-${c.id}" style="font-size:11px;color:#1A6B3A;margin-top:3px"></div>`;
+    } else if(c.type === 'date') {
+      const rowAlert = record['alert_'+c.id];
+      const defaultAlert = c.alertDays || 0;
+      input = `
+        <input id="cr-${c.id}" type="date" value="${val||''}"
+          style="padding:9px 12px;border:1px solid var(--border);border-radius:8px;width:100%;font-size:13px;margin-bottom:6px">
+        ${defaultAlert > 0 ? `
+        <div style="background:var(--b50);border-radius:6px;padding:6px 10px;font-size:11px">
+          <label style="display:flex;align-items:center;gap:6px;cursor:pointer">
+            <input type="checkbox" id="row-alert-custom-${c.id}"
+              ${rowAlert !== undefined ? 'checked' : ''}
+              onchange="document.getElementById('row-alert-days-${c.id}').style.display=this.checked?'flex':'none'">
+            <span>🔔 تخصيص التنبيه لهذا الصف (الافتراضي: ${defaultAlert} يوم)</span>
+          </label>
+          <div id="row-alert-days-${c.id}" style="display:${rowAlert!==undefined?'flex':'none'};align-items:center;gap:6px;margin-top:6px">
+            <input id="row-alert-val-${c.id}" type="number" value="${rowAlert||defaultAlert}" min="0" max="365"
+              style="width:80px;padding:5px 8px;border:1px solid var(--border);border-radius:6px;font-size:12px">
+            <span style="font-size:12px;color:var(--muted)">يوم قبل الانتهاء (0 = بدون تنبيه)</span>
+          </div>
+        </div>` : ''}`;
+    } else if(c.type === 'number') {
+      input = `<input id="cr-${c.id}" type="number" value="${val||''}" style="padding:9px 12px;border:1px solid var(--border);border-radius:8px;width:100%;font-size:13px">`;
+    } else {
+      input = `<input id="cr-${c.id}" type="text" value="${String(val||'').replace(/"/g,'&quot;')}" style="padding:9px 12px;border:1px solid var(--border);border-radius:8px;width:100%;font-size:13px;font-family:inherit">`;
+    }
+    return `<div class="form-group"><label style="font-size:12px;font-weight:600;color:var(--muted)">${c.name}</label>${input}</div>`;
+  }).join('');
+
+  const modal = document.createElement('div');
+  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;display:flex;align-items:center;justify-content:center';
+  modal.innerHTML = `
+    <div style="background:#fff;border-radius:16px;padding:24px;width:min(480px,90vw);max-height:85vh;overflow-y:auto">
+      <div style="font-weight:700;font-size:16px;margin-bottom:16px">✏️ تعديل السجل</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">${fields}</div>
+      <div style="display:flex;gap:8px;margin-top:16px">
+        <button onclick="this.closest('div[style*=fixed]').remove()"
+          style="flex:1;padding:10px;background:#fff;border:1px solid var(--border);border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit">إلغاء</button>
+        <button onclick="updateCustomRecord(${id}, this.closest('div[style*=fixed]'))"
+          style="flex:1;padding:10px;background:linear-gradient(135deg,#C9960C,#D4AF37);color:#0A0F2E;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit">حفظ التعديل</button>
+      </div>
+    </div>`;
+  document.body.appendChild(modal);
+}
+
+async function updateCustomRecord(id, modal) {
+  const record = customPageData.records.find(r => r.id === id);
+  if(!record) return;
+
+  for(const c of customPageData.columns) {
+    const el = document.getElementById('cr-' + c.id);
+    if(!el) continue;
+    if(c.type === 'file' && el.files?.[0]) {
+      const file = el.files[0];
+      const b64 = await new Promise(res => {
+        const r = new FileReader();
+        r.onload = e => res(e.target.result);
+        r.readAsDataURL(file);
+      });
+      record['col_' + c.id] = { name: file.name, data: b64, type: file.type };
+    } else if(c.type === 'date') {
+      record['col_' + c.id] = el.value || '';
+      // حفظ تنبيه مخصص للصف
+      const customChk = document.getElementById('row-alert-custom-' + c.id);
+      if(customChk) {
+        if(customChk.checked) {
+          const days = parseInt(document.getElementById('row-alert-val-' + c.id)?.value);
+          record['alert_' + c.id] = isNaN(days) ? c.alertDays : days;
+        } else {
+          delete record['alert_' + c.id]; // يستخدم الافتراضي
+        }
+      }
+    } else if(c.type !== 'file') {
+      record['col_' + c.id] = el.value || '';
+    }
+  }
+
+  saveCustomPage();
+  renderCustomPage();
+  modal.remove();
+  showNotif('✅ تم تعديل السجل');
+}
+
+function deleteCustomRecord(id) {
+  customPageData.records = customPageData.records.filter(r => r.id !== id);
+  saveCustomPage();
+  renderCustomPage();
+}
+
+function renderCustomPage() {
+  const titleEl = document.getElementById('custom-page-title');
+  if(titleEl) titleEl.textContent = '📌 ' + (customPageData.title||'صفحة مخصصة');
+
+  // أيقونات الأنواع
+  const typeIcon = {text:'📝', number:'🔢', date:'📅', file:'📎'};
+
+  // الأعمدة
+  const colsList = document.getElementById('custom-cols-list');
+  if(colsList) colsList.innerHTML = customPageData.columns.map(c =>
+    `<span style="background:var(--b100);color:var(--b800);padding:3px 10px;border-radius:20px;font-size:12px;display:flex;align-items:center;gap:4px">
+      ${typeIcon[c.type]||'📝'} ${c.name}${c.alertDays>0?` 🔔${c.alertDays}د`:''}
+      <button onclick="editCustomColumn(${c.id})" style="background:none;border:none;color:var(--b700);cursor:pointer;font-size:12px;line-height:1;padding:0" title="تعديل العمود">✏️</button>
+      <button onclick="deleteCustomColumn(${c.id})" style="background:none;border:none;color:var(--r900);cursor:pointer;font-size:14px;line-height:1;padding:0">×</button>
+    </span>`
+  ).join('');
+
+  // زر استيراد Excel في شريط الأعمدة
+  const bar = document.getElementById('custom-cols-bar');
+  if(bar && !bar.querySelector('#custom-import-btn')) {
+    const importBtn = document.createElement('label');
+    importBtn.id = 'custom-import-btn';
+    importBtn.style.cssText = 'cursor:pointer;padding:4px 10px;background:#EAF3DE;border:1px solid #2E8B4A;border-radius:6px;font-size:12px;color:#1A6B3A;font-weight:600;white-space:nowrap';
+    importBtn.innerHTML = '📥 استيراد Excel <input type="file" accept=".xlsx,.xls" style="display:none" onchange="importCustomExcel(this)">';
+    bar.appendChild(importBtn);
+
+    const exportBtn = document.createElement('button');
+    exportBtn.style.cssText = 'padding:4px 10px;background:var(--b50);border:1px solid var(--border);border-radius:6px;font-size:12px;cursor:pointer;color:#C9960C;font-family:inherit;white-space:nowrap';
+    exportBtn.textContent = '📊 تصدير Excel';
+    exportBtn.onclick = exportCustomExcel;
+    bar.appendChild(exportBtn);
+  }
+
+  // رأس الجدول
+  const headerRow = document.getElementById('custom-header-row');
+  if(headerRow) headerRow.innerHTML =
+    '<th>#</th>' +
+    customPageData.columns.map(c => `<th>${typeIcon[c.type]||''} ${c.name}</th>`).join('') +
+    '<th>إجراءات</th>';
+
+  // السجلات
+  const tbody = document.getElementById('custom-tbody');
+  if(!tbody) return;
+  if(!customPageData.records.length) {
+    tbody.innerHTML = `<tr><td colspan="${customPageData.columns.length+2}" style="text-align:center;color:var(--muted);padding:30px">لا يوجد سجلات — أضف سجلاً أو استورد Excel</td></tr>`;
+    return;
+  }
+
+  const today = new Date().toISOString().split('T')[0];
+  tbody.innerHTML = customPageData.records.map((r,i) => {
+    // حساب لون الصف بناءً على أقرب تاريخ تنبيه
+    let rowBg = '';
+    customPageData.columns.forEach(c => {
+      if(c.type !== 'date') return;
+      const val = r['col_'+c.id];
+      if(!val || val === '—') return;
+      const daysLeft = Math.ceil((new Date(val) - new Date(today)) / 86400000);
+      const rowAlert = r['alert_' + c.id];
+      const effectiveAlert = rowAlert !== undefined ? rowAlert : (parseInt(c.alertDays)||0);
+      if(daysLeft < 0 && rowBg !== 'var(--r100)') rowBg = 'var(--r100)';
+      else if(effectiveAlert > 0 && daysLeft >= 0 && daysLeft <= effectiveAlert && !rowBg) rowBg = 'var(--o100)';
+    });
+
+    return `<tr style="background:${rowBg}">
+      <td style="color:var(--muted);font-size:11px">${i+1}</td>
+      ${customPageData.columns.map(c => {
+        const val = r['col_'+c.id];
+        if(c.type === 'file' && val && typeof val === 'object') {
+          const isImg = val.type?.startsWith('image');
+          return `<td>
+            ${isImg
+              ? `<img src="${val.data}" style="max-width:60px;max-height:40px;border-radius:4px;cursor:pointer" onclick="window.open('${val.data}')">`
+              : `<a href="${val.data}" download="${val.name}" style="color:var(--b700);font-size:12px">📄 ${val.name}</a>`
+            }
+          </td>`;
+        }
+        if(c.type === 'date' && val && val !== '—') {
+          const daysLeft = Math.ceil((new Date(val) - new Date(today)) / 86400000);
+          // التنبيه: مخصص للصف أو الافتراضي للعمود
+          const rowAlert = r['alert_' + c.id];
+          const effectiveAlert = rowAlert !== undefined ? rowAlert : (parseInt(c.alertDays)||0);
+          const isExpired = daysLeft < 0;
+          const isWarning = !isExpired && effectiveAlert > 0 && daysLeft <= effectiveAlert;
+          const color = isExpired ? 'var(--r900)' : isWarning ? 'var(--o900)' : 'inherit';
+          const badge = isExpired
+            ? `<span style="font-size:10px;background:var(--r900);color:#fff;padding:1px 6px;border-radius:10px;margin-right:4px">منتهي</span>`
+            : isWarning
+            ? `<span style="font-size:10px;background:var(--o900);color:#fff;padding:1px 6px;border-radius:10px;margin-right:4px">🔔 ${daysLeft}د${rowAlert!==undefined?' ✱':''}</span>`
+            : '';
+          return `<td style="color:${color};font-weight:${isExpired||isWarning?'700':'400'}">${val}${badge}</td>`;
+        }
+        const strVal = val || '—';
+        return `<td>${strVal}</td>`;
+      }).join('')}
+      <td style="display:flex;gap:4px">
+        <button onclick="openEditCustomRecord(${r.id})"
+          style="background:none;border:1px solid var(--b400);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--b700);cursor:pointer">✏️ تعديل</button>
+        <button onclick="deleteCustomRecord(${r.id})"
+          style="background:none;border:1px solid var(--r900);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--r900);cursor:pointer">حذف</button>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function importCustomExcel(input) {
+  const file = input.files[0];
+  if(!file) return;
+  input.value = '';
+  const reader = new FileReader();
+  reader.onload = ev => {
+    try {
+      const wb   = XLSX.read(new Uint8Array(ev.target.result), {type:'array'});
+      const ws   = wb.Sheets[wb.SheetNames[0]];
+      const rows = XLSX.utils.sheet_to_json(ws, {header:1, defval:''});
+      if(!rows.length) return;
+
+      const hdr = rows[0].map(h => String(h||'').trim());
+
+      // إنشاء أعمدة تلقائياً من رؤوس الملف إذا لم تكن موجودة
+      if(!customPageData.columns.length) {
+        hdr.forEach((h, i) => {
+          if(h) customPageData.columns.push({id: Date.now()+i, name:h, type:'text'});
+        });
+      }
+
+      let added = 0;
+      rows.slice(1).forEach(row => {
+        if(row.every(c => !c)) return;
+        const record = {id: Date.now() + Math.random()};
+        customPageData.columns.forEach((c, i) => {
+          const rawVal = row[i] !== undefined ? String(row[i]||'').trim() : '';
+          // تحويل التواريخ
+          if(c.type === 'date' && rawVal && !isNaN(Number(rawVal))) {
+            const d = new Date(Math.round((Number(rawVal)-25569)*86400*1000));
+            record['col_'+c.id] = d.toISOString().split('T')[0];
+          } else {
+            record['col_'+c.id] = rawVal;
+          }
+        });
+        customPageData.records.push(record);
+        added++;
+      });
+
+      saveCustomPage();
+      renderCustomPage();
+      showNotif(`✅ تم استيراد ${added} سجل من Excel`);
+    } catch(e) {
+      showNotif('خطأ في قراءة الملف', 'error');
+    }
+  };
+  reader.readAsArrayBuffer(file);
+}
+
+function exportCustomExcel() {
+  if(!customPageData.records.length) { showNotif('لا يوجد سجلات للتصدير'); return; }
+  const headers = customPageData.columns.map(c => c.name);
+  const rows = customPageData.records.map(r =>
+    customPageData.columns.map(c => {
+      const v = r['col_'+c.id];
+      return (v && typeof v === 'object') ? v.name : (v||'');
+    })
+  );
+  const ws = XLSX.utils.aoa_to_sheet([headers, ...rows]);
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, customPageData.title||'بيانات');
+  XLSX.writeFile(wb, (customPageData.title||'بيانات')+'.xlsx');
+  showNotif('✅ تم التصدير');
+}
+
+// ══ الهيكل التنظيمي ══
+// قواعد التصنيف التلقائي حسب المسمى الوظيفي
+const DEFAULT_TITLE_RULES = [
+  { keywords: ['سائق','شاحنة','دراجة','توصيل','ميداني','عامل تحميل','عامل تنزيل','مخزن','زراعي','طلاء','مواقف','تنظيف','مهن فريدة','ميكانيك','كهربائي','حارس','أمن'], division: 'العمليات' },
+  { keywords: ['مبيعات','تسويق','خدمة عملاء','مندوب','بيانات عملاء','مسوق','مندوبة'], division: 'المبيعات' },
+  { keywords: ['محاسب','محاسبة','مالي','مالية','ميزانية'], division: 'المالية' },
+  { keywords: ['موارد بشرية','hr','توظيف','رواتب','تدريب'], division: 'الموارد البشرية' },
+  { keywords: ['مدير','مديرة','رئيس','نائب','مساعد إداري','إداري','سكرتير','سكرتيرة','كاتب'], division: 'الإدارة' },
+  { keywords: ['مطور','برمجة','تقنية','it','شبكات','نظم','تقنية معلومات'], division: 'التقنية' },
+];
+
+function guessDivisionFromTitle(title) {
+  if(!title) return '';
+  const t = title.trim().toLowerCase()
+    .replace(/[أإآ]/g,'ا').replace(/ة/g,'ه').replace(/ى/g,'ي');
+  const customRules = companySettings.titleDivisionRules || [];
+  const allRules = [...customRules, ...DEFAULT_TITLE_RULES];
+  for(const rule of allRules) {
+    for(const kw of rule.keywords) {
+      const k = kw.toLowerCase().replace(/[أإآ]/g,'ا').replace(/ة/g,'ه').replace(/ى/g,'ي');
+      if(t.includes(k)) return rule.division;
+    }
+  }
+  return '';
+}
+
+function openAddDivisionModal() {
+  // مودال بسيط لإضافة إدارة جديدة
+  const modal = document.createElement('div');
+  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;display:flex;align-items:center;justify-content:center';
+
+  // قائمة الموظفين النشطين غير المصنفين + الكل
+  const active = employees.filter(e => e.status !== 'منتهي الخدمة');
+  const empOptions = active.map(e =>
+    `<option value="${e.empId||e.name}">${e.name} — ${e.title||e.job||'—'}</option>`
+  ).join('');
+
+  modal.innerHTML = `
+    <div style="background:#fff;border-radius:16px;padding:24px;width:min(480px,90vw);max-height:85vh;overflow-y:auto;direction:rtl">
+      <div style="font-weight:700;font-size:16px;margin-bottom:16px;color:var(--b900)">🏢 إضافة إدارة جديدة</div>
+
+      <div class="form-group" style="margin-bottom:12px">
+        <label>اسم الإدارة *</label>
+        <input id="new-div-name" placeholder="مثال: إدارة اللوجستيك" style="padding:9px 12px;border:1px solid var(--border);border-radius:8px;width:100%;font-size:13px;font-family:inherit">
+      </div>
+
+      <div class="form-group" style="margin-bottom:12px">
+        <label>المدير المسؤول</label>
+        <div style="position:relative">
+          <input id="new-div-manager" placeholder="ابحث بالاسم أو رقم الهوية..."
+            oninput="filterMgrSuggestions(this,'new')"
+            style="padding:9px 12px;border:1px solid var(--border);border-radius:8px;width:100%;font-size:13px;font-family:inherit">
+          <div id="mgr-sugg-new" style="display:none;position:absolute;top:100%;right:0;left:0;background:#fff;border:1px solid var(--border);border-radius:6px;z-index:50;max-height:160px;overflow-y:auto;box-shadow:0 4px 12px rgba(0,0,0,.1)"></div>
+        </div>
+      </div>
+
+      <div class="form-group" style="margin-bottom:16px">
+        <label>أضف موظفين (اختياري)</label>
+        <select id="new-div-emps" multiple style="padding:8px;border:1px solid var(--border);border-radius:8px;width:100%;font-size:12px;height:140px;font-family:inherit">
+          ${empOptions}
+        </select>
+        <div style="font-size:11px;color:var(--muted);margin-top:3px">Ctrl+Click لاختيار أكثر من موظف</div>
+      </div>
+
+      <div style="display:flex;gap:8px">
+        <button onclick="this.closest('div[style*=fixed]').remove()"
+          style="flex:1;padding:10px;background:#fff;border:1px solid var(--border);border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit">إلغاء</button>
+        <button onclick="confirmAddDivision(this.closest('div[style*=fixed]'))"
+          style="flex:1;padding:10px;background:linear-gradient(135deg,#C9960C,#D4AF37);color:#0A0F2E;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit">+ إضافة</button>
+      </div>
+    </div>`;
+  document.body.appendChild(modal);
+  setTimeout(() => document.getElementById('new-div-name')?.focus(), 100);
+}
+
+function openInlineMgrEdit(evt, divId, mgrIdx, currentName) {
+  evt?.stopPropagation();
+  const div = companySettings.divisions?.find(d => String(d.id) === String(divId));
+  if(!div) return;
+
+  const modal = document.createElement('div');
+  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:9999;display:flex;align-items:center;justify-content:center';
+
+  const isNew = mgrIdx === -1;
+  const active = employees.filter(e => e.status !== 'منتهي الخدمة');
+  const empOpts = active.map(e =>
+    `<option value="${e.name}"${e.name===currentName?' selected':''}>${e.name} — ${e.title||e.job||'—'} (${e.empId||'—'})</option>`
+  ).join('');
+
+  modal.innerHTML = `
+    <div style="background:#fff;border-radius:16px;padding:22px;width:min(400px,92vw);direction:rtl">
+      <div style="font-weight:700;font-size:14px;margin-bottom:4px;color:var(--b900)">
+        ${isNew ? '+ تعيين مدير' : '✏️ تعديل المدير'}
+      </div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:12px">${div.name}</div>
+
+      <div style="font-size:12px;font-weight:600;color:var(--muted);margin-bottom:5px">ابحث واختر من الموظفين:</div>
+      <div style="position:relative;margin-bottom:8px">
+        <input id="inline-mgr-inp" value="${currentName}" placeholder="الاسم أو رقم الهوية..."
+          oninput="inlineMgrSearch(this)"
+          style="width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit">
+        <div id="inline-mgr-sugg" style="display:none;position:absolute;top:100%;right:0;left:0;background:#fff;border:1px solid var(--border);border-radius:8px;z-index:10;max-height:180px;overflow-y:auto;box-shadow:0 4px 12px rgba(0,0,0,.1)"></div>
+      </div>
+
+      <div style="display:flex;gap:8px;margin-top:14px">
+        <button onclick="this.closest('div[style*=fixed]').remove()"
+          style="flex:1;padding:9px;background:#fff;border:1px solid var(--border);border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit">إلغاء</button>
+        ${!isNew ? `<button id="inline-del-btn"
+          style="padding:9px 14px;background:var(--r100);color:var(--r900);border:1px solid var(--r900);border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit">حذف</button>` : ''}
+        <button id="inline-save-btn"
+          style="flex:1;padding:9px;background:var(--b800);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">حفظ</button>
+      </div>
+    </div>`;
+
+  document.body.appendChild(modal);
+  const inp = document.getElementById('inline-mgr-inp');
+  const saveBtn = document.getElementById('inline-save-btn');
+  const delBtn  = document.getElementById('inline-del-btn');
+  if(saveBtn) saveBtn.onclick = () => saveInlineMgr(divId, mgrIdx, modal);
+  if(delBtn)  delBtn.onclick  = () => removeMgrFromOrgDirect(divId, mgrIdx, modal);
+  if(inp) {
+    setTimeout(() => {
+      inp.focus();
+      inp.select();
+      inlineMgrSearch(inp);
+    }, 80);
+  }
+}
+
+function inlineMgrSearch(input) {
+  const q = input.value.trim();
+  const sugg = document.getElementById('inline-mgr-sugg');
+  if(!sugg) return;
+
+  const active = employees.filter(e => e.status !== 'منتهي الخدمة');
+
+  if(!q) {
+    // عرض كل الموظفين عند الفتح (مع scroll)
+    renderMgrSuggestions(sugg, active);
+    return;
+  }
+
+  const matches = active.filter(e => {
+    const n = e.name.toLowerCase();
+    const id = (e.empId||'').toLowerCase();
+    const t = (e.title||e.job||'').toLowerCase();
+    const qL = q.toLowerCase();
+    return n.includes(qL) ||
+           id.includes(qL) ||
+           t.includes(qL) ||
+           n.split(' ').some(w => w.startsWith(qL));
+  });
+
+  renderMgrSuggestions(sugg, matches);
+}
+
+function renderMgrSuggestions(sugg, list) {
+  if(!list.length) { sugg.style.display='none'; return; }
+  sugg.style.display = 'block';
+  sugg.style.maxHeight = '220px';
+  sugg.style.overflowY = 'auto';
+  sugg.innerHTML = list.map(e => {
+    const initials = e.name.split(' ').slice(0,2).map(w=>w[0]||'').join('');
+    const safeName = e.name.replace(/'/g,"\\'");
+    return `<div style="display:flex;align-items:center;gap:8px;padding:8px 12px;cursor:pointer;font-size:12px;transition:background .1s"
+      onmouseover="this.style.background='var(--b50)'" onmouseout="this.style.background=''"
+      onmousedown="event.preventDefault();document.getElementById('inline-mgr-inp').value='${safeName}';document.getElementById('inline-mgr-sugg').style.display='none'">
+      <div style="width:26px;height:26px;border-radius:50%;background:var(--b100);color:var(--b800);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0">${initials}</div>
+      <div>
+        <div style="font-weight:600;color:var(--b900)">${e.name}</div>
+        <div style="font-size:10px;color:var(--muted)">${e.title||e.job||'—'} · ${e.empId||'—'}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function saveInlineMgr(divId, mgrIdx, modal) {
+  const name = document.getElementById('inline-mgr-inp')?.value.trim();
+  if(!name) { showNotif('أدخل اسم المدير', 'error'); return; }
+
+  const div = companySettings.divisions?.find(d => String(d.id) === String(divId));
+  if(!div) return;
+  if(!div.managers) div.managers = [];
+
+  if(mgrIdx === -1) {
+    // مدير جديد
+    div.managers.push({name, perms:[]});
+  } else {
+    if(!div.managers[mgrIdx]) div.managers[mgrIdx] = {name:'', perms:[]};
+    div.managers[mgrIdx].name = name;
+  }
+
+  // تحديث div.manager للأول دائماً
+  div.manager = div.managers[0]?.name || name;
+
+  autoSave();
+  renderOrgChart();
+  modal.remove();
+  showNotif(`✅ ${mgrIdx===-1?'تم تعيين':'تم تعديل'} ${name} كمدير لـ "${div.name}"`);
+}
+
+function removeMgrFromOrg(evt, divId, mgrIdx) {
+  evt?.stopPropagation();
+  const div = companySettings.divisions?.find(d => String(d.id) === String(divId));
+  if(!div) return;
+  if(!div.managers) div.managers = div.manager ? [{name:div.manager,perms:[]}] : [];
+  if(!div.managers[mgrIdx]) return;
+  const name = div.managers[mgrIdx].name;
+  div.managers.splice(mgrIdx, 1);
+  div.manager = div.managers[0]?.name || '';
+  autoSave();
+  renderOrgChart();
+  showNotif(`✅ تم حذف ${name} من المديرين`);
+}
+
+function removeMgrFromOrgDirect(divId, mgrIdx, modal) {
+  const div = companySettings.divisions?.find(d => String(d.id) === String(divId));
+  if(!div) { modal?.remove(); return; }
+  if(!div.managers) div.managers = div.manager ? [{name:div.manager,perms:[]}] : [];
+  if(!div.managers[mgrIdx]) { modal?.remove(); return; }
+  const name = div.managers[mgrIdx].name;
+  div.managers.splice(mgrIdx, 1);
+  div.manager = div.managers[0]?.name || '';
+  autoSave();
+  renderOrgChart();
+  modal?.remove();
+  showNotif(`✅ تم حذف ${name} من المديرين`);
+}
+
+function openChangeMgrModal(divName, currentMgr) {
+  const modal = document.createElement('div');
+  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;display:flex;align-items:center;justify-content:center';
+
+  const empOptions = employees
+    .filter(e => e.status !== 'منتهي الخدمة')
+    .map(e => `<option value="${e.name}"${e.name===currentMgr?' selected':''}>${e.name} — ${e.title||e.job||'—'} (${e.empId||'—'})</option>`)
+    .join('');
+
+  modal.innerHTML = `
+    <div style="background:#fff;border-radius:16px;padding:24px;width:min(420px,90vw);direction:rtl">
+      <div style="font-weight:700;font-size:15px;margin-bottom:4px;color:var(--b900)">👔 تعيين مدير</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:14px">${divName}</div>
+
+      <div style="font-size:12px;font-weight:600;color:var(--muted);margin-bottom:6px">اختر من قائمة الموظفين:</div>
+      <select id="mgr-from-list" style="width:100%;padding:8px;border:1px solid var(--border);border-radius:8px;font-size:12px;height:140px;font-family:inherit;margin-bottom:10px" size="6">
+        <option value="">— بدون مدير —</option>
+        ${empOptions}
+      </select>
+
+      <div style="font-size:12px;font-weight:600;color:var(--muted);margin-bottom:6px">أو أدخل الاسم / رقم الهوية يدوياً:</div>
+      <input id="mgr-manual-inp" value="${currentMgr||''}" placeholder="الاسم أو رقم الهوية"
+        style="width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit;margin-bottom:14px">
+
+      <div style="display:flex;gap:8px">
+        <button onclick="this.closest('div[style*=fixed]').remove()"
+          style="flex:1;padding:10px;background:#fff;border:1px solid var(--border);border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit">إلغاء</button>
+        <button onclick="saveMgrChange('${divName.replace(/'/g,"\\'")}',this.closest('div[style*=fixed]'))"
+          style="flex:1;padding:10px;background:var(--b800);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">حفظ</button>
+      </div>
+    </div>`;
+
+  // sync list → input
+  modal.querySelector('#mgr-from-list').onchange = function() {
+    if(this.value) document.getElementById('mgr-manual-inp').value = this.value;
+  };
+  document.body.appendChild(modal);
+}
+
+function saveMgrChange(divName, modal) {
+  const listVal   = document.getElementById('mgr-from-list')?.value;
+  const manualVal = document.getElementById('mgr-manual-inp')?.value.trim();
+  const finalName = manualVal || listVal || '';
+
+  const div = companySettings.divisions?.find(d => d.name === divName);
+  if(div) div.manager = finalName;
+  autoSave();
+  renderOrgChart();
+  modal.remove();
+  showNotif(`✅ مدير "${divName}": ${finalName||'بدون مدير'}`);
+}
+
+function editTopManager() {
+  const modal = document.createElement('div');
+  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:9999;display:flex;align-items:center;justify-content:center';
+  modal.innerHTML = `
+    <div style="background:#fff;border-radius:14px;padding:22px;width:min(400px,90vw);direction:rtl">
+      <div style="font-weight:700;font-size:14px;margin-bottom:14px;color:var(--b900)">🏛️ الإدارة العليا</div>
+      <div class="form-group" style="margin-bottom:10px">
+        <label>الاسم</label>
+        <div style="position:relative">
+          <input id="top-mgr-inp" value="${companySettings.topManager||''}" placeholder="ابحث بالاسم أو رقم الهوية..."
+            oninput="inlineMgrSearch(this)"
+            style="padding:9px 12px;border:1px solid var(--border);border-radius:8px;width:100%;font-size:13px;font-family:inherit">
+          <div id="inline-mgr-sugg" style="display:none;position:absolute;top:100%;right:0;left:0;background:#fff;border:1px solid var(--border);border-radius:8px;z-index:10;max-height:200px;overflow-y:auto;box-shadow:0 4px 12px rgba(0,0,0,.1)"></div>
+        </div>
+      </div>
+      <div class="form-group" style="margin-bottom:16px">
+        <label>المسمى الوظيفي</label>
+        <input id="top-mgr-title" value="${companySettings.topManagerTitle||'المدير العام / CEO'}"
+          style="padding:9px 12px;border:1px solid var(--border);border-radius:8px;width:100%;font-size:13px;font-family:inherit">
+      </div>
+      <div style="display:flex;gap:8px">
+        <button onclick="this.closest('div[style*=fixed]').remove()"
+          style="flex:1;padding:9px;background:#fff;border:1px solid var(--border);border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit">إلغاء</button>
+        <button onclick="companySettings.topManager='';companySettings.topManagerTitle='';autoSave();renderOrgChart();this.closest('div[style*=fixed]').remove()"
+          style="padding:9px 12px;background:var(--r100);color:var(--r900);border:1px solid var(--r900);border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit">حذف</button>
+        <button onclick="saveTopManager(this.closest('div[style*=fixed]'))"
+          style="flex:1;padding:9px;background:var(--b800);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">حفظ</button>
+      </div>
+    </div>`;
+  document.body.appendChild(modal);
+  setTimeout(()=>{
+    const inp=document.getElementById('top-mgr-inp');
+    if(inp){inp.focus();inlineMgrSearch(inp);}
+  },80);
+}
+
+function saveTopManager(modal) {
+  const name  = document.getElementById('top-mgr-inp')?.value.trim();
+  const title = document.getElementById('top-mgr-title')?.value.trim();
+  companySettings.topManager = name;
+  companySettings.topManagerTitle = title || 'المدير العام / CEO';
+  autoSave();
+  renderOrgChart();
+  modal.remove();
+  showNotif(`✅ تم تعيين ${name||'—'} كمدير أعلى`);
+}
+
+function openAddDeptModal(divName, evt) {
+  evt?.stopPropagation();
+  const modal = document.createElement('div');
+  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:9999;display:flex;align-items:center;justify-content:center';
+  modal.innerHTML = `
+    <div style="background:#fff;border-radius:14px;padding:22px;width:min(380px,90vw);direction:rtl">
+      <div style="font-weight:700;font-size:14px;margin-bottom:4px;color:var(--b900)">+ إضافة قسم</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:14px">${divName}</div>
+      <div class="form-group" style="margin-bottom:14px">
+        <label>اسم القسم *</label>
+        <input id="new-dept-name" placeholder="مثال: قسم التوصيل" autofocus
+          style="padding:9px 12px;border:1px solid var(--border);border-radius:8px;width:100%;font-size:13px;font-family:inherit">
+      </div>
+      <div style="display:flex;gap:8px">
+        <button onclick="this.closest('div[style*=fixed]').remove()"
+          style="flex:1;padding:9px;background:#fff;border:1px solid var(--border);border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit">إلغاء</button>
+        <button onclick="confirmAddDept('${divName.replace(/'/g,"\\'")}',this.closest('div[style*=fixed]'))"
+          style="flex:1;padding:9px;background:var(--b800);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">إضافة</button>
+      </div>
+    </div>`;
+  document.body.appendChild(modal);
+  setTimeout(()=>document.getElementById('new-dept-name')?.focus(),80);
+}
+
+function confirmAddDept(divName, modal) {
+  const name = document.getElementById('new-dept-name')?.value.trim();
+  if(!name) { showNotif('أدخل اسم القسم','error'); return; }
+  // القسم يظهر تلقائياً عند إضافة موظف له
+  // نحفظ القسم في إعدادات الإدارة
+  const div = companySettings.divisions?.find(d=>d.name===divName);
+  if(div) {
+    if(!div.depts) div.depts=[];
+    if(!div.depts.includes(name)) div.depts.push(name);
+  }
+  autoSave();
+  modal.remove();
+  showNotif(`✅ تم إضافة قسم "${name}" لـ "${divName}"`);
+  // اقتراح ربط موظفين
+  setTimeout(()=>openAddEmpToDivisionDept(divName, name), 300);
+}
+
+function openAddEmpToDivisionDept(divName, dept) {
+  // نفس openAddEmpToDivision لكن مع تحديد القسم مسبقاً
+  openAddEmpToDivision(divName, null, dept);
+}
+
+function openAddEmpToDivision(divName, evt) {
+  evt?.stopPropagation();
+  const active = employees.filter(e =>
+    e.status !== 'منتهي الخدمة' && e.division !== divName
+  );
+
+  if(!active.length) { showNotif('كل الموظفين في هذه الإدارة بالفعل'); return; }
+
+  const modal = document.createElement('div');
+  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;display:flex;align-items:center;justify-content:center';
+
+  const empOptions = active.map(e =>
+    `<option value="${e.empId||e.name}">${e.name} — ${e.title||e.job||'—'} ${e.division?'('+e.division+')':''}</option>`
+  ).join('');
+
+  modal.innerHTML = `
+    <div style="background:#fff;border-radius:16px;padding:24px;width:min(440px,90vw);max-height:80vh;overflow-y:auto;direction:rtl">
+      <div style="font-weight:700;font-size:15px;margin-bottom:4px;color:var(--b900)">+ إضافة موظفين</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:14px">${divName}</div>
+      <input id="emp-search-modal" placeholder="بحث بالاسم أو المسمى..."
+        oninput="filterModalEmps(this.value)"
+        style="padding:9px 12px;border:1px solid var(--border);border-radius:8px;width:100%;font-size:13px;font-family:inherit;margin-bottom:10px">
+      <select id="add-emp-sel" multiple
+        style="padding:8px;border:1px solid var(--border);border-radius:8px;width:100%;font-size:12px;height:200px;font-family:inherit">
+        ${empOptions}
+      </select>
+      <div style="font-size:11px;color:var(--muted);margin:6px 0 14px">Ctrl+Click لاختيار أكثر من موظف</div>
+      <div style="display:flex;gap:8px">
+        <button onclick="this.closest('div[style*=fixed]').remove()"
+          style="flex:1;padding:10px;background:#fff;border:1px solid var(--border);border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit">إلغاء</button>
+        <button onclick="confirmAddEmpsToDivision('${divName.replace(/'/g,"\\'")}', this.closest('div[style*=fixed]'))"
+          style="flex:1;padding:10px;background:var(--b800);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">إضافة</button>
+      </div>
+    </div>`;
+  document.body.appendChild(modal);
+  setTimeout(() => document.getElementById('emp-search-modal')?.focus(), 100);
+}
+
+function filterModalEmps(q) {
+  const sel = document.getElementById('add-emp-sel');
+  if(!sel) return;
+  const term = q.trim().toLowerCase();
+  [...sel.options].forEach(o => {
+    o.style.display = !term || o.text.toLowerCase().includes(term) ? '' : 'none';
+  });
+}
+
+function confirmAddEmpsToDivision(divName, modal) {
+  const sel = document.getElementById('add-emp-sel');
+  const selected = sel ? [...sel.selectedOptions].map(o => o.value) : [];
+  if(!selected.length) { showNotif('اختر موظفاً على الأقل', 'error'); return; }
+
+  let count = 0;
+  selected.forEach(empId => {
+    const emp = employees.find(e => e.empId === empId || e.name === empId);
+    if(emp) { emp.division = divName; count++; }
+  });
+
+  autoSave();
+  renderOrgChart();
+  modal.remove();
+  showNotif(`✅ تمت إضافة ${count} موظف لـ "${divName}"`);
+}
+
+function confirmAddDivision(modal) {
+  const name    = document.getElementById('new-div-name')?.value.trim();
+  const manager = document.getElementById('new-div-manager')?.value.trim();
+  const selEl   = document.getElementById('new-div-emps');
+  const selected = selEl ? [...selEl.selectedOptions].map(o => o.value) : [];
+
+  if(!name) { showNotif('أدخل اسم الإدارة', 'error'); return; }
+
+  // إضافة الإدارة لإعدادات الشركة
+  if(!companySettings.divisions) companySettings.divisions = [];
+  if(companySettings.divisions.find(d => d.name === name)) {
+    showNotif('الإدارة موجودة مسبقاً', 'error'); return;
+  }
+  companySettings.divisions.push({ id: Date.now(), name, manager });
+
+  // ربط الموظفين المختارين بالإدارة
+  let count = 0;
+  selected.forEach(empId => {
+    const emp = employees.find(e => e.empId === empId || e.name === empId);
+    if(emp) { emp.division = name; count++; }
+  });
+
+  autoSave();
+  updateDivisionSelects();
+  renderOrgChart();
+  modal.remove();
+  showNotif(`✅ تمت إضافة إدارة "${name}"${count > 0 ? ` مع ${count} موظف` : ''}`);
+}
+
+function autoAssignDivisions() {
+  // بناء قائمة الإدارات من البيانات أو الإعدادات
+  let divNames = (companySettings.divisions||[]).map(d=>d.name);
+
+  // تصنيف تلقائي لكل موظف
+  let count = 0, newDivs = new Set();
+  const active = employees.filter(e => e.status !== 'منتهي الخدمة');
+
+  active.forEach(e => {
+    const guess = guessDivisionFromTitle(e.title || e.job);
+    if(!guess) return;
+    if(e.division === guess) return; // لا تغيير
+
+    e.division = guess;
+    newDivs.add(guess);
+    count++;
+  });
+
+  // أضف الإدارات الجديدة المكتشفة لإعدادات الشركة
+  let addedDivs = 0;
+  newDivs.forEach(divName => {
+    if(!companySettings.divisions) companySettings.divisions = [];
+    if(!companySettings.divisions.find(d => d.name === divName)) {
+      companySettings.divisions.push({ id: Date.now() + Math.random(), name: divName, manager: '' });
+      addedDivs++;
+    }
+  });
+
+  if(count > 0) {
+    autoSave();
+    renderOrgChart();
+    updateDivisionSelects();
+    showNotif(`✅ صُنِّف ${count} موظف تلقائياً ${addedDivs>0?'('+addedDivs+' إدارة جديدة)':''}`);
+  } else {
+    showNotif('كل الموظفين مصنفون بالفعل ✅');
+  }
+}
+
+function renderOrgChart() {
+  const container = document.getElementById('orgchart-container');
+  if(!container) return;
+
+  const active = employees.filter(e => e.status !== 'منتهي الخدمة');
+  const divisions = companySettings.divisions || [];
+  const unassigned = active.filter(e => !e.division || !divisions.find(d => d.name === e.division));
+
+  const COLORS = [
+    {bg:'#185FA5',av:'#E6F1FB',avt:'#0C447C'},
+    {bg:'#0F6E56',av:'#E1F5EE',avt:'#085041'},
+    {bg:'#534AB7',av:'#EEEDFE',avt:'#3C3489'},
+    {bg:'#993C1D',av:'#FAECE7',avt:'#712B13'},
+    {bg:'#854F0B',av:'#FAEEDA',avt:'#633806'},
+    {bg:'#993556',av:'#FBEAF0',avt:'#72243E'},
+  ];
+
+  function ini(name){return(name||'').split(' ').slice(0,2).map(w=>w[0]||'').join('').toUpperCase()||'؟'}
+
+  function moveEmpOrg(empId, toDivName, toDept) {
+    const emp = employees.find(e => e.empId===empId || e.name===empId);
+    if(!emp) return;
+    emp.division = toDivName;
+    emp.dept = toDept;
+    autoSave();
+    renderOrgChart();
+    showNotif(`✅ نُقل ${emp.name.split(' ')[0]} ← ${toDivName||'غير مصنف'} / ${toDept||'—'}`);
+  }
+
+  window._orgDragEmp = null;
+
+  function makeChip(emp, color) {
+    const chip = document.createElement('div');
+    chip.style.cssText = 'display:flex;align-items:center;gap:7px;padding:5px 8px;background:var(--bg);border-radius:8px;cursor:grab;border:0.5px solid var(--border);margin-bottom:3px';
+    chip.draggable = true;
+    chip.innerHTML = `
+      <div style="width:26px;height:26px;border-radius:50%;background:${color.av};color:${color.avt};display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0">${ini(emp.name)}</div>
+      <div>
+        <div style="font-size:12px;color:var(--text)">${emp.name.split(' ').slice(0,3).join(' ')}</div>
+        <div style="font-size:10px;color:var(--muted)">${emp.title||emp.job||'—'}</div>
+      </div>`;
+    chip.addEventListener('dragstart', e => { window._orgDragEmp = emp.empId||emp.name; chip.style.opacity='.4'; e.dataTransfer.effectAllowed='move'; });
+    chip.addEventListener('dragend', () => chip.style.opacity='1');
+    return chip;
+  }
+
+  function makeDrop(el, divName, dept) {
+    el.addEventListener('dragover', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      el.style.outline = '2px dashed var(--b600)';
+      el.style.background = 'var(--b50)';
+    });
+    el.addEventListener('dragleave', e => {
+      if(!el.contains(e.relatedTarget)) {
+        el.style.outline = '';
+        el.style.background = '';
+      }
+    });
+    el.addEventListener('drop', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      el.style.outline = '';
+      el.style.background = '';
+      if(window._orgDragEmp) moveEmpOrg(window._orgDragEmp, divName, dept);
+      window._orgDragEmp = null;
+    });
+  }
+
+  // الإدارة العليا (CEO/مدير عام)
+  const topMgr = companySettings.topManager || '';
+  const topTitle = companySettings.topManagerTitle || 'المدير العام / CEO';
+
+  let html = `
+  <div style="text-align:center;margin-bottom:0">
+    ${topMgr ? `
+    <div style="display:inline-flex;flex-direction:column;align-items:center;gap:3px;margin-bottom:0">
+      <div style="display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:10px 20px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--b900);color:#D4AF37;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700">
+          ${topMgr.split(' ').slice(0,2).map(w=>w[0]||'').join('')}
+        </div>
+        <div style="text-align:right">
+          <div style="font-weight:700;font-size:13px;color:var(--b900)">${topMgr}</div>
+          <div style="font-size:11px;color:var(--muted)">${topTitle}</div>
+        </div>
+        <button onclick="editTopManager()" title="تعديل"
+          style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:13px;margin-right:4px">✏️</button>
+      </div>
+      <div style="width:2px;height:16px;background:var(--border)"></div>
+    </div>` : `
+    <div style="display:inline-flex;align-items:center;gap:8px;background:var(--b50);border:1px dashed var(--border);border-radius:10px;padding:8px 16px;margin-bottom:0;cursor:pointer"
+      onclick="editTopManager()">
+      <span style="font-size:12px;color:var(--muted)">+ تعيين مدير أعلى / CEO</span>
+    </div>
+    <div style="width:2px;height:8px;background:var(--border);margin:0 auto"></div>`}
+
+    <div style="display:inline-flex;flex-direction:column;align-items:center;background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:12px 24px;gap:3px">
+      <div style="font-weight:700;font-size:15px;color:var(--b900)">${companySettings.name||'الشركة'}</div>
+      <div style="font-size:12px;color:var(--muted)">${active.length} موظف نشط · ${divisions.length} إدارة</div>
+    </div>
+    <div style="width:2px;height:28px;background:var(--border);margin:0 auto"></div>
+  </div>
+  <div id="org-branches" style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center;align-items:flex-start;padding:0 8px"></div>
+  <div id="org-unassigned" style="margin-top:16px;border:1.5px dashed var(--border);border-radius:12px;padding:12px;background:var(--b50);display:none">
+    <div style="font-size:12px;color:var(--muted);margin-bottom:8px;font-weight:600">موظفون غير مصنفين — اسحبهم لأي قسم</div>
+    <div id="org-unassigned-pool" style="display:flex;flex-wrap:wrap;gap:6px;min-height:36px"></div>
+  </div>`;
+
+  container.innerHTML = html;
+
+  // بناء بطاقات الإدارات
+  const branchesEl = document.getElementById('org-branches');
+
+  divisions.forEach((div, idx) => {
+    const c = COLORS[idx % COLORS.length];
+    const divEmps = active.filter(e => e.division === div.name);
+    const depts = {};
+    divEmps.forEach(e => { const d = e.dept||'غير محدد'; if(!depts[d]) depts[d]=[]; depts[d].push(e); });
+    const deptList = Object.entries(depts);
+
+    const wrap = document.createElement('div');
+    wrap.style.cssText = 'display:flex;flex-direction:column;align-items:center';
+
+    const vl = document.createElement('div');
+    vl.style.cssText = 'width:2px;height:20px;background:var(--border)';
+    wrap.appendChild(vl);
+
+    const card = document.createElement('div');
+    card.style.cssText = 'width:240px;border-radius:12px;border:0.5px solid var(--border);background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.05)';
+
+    // رأس الإدارة
+    const hdr = document.createElement('div');
+    hdr.style.cssText = `background:${c.bg};padding:12px 14px`;
+    hdr.innerHTML = `
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:2px">${div.name}</div>
+          <div style="font-size:11px;opacity:.8;color:#fff">${divEmps.length} موظف · ${deptList.length} قسم</div>
+        </div>
+        <div style="display:flex;gap:6px">
+          <button onclick="openAddDeptModal(this.dataset.div,event)" data-div="${div.name}"
+            style="background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.35);border-radius:20px;color:#fff;font-size:11px;padding:3px 10px;cursor:pointer;font-family:inherit;white-space:nowrap">
+            + قسم
+          </button>
+          <button onclick="openAddEmpToDivision(this.dataset.div,event)" data-div="${div.name}"
+            style="background:rgba(255,255,255,.25);border:1px solid rgba(255,255,255,.4);border-radius:20px;color:#fff;font-size:11px;padding:3px 10px;cursor:pointer;font-family:inherit;white-space:nowrap">
+            + موظف
+          </button>
+        </div>
+      </div>`;
+
+    // منطقة المديرين — يدعم مديرين متعددين
+    const mgrsWrap = document.createElement('div');
+    mgrsWrap.style.cssText = `background:${c.bg}bb;border-top:1px solid rgba(255,255,255,.15)`;
+
+    const mgrsArr = (div.managers && div.managers.filter(m=>m.name).length)
+      ? div.managers.filter(m=>m.name)
+      : (div.manager ? [{name:div.manager, perms:[]}] : []);
+
+    // عرض كل مدير
+    mgrsArr.forEach((mgr, mi) => {
+      const mgrRow = document.createElement('div');
+      mgrRow.style.cssText = 'display:flex;align-items:center;gap:7px;padding:6px 14px;cursor:pointer;transition:background .12s';
+      mgrRow.onmouseover = () => mgrRow.style.background = 'rgba(255,255,255,.1)';
+      mgrRow.onmouseout  = () => mgrRow.style.background = '';
+      mgrRow.innerHTML = `
+        <div style="width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:600;color:#fff;flex-shrink:0">${ini(mgr.name)}</div>
+        <span style="font-size:11px;color:rgba(255,255,255,.9);flex:1">${mgr.name}</span>
+        <span style="font-size:10px;opacity:.5;color:#fff">${mgr.perms?.length?mgr.perms.length+'⚙':'—'}</span>
+        <button title="تعديل"
+          data-divid="${div.id}" data-idx="${mi}" data-name="${mgr.name.replace(/"/g,'&quot;')}"
+          onclick="openInlineMgrEdit(event,this.dataset.divid,parseInt(this.dataset.idx),this.dataset.name)"
+          style="background:rgba(255,255,255,.15);border:none;border-radius:4px;color:#fff;font-size:10px;padding:2px 6px;cursor:pointer;margin-right:2px">✏️</button>
+        <button title="حذف هذا المدير"
+          data-divid="${div.id}" data-idx="${mi}"
+          onclick="removeMgrFromOrg(event,this.dataset.divid,parseInt(this.dataset.idx))"
+          style="background:rgba(255,255,255,.15);border:none;border-radius:4px;color:#fff;font-size:10px;padding:2px 6px;cursor:pointer">×</button>`;
+      mgrsWrap.appendChild(mgrRow);
+    });
+
+    // زر + مدير جديد
+    const addMgrBtn = document.createElement('div');
+    addMgrBtn.style.cssText = 'padding:5px 14px;cursor:pointer;transition:background .12s';
+    addMgrBtn.onmouseover = () => addMgrBtn.style.background='rgba(255,255,255,.1)';
+    addMgrBtn.onmouseout  = () => addMgrBtn.style.background='';
+    addMgrBtn.innerHTML   = `<span style="font-size:11px;color:rgba(255,255,255,.6)">+ تعيين مدير</span>`;
+    addMgrBtn.dataset.divid = String(div.id);
+    addMgrBtn.onclick = (e) => { e.stopPropagation(); openInlineMgrEdit(e, e.currentTarget.dataset.divid, -1, ''); };
+    mgrsWrap.appendChild(addMgrBtn);
+
+    hdr.appendChild(mgrsWrap);
+    card.appendChild(hdr);
+
+    // الأقسام
+    const deptContainer = document.createElement('div');
+    deptContainer.style.cssText = 'background:#fff';
+
+    if(!deptList.length) {
+      const empty = document.createElement('div');
+      empty.style.cssText = 'padding:14px;text-align:center;font-size:12px;color:var(--muted)';
+      empty.textContent = 'لا يوجد موظفون';
+      deptContainer.appendChild(empty);
+    }
+
+    deptList.forEach(([dept, emps]) => {
+      const drow = document.createElement('div');
+      drow.style.cssText = 'border-top:0.5px solid var(--border)';
+
+      const dhdr = document.createElement('div');
+      dhdr.style.cssText = 'display:flex;align-items:center;justify-content:space-between;padding:8px 14px;cursor:pointer;transition:background .12s';
+      dhdr.innerHTML = `
+        <span style="font-size:12px;font-weight:600;color:var(--b900)">📂 ${dept}</span>
+        <span style="font-size:11px;color:var(--muted);background:var(--b100);padding:1px 7px;border-radius:10px" id="dept-cnt-${div.name.replace(/\s/g,'_')}-${dept.replace(/\s/g,'_')}">${emps.length}</span>`;
+
+      // drop على رأس القسم
+      makeDrop(dhdr, div.name, dept);
+      makeDrop(drow, div.name, dept);
+
+      dhdr.onmouseover = (e) => { if(!window._orgDragEmp) dhdr.style.background='var(--b50)'; };
+      dhdr.onmouseout  = () => dhdr.style.background='';
+
+      const pool = document.createElement('div');
+      pool.style.cssText = 'display:none;padding:6px 10px;background:var(--b50);flex-direction:column;gap:3px';
+
+      // drop على pool أيضاً
+      makeDrop(pool, div.name, dept);
+
+      dhdr.onclick = (e) => {
+        if(!window._orgDragEmp) {
+          const isOpen = pool.style.display !== 'none';
+          pool.style.display = isOpen ? 'none' : 'flex';
+          pool.style.flexDirection = 'column';
+        }
+      };
+
+      pool.style.maxHeight = '200px';
+      pool.style.overflowY = 'auto';
+      emps.forEach(emp => pool.appendChild(makeChip(emp, c)));
+
+      drow.appendChild(dhdr);
+      drow.appendChild(pool);
+      deptContainer.appendChild(drow);
+    });
+
+    card.appendChild(deptContainer);
+    wrap.appendChild(card);
+    branchesEl.appendChild(wrap);
+  });
+
+  // الغير مصنفين
+  if(unassigned.length) {
+    const uBox = document.getElementById('org-unassigned');
+    const uPool = document.getElementById('org-unassigned-pool');
+    uBox.style.display = 'block';
+    makeDrop(uPool, '', 'غير محدد');
+    unassigned.forEach(emp => uPool.appendChild(makeChip(emp, COLORS[COLORS.length-1])));
+  }
+
+  return;
+}
+
+function toggleDivisionDetails(id) {
+  const el = document.getElementById('div-details-' + id);
+  if(el) el.style.display = el.style.display === 'none' ? 'block' : 'none';
 }
 
 function updateDivisionSelects() {
@@ -6409,6 +8696,8 @@ function importFromIns() {
     if(d.other > 0) alreadyExists.other = d.other;
     if(d.basic > 0) alreadyExists.basic = d.basic;
     if(d.housing > 0) alreadyExists.housing = d.housing;
+    // تحديث الإدارة تلقائياً إذا لم تكن محددة
+    if(!alreadyExists.division) alreadyExists.division = guessDivisionFromTitle(d.job||'');
     updated++;
   } else if(!alreadyExists) {
   employees.push({
@@ -6425,6 +8714,7 @@ function importFromIns() {
   commission: d.commission || 0,
   transport: 0,
   other: d.other || 0,
+  division: guessDivisionFromTitle(d.job||''),
   hire: d.hire || '',
   birthDate: d.birthDate || '',
   email: '', phone: '',
@@ -6988,7 +9278,15 @@ function debouncedRenderSalary() {
         • لا يجوز توقيع أكثر من جزاء واحد على مخالفة واحدة<br>
         • سقف الخصم التأديبي = أجر 5 أيام في الشهر<br>
         • يجب إخطار الموظف كتابياً بحقه في الاعتراض
-      </div></div><div class="modal-footer"><button class="btn btn-outline" onclick="closeModal('m-company-settings')">إلغاء</button><button class="btn btn-primary" onclick="saveCompanySettings()">حفظ</button></div></div>
+      </div></div>
+<!-- ══ سلاسل الموافقات ══ -->
+<div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border)">
+  <div style="font-weight:700;font-size:14px;margin-bottom:4px">🔗 سلاسل الموافقات</div>
+  <div style="font-size:12px;color:var(--muted);margin-bottom:12px">حدد مسار الموافقة لكل نوع طلب — الموظف يختار السلسلة عند الرفع</div>
+  <div id="approval-chains-list" style="margin-bottom:10px"></div>
+  <button onclick="addApprovalChain()" style="padding:8px 14px;background:var(--b800);color:#fff;border:none;border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit">+ إضافة سلسلة موافقة</button>
+</div>
+<div class="modal-footer"><button class="btn btn-outline" onclick="closeModal('m-company-settings')">إلغاء</button><button class="btn btn-primary" onclick="saveCompanySettings()">حفظ</button></div></div>
 </div><div class="modal-bg" id="m-archive-upload"><div class="modal" style="max-width:480px"><div class="modal-hdr"><div class="modal-title">📎 رفع وثيقة للأرشيف</div><button class="modal-close" onclick="closeModal('m-archive-upload')">×</button></div><input type="hidden" id="arch-emp-id"><div style="background:var(--b50);border-radius:8px;padding:12px;margin-bottom:16px;font-weight:700;font-size:14px;display:flex;align-items:center;gap:8px"><span style="font-size:18px">👤</span><span id="arch-emp-name"></span></div><div id="arch-drop-zone"
          style="border:2px dashed var(--b400);border-radius:12px;padding:28px;text-align:center;margin-bottom:16px;cursor:pointer;transition:all .2s;background:var(--b50)"
          onclick="document.getElementById('arch-doc-file').click()"
@@ -7500,6 +9798,51 @@ async function clearLocEmps(locId) {
   loc.assignedEmps = [];
   renderLocations();
   showNotif('✅ تم مسح القائمة');
+}
+
+function renderAbsenceRequests() {
+  const body = document.getElementById('absence-requests-body');
+  const badge = document.getElementById('absence-req-badge');
+  if(!body) return;
+
+  const ABSENCE_TYPES = ['غياب','تبليغ غياب','تأخر','غيابی'];
+  const LOAN_TYPES = ['سلفة','طلب سلفة'];
+
+  const absRequests = leaves.filter(l =>
+    ABSENCE_TYPES.some(t => (l.type||'').includes(t)) ||
+    LOAN_TYPES.some(t => (l.type||'').includes(t))
+  );
+
+  if(badge) {
+    const pending = absRequests.filter(l => l.status === 'معلق').length;
+    badge.textContent = pending + ' معلق';
+    badge.style.display = pending > 0 ? 'inline-block' : 'none';
+  }
+
+  if(!absRequests.length) {
+    body.innerHTML = '<div style="color:var(--muted);font-size:13px;text-align:center;padding:16px">لا يوجد طلبات غياب أو سلف من البوابة</div>';
+    return;
+  }
+
+  body.innerHTML = `<div class="tbl-wrap"><table>
+    <thead><tr><th>#</th><th>الموظف</th><th>النوع</th><th>التاريخ</th><th>الأيام</th><th>ملاحظات</th><th>الحالة</th><th>إجراء</th></tr></thead>
+    <tbody>
+    ${absRequests.map((l,i) => `<tr>
+      <td>${i+1}</td>
+      <td style="font-weight:600">${l.emp||l.empId||'—'}</td>
+      <td><span class="badge ${(l.type||'').includes('سلفة')?'b-amber':'b-gray'}">${l.type}</span></td>
+      <td style="font-size:12px">${l.from||l.submit||'—'}</td>
+      <td style="text-align:center">${l.days||0}</td>
+      <td class="txt-muted-12">${l.note||'—'}</td>
+      <td><select style="font-size:12px;padding:3px 6px;border:1px solid var(--border);border-radius:6px;background:#fff"
+        onchange="updateLeaveStatus(${l.id},this.value)">
+        <option ${l.status==='موافق'?'selected':''}>موافق</option>
+        <option ${l.status==='معلق'?'selected':''}>معلق</option>
+        <option ${l.status==='مرفوض'?'selected':''}>مرفوض</option>
+      </select></td>
+      <td><button onclick="deleteLeave(${l.id})" style="background:none;border:1px solid var(--r900);border-radius:5px;padding:2px 7px;font-size:11px;color:var(--r900);cursor:pointer">حذف</button></td>
+    </tr>`).join('')}
+    </tbody></table></div>`;
 }
 
 async function loadPendingExcuses() {
