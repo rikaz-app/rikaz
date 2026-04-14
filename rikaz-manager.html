@@ -8,7 +8,7 @@
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Tahoma,Arial,sans-serif}
 :root{--gold:#D4AF37;--gold2:#C9960C;--b900:#0A0F2E;--b800:#12235C;--b700:#1A3A8F;--g900:#1A6B3A;--r900:#B71C1C;--o900:#E65100;--border:#E2E8F0;--muted:#6B7C93;--bg:#F0F2FA}
 body{background:var(--bg);min-height:100vh;color:#0A0F2E}
-
+ 
 /* Login */
 #login-screen{position:fixed;inset:0;background:linear-gradient(160deg,#0A0F2E,#12235C);display:flex;align-items:center;justify-content:center;z-index:999}
 .login-box{background:rgba(255,255,255,.07);border:1px solid rgba(212,175,55,.25);border-radius:20px;padding:32px 24px;width:min(380px,90vw)}
@@ -19,7 +19,7 @@ body{background:var(--bg);min-height:100vh;color:#0A0F2E}
 .inp::placeholder{color:rgba(255,255,255,.4)}
 .btn-gold{width:100%;padding:13px;background:linear-gradient(135deg,#C9960C,#D4AF37);color:#0A0F2E;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit}
 .login-err{color:#FF8A80;font-size:12px;text-align:center;margin:6px 0;display:none}
-
+ 
 /* App */
 #app{display:none}
 .topbar{background:linear-gradient(135deg,#0A0F2E,#12235C);padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10;box-shadow:0 2px 8px rgba(0,0,0,.3)}
@@ -32,15 +32,15 @@ body{background:var(--bg);min-height:100vh;color:#0A0F2E}
 .topbar-right{display:flex;align-items:center;gap:8px}
 .mgr-name{color:#9BBFE4;font-size:12px}
 .logout-btn{background:none;border:1px solid rgba(255,255,255,.2);color:#9BBFE4;padding:5px 12px;border-radius:8px;font-size:12px;cursor:pointer;font-family:inherit}
-
+ 
 .main{padding:20px;max-width:1200px;margin:0 auto}
 .page{display:none}.page.active{display:block}
-
+ 
 /* Cards */
 .card{background:#fff;border-radius:12px;border:1px solid var(--border);padding:18px;margin-bottom:14px}
 .card-title{font-size:14px;font-weight:700;color:var(--b900);margin-bottom:14px;display:flex;align-items:center;gap:8px}
 .card-title::before{content:'';width:4px;height:16px;background:#D4AF37;border-radius:2px;display:inline-block}
-
+ 
 /* KPIs */
 .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:16px}
 .kpi{background:#fff;border-radius:10px;padding:14px;border:1px solid var(--border);text-align:center}
@@ -48,14 +48,14 @@ body{background:var(--bg);min-height:100vh;color:#0A0F2E}
 .kpi-lbl{font-size:11px;color:var(--muted);margin-top:4px}
 .kpi.green .kpi-val{color:#C9960C}
 .kpi.red .kpi-val{color:var(--r900)}
-
+ 
 /* Table */
 .tbl-wrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:13px}
 th{text-align:right;padding:10px 12px;background:var(--bg);color:var(--b800);font-weight:600;border-bottom:2px solid var(--border);white-space:nowrap}
 td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:middle}
 tr:hover td{background:var(--bg)}
-
+ 
 /* Badges */
 .badge{display:inline-block;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:600}
 .b-green{background:#FDF6DC;color:#A07808}
@@ -64,13 +64,13 @@ tr:hover td{background:var(--bg)}
 .b-gray{background:#F5F5F5;color:#616161}
 .b-amber{background:#FFF8E1;color:#E65100}
 .b-pending{background:#FFF3E0;color:#E65100}
-
+ 
 /* Buttons */
 .btn{padding:7px 16px;border-radius:8px;font-size:13px;cursor:pointer;border:none;font-weight:600;font-family:inherit}
 .btn-approve{background:#1A6B3A;color:#fff}
 .btn-reject{background:var(--r900);color:#fff}
 .btn-sm{padding:5px 12px;font-size:12px}
-
+ 
 /* Request cards */
 .req-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:10px}
 .req-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
@@ -79,7 +79,7 @@ tr:hover td{background:var(--bg)}
 .req-detail{font-size:13px;color:var(--b800);margin-bottom:10px;background:var(--bg);padding:8px 10px;border-radius:6px}
 .req-actions{display:flex;gap:8px}
 .req-actions .btn{flex:1}
-
+ 
 /* تسلسل الموافقة */
 .approval-chain{display:flex;align-items:center;gap:6px;font-size:11px;margin-top:6px}
 .chain-step{padding:2px 8px;border-radius:4px;font-weight:600}
@@ -87,24 +87,24 @@ tr:hover td{background:var(--bg)}
 .chain-current{background:#FDF6DC;color:#A07808;border:1px solid #E8C96A}
 .chain-pending{background:#F5F5F5;color:#9E9E9E}
 .chain-arrow{color:var(--muted)}
-
+ 
 /* Attendance */
 .att-status-present{color:#1A6B3A;font-weight:600}
 .att-status-absent{color:var(--r900);font-weight:600}
 .att-status-leave{color:#A07808;font-weight:600}
 .att-status-late{color:var(--o900);font-weight:600}
-
+ 
 /* Spinner */
 .spin{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:sp .7s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
-
+ 
 /* Toast */
 .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#0A0F2E;color:#fff;padding:10px 18px;border-radius:10px;font-size:13px;z-index:999;opacity:0;transition:opacity .3s;border-right:3px solid #D4AF37;pointer-events:none}
 .toast.show{opacity:1}
 </style>
 </head>
 <body>
-
+ 
 <!-- Login -->
 <div id="login-screen">
   <div class="login-box">
@@ -118,7 +118,7 @@ tr:hover td{background:var(--bg)}
     <button class="btn-gold" onclick="doLogin()" id="l-btn">دخول</button>
   </div>
 </div>
-
+ 
 <!-- App -->
 <div id="app">
   <div class="topbar">
@@ -137,9 +137,9 @@ tr:hover td{background:var(--bg)}
       <button class="logout-btn" onclick="doLogout()">خروج</button>
     </div>
   </div>
-
+ 
   <div class="main">
-
+ 
     <!-- ══ الطلبات ══ -->
     <div class="page active" id="page-requests">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px">
@@ -157,7 +157,7 @@ tr:hover td{background:var(--bg)}
       <div class="kpi-grid" id="req-kpis"></div>
       <div id="requests-list"><div style="text-align:center;padding:40px;color:var(--muted)">جاري التحميل...</div></div>
     </div>
-
+ 
     <!-- ══ الحضور ══ -->
     <div class="page" id="page-attendance">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px">
@@ -178,7 +178,7 @@ tr:hover td{background:var(--bg)}
         </div>
       </div>
     </div>
-
+ 
     <!-- ══ الفريق ══ -->
     <div class="page" id="page-team">
       <h2 style="font-size:18px;font-weight:700;color:var(--b900);margin-bottom:16px">👥 فريقي</h2>
@@ -195,7 +195,7 @@ tr:hover td{background:var(--bg)}
         </div>
       </div>
     </div>
-
+ 
     <!-- ══ التقارير (مدير عام) ══ -->
     <div class="page" id="page-reports">
       <h2 style="font-size:18px;font-weight:700;color:var(--b900);margin-bottom:16px">📊 التقارير التنفيذية</h2>
@@ -205,18 +205,18 @@ tr:hover td{background:var(--bg)}
         <div id="reports-body" style="color:var(--muted);font-size:13px">جاري التحميل...</div>
       </div>
     </div>
-
+ 
   </div>
 </div>
-
+ 
 <div class="toast" id="toast"></div>
-
+ 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const RIKAZ_URL = 'https://dkbpajjnadlycnpoivim.supabase.co';
 const RIKAZ_KEY = 'sb_publishable_b3dw5D-des45_hhx1RB8eA_N6bbLU3A';
 const db = supabase.createClient(RIKAZ_URL, RIKAZ_KEY);
-
+ 
 let currentUser = null;
 let managerProfile = null; // بيانات المدير من إعدادات HR
 let myTeam = []; // موظفو الفريق
@@ -224,7 +224,7 @@ let allLeaves = [];
 let allEmployees = [];
 let allAttendance = [];
 let ownerUserId = null; // user_id لـ HR المالك
-
+ 
 // ══ تسجيل الدخول ══
 async function doLogin() {
   const email = document.getElementById('l-email').value.trim();
@@ -238,10 +238,10 @@ async function doLogin() {
   currentUser = data.user;
   await loadManagerProfile();
 }
-
+ 
 function showErr(msg){const e=document.getElementById('login-err');e.textContent=msg;e.style.display='block';}
 async function doLogout(){await db.auth.signOut();location.reload();}
-
+ 
 // ══ تحميل بيانات المدير ══
 async function loadManagerProfile() {
   // البحث عن المدير في جدول managers لكل المستخدمين
@@ -249,20 +249,20 @@ async function loadManagerProfile() {
     .select('*')
     .eq('manager_email', currentUser.email)
     .single();
-
+ 
   if(error || !data) {
     showErr('لا يوجد صلاحيات مدير لهذا الحساب — تواصل مع HR');
     document.getElementById('l-btn').textContent='دخول';
     document.getElementById('l-btn').disabled=false;
     return;
   }
-
+ 
   managerProfile = data;
   ownerUserId = data.owner_user_id;
   await loadAllData();
   showApp();
 }
-
+ 
 // ══ تحميل جميع البيانات ══
 async function loadAllData() {
   const [empsRes, leavesRes, attRes] = await Promise.all([
@@ -270,32 +270,39 @@ async function loadAllData() {
     db.from('leaves').select('data').eq('user_id', ownerUserId).single(),
     db.from('attendance').select('*').eq('user_id', ownerUserId).order('timestamp', {ascending:false}).limit(500),
   ]);
-
+ 
   allEmployees = empsRes.data?.data || [];
   allLeaves    = leavesRes.data?.data || [];
   allAttendance = attRes.data || [];
-
+ 
   // فلتر فريق هذا المدير
   myTeam = filterMyTeam(allEmployees);
 }
-
+ 
 function filterMyTeam(emps) {
   const p = managerProfile;
   if(!p) return [];
   const active = emps.filter(e => e.status !== 'منتهي الخدمة');
-
-  // الجميع للمدير العام وHR
+ 
   if(p.role === 'gm' || p.role === 'hr') return active;
-
+ 
   let team = [];
-
+ 
+  // حسب الإدارة (المديرون الجدد من إعدادات الشركة)
+  if(p.division_filter?.length) {
+    p.division_filter.forEach(div => {
+      active.filter(e => e.division === div)
+        .forEach(e => { if(!team.find(t=>t.empId===e.empId)) team.push(e); });
+    });
+  }
+ 
   // حسب القسم
   if(p.dept_filter?.length) {
     p.dept_filter.forEach(dept => {
       team.push(...active.filter(e => e.dept === dept));
     });
   }
-
+ 
   // حسب الموقع
   if(p.location_filter?.length) {
     p.location_filter.forEach(loc => {
@@ -303,7 +310,7 @@ function filterMyTeam(emps) {
         .forEach(e => { if(!team.find(t=>t.empId===e.empId)) team.push(e); });
     });
   }
-
+ 
   // يدوي
   if(p.manual_emp_ids?.length) {
     p.manual_emp_ids.forEach(id => {
@@ -311,29 +318,30 @@ function filterMyTeam(emps) {
       if(e && !team.find(t=>t.empId===e.empId)) team.push(e);
     });
   }
-
+ 
   return team;
 }
-
+ 
 // ══ إظهار التطبيق ══
 function showApp() {
   document.getElementById('login-screen').style.display='none';
   document.getElementById('app').style.display='block';
-
+ 
   const roleLabels = {manager:'مدير', hr:'HR', gm:'مدير عام'};
   document.getElementById('role-badge').textContent = roleLabels[managerProfile.role] || 'مدير';
   document.getElementById('mgr-name-lbl').textContent = managerProfile.manager_name || currentUser.email;
-
+ 
   // المدير العام يشوف التقارير
   if(managerProfile.role === 'gm') {
     document.getElementById('tab-reports').style.display='inline-block';
   }
-
+ 
   document.getElementById('att-date').value = new Date().toISOString().split('T')[0];
   renderRequests();
   renderTeam();
+  applyPermTabs();
 }
-
+ 
 function showPage(page) {
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
@@ -342,26 +350,77 @@ function showPage(page) {
   if(page==='attendance') renderAttendance();
   if(page==='reports') renderReports();
 }
-
+ 
 // ══ الطلبات ══
+function getMgrPerms() {
+  // قراءة صلاحيات المدير من إعدادات الإدارات
+  const email = currentUser?.email || '';
+  const name  = managerProfile?.manager_name || '';
+  const cs = companySettings || {};
+  const divs = cs.divisions || [];
+ 
+  for(const div of divs) {
+    for(const mgr of (div.managers||[])) {
+      if(mgr.name === name || mgr.name === email) {
+        return mgr.perms || [];
+      }
+    }
+  }
+  // افتراضي: كل الصلاحيات للـ gm/hr
+  if(managerProfile?.role === 'gm' || managerProfile?.role === 'hr') {
+    return ['salary','leave','loan','eos','attendance','violations','custom'];
+  }
+  return managerProfile?.perms || [];
+}
+ 
+function applyPermTabs() {
+  const perms = getMgrPerms();
+  // إظهار/إخفاء تبويبات حسب الصلاحيات
+  const tabMap = {
+    'tab-salary':     'salary',
+    'tab-leaves':     'leave',
+    'tab-loans':      'loan',
+    'tab-eos':        'eos',
+    'tab-attendance': 'attendance',
+  };
+  Object.entries(tabMap).forEach(([tabId, perm]) => {
+    const el = document.getElementById(tabId);
+    if(el) el.style.display = perms.includes(perm) ? '' : 'none';
+  });
+}
+ 
+function hasPerm(perm) {
+  return getMgrPerms().includes(perm);
+}
+ 
 function renderRequests() {
   const typeFilter = document.getElementById('req-type-filter')?.value || '';
   const teamIds = new Set(myTeam.map(e=>e.empId));
   const teamNames = new Set(myTeam.map(e=>e.name));
-
+ 
   // طلبات الفريق فقط
   let reqs = allLeaves.filter(l => {
     const inTeam = teamIds.has(l.empId) || teamNames.has(l.emp);
     if(!inTeam) return false;
     if(typeFilter && l.type !== typeFilter) return false;
-
-    // ما يُظهر للمدير إلا المعلقة عند مستواه
-    if(managerProfile.role === 'manager') return l.status === 'معلق';
-    if(managerProfile.role === 'hr') return l.status === 'موافق مدير' || l.status === 'معلق';
-    if(managerProfile.role === 'gm') return l.status === 'موافق HR' || l.status === 'موافق';
-    return false;
+ 
+    // عرض الطلبات المعلقة عند مستوى هذا المدير
+    if(l.status !== 'معلق') return false;
+ 
+    const steps = l.approvalSteps || ['مدير', 'HR', 'مدير عام'];
+    const currentStep = l.currentStep || 0;
+    const currentStepLabel = steps[currentStep] || '';
+ 
+    const roleToStep = {
+      manager: ['مدير','مدير مباشر','مدير قسم'],
+      hr:      ['HR','موارد بشرية'],
+      gm:      ['مدير عام','المدير العام']
+    };
+ 
+    const myLabels = roleToStep[managerProfile.role] || [];
+    return myLabels.some(lbl => currentStepLabel.includes(lbl));
   });
-
+ 
   // KPIs
   document.getElementById('req-kpis').innerHTML = `
     <div class="kpi"><div class="kpi-val">${reqs.length}</div><div class="kpi-lbl">طلبات معلقة</div></div>
@@ -369,7 +428,7 @@ function renderRequests() {
     <div class="kpi red"><div class="kpi-val">${allLeaves.filter(l=>(teamIds.has(l.empId)||teamNames.has(l.emp))&&l.status==='مرفوض').length}</div><div class="kpi-lbl">مرفوضة</div></div>
     <div class="kpi"><div class="kpi-val">${myTeam.length}</div><div class="kpi-lbl">حجم الفريق</div></div>
   `;
-
+ 
   const container = document.getElementById('requests-list');
   if(!reqs.length) {
     container.innerHTML = `<div style="text-align:center;padding:40px;color:var(--muted)">
@@ -378,13 +437,13 @@ function renderRequests() {
     </div>`;
     return;
   }
-
+ 
   container.innerHTML = reqs.map(req => {
     const typeLabel = {سنوية:'🌴 إجازة سنوية', استئذان:'⏰ استئذان', غياب:'📋 تبليغ غياب', تأخر:'⚠️ تأخر'}[req.type] || req.type;
-
+ 
     // تسلسل الموافقة
     const chain = getApprovalChain(req);
-
+ 
     return `<div class="req-card">
       <div class="req-header">
         <div>
@@ -402,32 +461,59 @@ function renderRequests() {
     </div>`;
   }).join('');
 }
-
+ 
 function getApprovalChain(req) {
-  const steps = [
-    {label:'المدير', done: req.status!=='معلق', current: req.status==='معلق'},
-    {label:'HR', done: req.status==='موافق HR'||req.status==='موافق', current: req.status==='موافق مدير'},
-    {label:'مدير عام', done: req.status==='موافق', current: req.status==='موافق HR'},
-  ];
-  return steps.map((s,i) => `
-    <span class="chain-step ${s.done?'chain-done':s.current?'chain-current':'chain-pending'}">${s.label}</span>
-    ${i<steps.length-1?'<span class="chain-arrow">←</span>':''}
-  `).join('');
+  // استخدم السلسلة المخصصة إذا وجدت
+  const steps = req.approvalSteps?.length
+    ? req.approvalSteps
+    : ['مدير', 'HR', 'مدير عام'];
+ 
+  const currentStep = req.currentStep || 0;
+ 
+  return steps.map((label, i) => {
+    const done    = i < currentStep;
+    const current = i === currentStep && req.status === 'معلق';
+    return `
+      <span class="chain-step ${done?'chain-done':current?'chain-current':'chain-pending'}">${label}</span>
+      ${i < steps.length-1 ? '<span class="chain-arrow">←</span>' : ''}`;
+  }).join('') + (req.approvalChainName ? `<span style="font-size:10px;color:var(--muted);margin-right:6px">(${req.approvalChainName})</span>` : '');
 }
-
+ 
 async function approveRequest(reqId) {
-  const nextStatus = {
-    manager: 'موافق مدير',
-    hr: 'موافق HR',
-    gm: 'موافق',
-  }[managerProfile.role] || 'موافق';
-
-  await updateLeaveStatus(reqId, nextStatus);
-  showToast('✅ تمت الموافقة');
+  const req = allLeaves.find(l => l.id === reqId);
+  if(!req) return;
+ 
+  const steps = req.approvalSteps || ['مدير', 'HR', 'مدير عام'];
+  const currentStep = req.currentStep || 0;
+  const nextStep = currentStep + 1;
+ 
+  let nextStatus;
+  if(nextStep >= steps.length) {
+    nextStatus = 'موافق'; // اكتملت السلسلة
+  } else {
+    nextStatus = 'معلق'; // لا يزال معلقاً للخطوة التالية
+  }
+ 
+  // تحديث الطلب مع الخطوة التالية
+  const updated = allLeaves.map(l => {
+    if(l.id !== reqId) return l;
+    return {
+      ...l,
+      status: nextStatus,
+      currentStep: nextStep,
+      [`step${currentStep}_approvedBy`]: managerProfile.manager_name,
+      [`step${currentStep}_approvedDate`]: new Date().toISOString().split('T')[0]
+    };
+  });
+ 
+  await db.from('leaves').upsert({user_id: ownerUserId, data: updated, updated_at: new Date().toISOString()});
+ 
+  const stepLabel = steps[currentStep] || '';
+  showToast(`✅ موافقة ${stepLabel} — ${nextStep < steps.length ? 'انتظار '+steps[nextStep] : 'اعتُمد نهائياً'}`);
   await loadAllData();
   renderRequests();
 }
-
+ 
 async function rejectRequest(reqId) {
   const reason = prompt('سبب الرفض (اختياري):') || '';
   await updateLeaveStatus(reqId, 'مرفوض', reason);
@@ -435,7 +521,7 @@ async function rejectRequest(reqId) {
   await loadAllData();
   renderRequests();
 }
-
+ 
 async function updateLeaveStatus(reqId, status, note='') {
   const updated = allLeaves.map(l => {
     if(l.id === reqId) {
@@ -448,22 +534,22 @@ async function updateLeaveStatus(reqId, status, note='') {
   });
   await db.from('leaves').upsert({user_id: ownerUserId, data: updated, updated_at: new Date().toISOString()});
 }
-
+ 
 // ══ الحضور ══
 async function renderAttendance() {
   const date = document.getElementById('att-date')?.value || new Date().toISOString().split('T')[0];
   const teamIds = new Set(myTeam.map(e=>e.empId));
   const teamNames = new Set(myTeam.map(e=>e.name));
-
+ 
   const todayAtt = allAttendance.filter(a =>
     a.timestamp?.startsWith(date) &&
     (teamIds.has(a.emp_id) || teamNames.has(a.emp_name))
   );
-
+ 
   const checkins  = todayAtt.filter(a=>a.type==='checkin');
   const checkouts = todayAtt.filter(a=>a.type==='checkout');
   const presentIds = new Set(checkins.map(a=>a.emp_id||a.emp_name));
-
+ 
   // طلبات إجازة معتمدة اليوم
   const onLeaveToday = allLeaves.filter(l =>
     (l.status==='موافق'||l.status==='موافق HR') &&
@@ -471,24 +557,24 @@ async function renderAttendance() {
     (teamIds.has(l.empId)||teamNames.has(l.emp))
   );
   const onLeaveNames = new Set([...onLeaveToday.map(l=>l.empId),...onLeaveToday.map(l=>l.emp)]);
-
+ 
   const absent = myTeam.filter(e => !presentIds.has(e.empId) && !onLeaveNames.has(e.empId) && !onLeaveNames.has(e.name));
-
+ 
   document.getElementById('att-kpis').innerHTML = `
     <div class="kpi green"><div class="kpi-val">${presentIds.size}</div><div class="kpi-lbl">حاضر ✅</div></div>
     <div class="kpi red"><div class="kpi-val">${absent.length}</div><div class="kpi-lbl">غائب 🔴</div></div>
     <div class="kpi"><div class="kpi-val">${onLeaveToday.length}</div><div class="kpi-lbl">إجازة 🌴</div></div>
     <div class="kpi"><div class="kpi-val">${myTeam.length}</div><div class="kpi-lbl">إجمالي الفريق</div></div>
   `;
-
+ 
   const tbody = document.getElementById('att-tbody');
   if(!myTeam.length){tbody.innerHTML='<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:20px">لا يوجد فريق</td></tr>';return;}
-
+ 
   tbody.innerHTML = myTeam.map((emp,i) => {
     const cin  = checkins.find(a=>a.emp_id===emp.empId||a.emp_name===emp.name);
     const cout = checkouts.find(a=>a.emp_id===emp.empId||a.emp_name===emp.name);
     const isLeave = onLeaveNames.has(emp.empId)||onLeaveNames.has(emp.name);
-
+ 
     let statusHtml, cinTime='—', coutTime='—', locHtml='—';
     if(isLeave){
       statusHtml = '<span class="att-status-leave">🌴 إجازة</span>';
@@ -500,7 +586,7 @@ async function renderAttendance() {
     } else {
       statusHtml = '<span class="att-status-absent">🔴 غائب</span>';
     }
-
+ 
     return `<tr>
       <td style="color:var(--muted);font-size:11px">${i+1}</td>
       <td style="font-weight:600">${emp.name}</td>
@@ -511,7 +597,7 @@ async function renderAttendance() {
     </tr>`;
   }).join('');
 }
-
+ 
 // ══ الفريق ══
 function renderTeam() {
   document.getElementById('team-kpis').innerHTML = `
@@ -519,7 +605,7 @@ function renderTeam() {
     <div class="kpi"><div class="kpi-val">${myTeam.filter(e=>e.attendanceType==='field').length}</div><div class="kpi-lbl">ميداني</div></div>
     <div class="kpi"><div class="kpi-val">${myTeam.filter(e=>e.attendanceType!=='field'&&e.attendanceType!=='exempt').length}</div><div class="kpi-lbl">مكتبي</div></div>
   `;
-
+ 
   const tbody = document.getElementById('team-tbody');
   tbody.innerHTML = myTeam.map((emp,i) => `
     <tr>
@@ -532,7 +618,7 @@ function renderTeam() {
       <td><span class="badge ${emp.status==='نشط'?'b-green':'b-gray'}">${emp.status||'نشط'}</span></td>
     </tr>`).join('');
 }
-
+ 
 // ══ التقارير (مدير عام) ══
 async function renderReports() {
   if(managerProfile.role !== 'gm') return;
@@ -541,14 +627,14 @@ async function renderReports() {
   const monthLeaves = allLeaves.filter(l=>l.submit?.startsWith(thisMonth));
   const approved = monthLeaves.filter(l=>l.status==='موافق').length;
   const pending  = allLeaves.filter(l=>l.status==='معلق'||l.status==='موافق مدير'||l.status==='موافق HR').length;
-
+ 
   document.getElementById('reports-kpis').innerHTML = `
     <div class="kpi"><div class="kpi-val">${active.length}</div><div class="kpi-lbl">إجمالي الموظفين</div></div>
     <div class="kpi green"><div class="kpi-val">${approved}</div><div class="kpi-lbl">إجازات معتمدة هذا الشهر</div></div>
     <div class="kpi red"><div class="kpi-val">${pending}</div><div class="kpi-lbl">طلبات معلقة</div></div>
     <div class="kpi"><div class="kpi-val">${active.filter(e=>e.attendanceType==='field').length}</div><div class="kpi-lbl">موظفون ميدانيون</div></div>
   `;
-
+ 
   document.getElementById('reports-body').innerHTML = `
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
       <div style="background:var(--bg);border-radius:8px;padding:12px">
@@ -571,9 +657,9 @@ async function renderReports() {
       </div>
     </div>`;
 }
-
+ 
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
-
+ 
 async function init(){
   const {data:{session}}=await db.auth.getSession();
   if(session){currentUser=session.user;await loadManagerProfile();}
